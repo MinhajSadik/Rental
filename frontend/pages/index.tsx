@@ -1,11 +1,32 @@
 import { Inter } from "next/font/google";
+import { HeadTag, Header, Footer } from "@/components/common";
+import { Banner, FeatureAds, SliderFeature, Help } from "@/components/pagescom/home";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-center my-10">Welcome to the Retal App 🏠</h1>
+    <div className={`min-h-screen flex flex-col ${inter.className}`}>
+      {/* ==== Head ==== */}
+      <HeadTag title="Rental - Find Your Perfect Home: Explore Premier House Rentals" />
+
+      {/* ==== Header ==== */}
+      <Header />
+
+      {/* ==== Main ==== */}
+      <main>
+        {/* ==== Banner ==== */}
+        <Banner/>
+        {/* ==== SliderFeature ==== */}
+        <SliderFeature/>
+        {/* ==== Feature Ads ==== */}
+        <FeatureAds/>
+        {/* ==== Help ==== */}
+        <Help/>
+      </main>
+
+      {/* ==== Footer ==== */}
+      <Footer />
     </div>
-  )
+  );
 }

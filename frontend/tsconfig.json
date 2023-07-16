@@ -26,6 +26,6 @@
       "@types/*": ["./types/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/pagescom/home/SliderFeature.js"],
   "exclude": ["node_modules"]
 }

@@ -27,11 +27,11 @@ const categoryData: Array<CategoryType> = [
   },
   {
     id: "7",
-    name: "Female Student"
+    name: "-Female Student"
   },
   {
     id: "8",
-    name: "Female Jobholder"
+    name: "-Female Jobholder"
   },
   {
     id: "9",
