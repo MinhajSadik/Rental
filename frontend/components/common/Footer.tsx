@@ -1,8 +1,7 @@
 const Footer: React.FC = () => {
   return (
-    <div>
-      Footer
-    </div>
+    <footer className="mt-auto">
+    </footer>
   )
 }
 

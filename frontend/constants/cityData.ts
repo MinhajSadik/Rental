@@ -3,115 +3,43 @@ import { CityType } from "@/types/cityTypes";
 const cityData: Array<CityType> = [
   {
     id: "1",
-    name: "Akhalia"
+    name: "Dhaka",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "2",
-    name: "Ambarkhana"
+    name: "Chattogram",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "3",
-    name: "Baghbari"
+    name: "Sylhet",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "4",
-    name: "Bholaganj"
+    name: "Barisal",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "5",
-    name: "Bandarbazar"
+    name: "Khulna",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "6",
-    name: "Beanibazar"
+    name: "Mymensingh",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "7",
-    name: "Bimanbandar"
+    name: "Rajshahi",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   },
   {
     id: "8",
-    name: "Bishwanath"
-  },
-  {
-    id: "9",
-    name: "Chouhatta"
-  },
-  {
-    id: "10",
-    name: "Company ganj"
-  },
-  {
-    id: "11",
-    name: "Dargamahalla"
-  },
-  {
-    id: "12",
-    name: "Fenchuganj"
-  },
-  {
-    id: "13",
-    name: "Golapganj"
-  },
-  {
-    id: "14",
-    name: "Jaintapur"
-  },
-  {
-    id: "15",
-    name: "Kanaighat"
-  },
-  {
-    id: "16",
-    name: "Kumarpara"
-  },
-  {
-    id: "17",
-    name: "Lamabazar"
-  },
-  {
-    id: "18",
-    name: "Mejortila"
-  },
-  {
-    id: "19",
-    name: "Nayasarak"
-  },
-  {
-    id: "20",
-    name: "Nehari"
-  },
-  {
-    id: "21",
-    name: "Osmaninagar"
-  },
-  {
-    id: "22",
-    name: "Pathantula"
-  },
-  {
-    id: "23",
-    name: "Sahi eidgah"
-  },
-  {
-    id: "24",
-    name: "Sahporan"
-  },
-  {
-    id: "25",
-    name: "Shibgonj"
-  },
-  {
-    id: "26",
-    name: "Subahanighat"
-  },
-  {
-    id: "27",
-    name: "Uposhohor"
-  },
-  {
-    id: "28",
-    name: "Zindabazar"
+    name: "Rangpur",
+    area: ["Akhalia", "Ambarkhana", "Baghbari", "Bholaganj", "Bandarbazar", "Beanibazar", "Bimanbandar", "Bishwanath", "Chouhatta", "Company ganj", "Dargamahalla", "Fenchuganj", "Fenchuganj", "Golapganj", "Jaintapur", "Kanaighat", "Kumarpara", "Lamabazar", "Mejortila", "Nayasarak", "Nehari", "Osmaninagar", "Pathantula", "Sahi eidgah", "Sahporan", "Shibgonj", "Subahanighat", "Uposhohor", "Zindabazar"]
   }
 ];
 
