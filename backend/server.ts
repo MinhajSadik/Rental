@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import express, { Express, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 
 dotenv.config();
 
-const app: Express = express();
+const app: Application = express();
 const port = process.env.PORT;
 
 app.get("/", (req: Request, res: Response) => {
