@@ -14,18 +14,37 @@ const Help: React.FC = () => {
             Every Step of the Way
           </p>
         </div>
-        <div className="grid grid-cols-3 items-center gap-2">
-          <div className="flex flex-col gap-4 pb-4 border-b-4 border-dotted">
-            <div className="space-y-2.5 flex flex-col items-start">
-              <span className="p-3 bg-white rounded-full flex flex-col items-center shadow text-primary">
-                <BsLaptop size={20} />
+        <div className="grid grid-cols-3 items-end gap-4">
+          <div className="flex flex-col gap-8">
+            <div className="space-y-4 flex flex-col items-start">
+              <span className="p-4 bg-white rounded-full flex flex-col items-center shadow text-primary">
+                <img
+                  src="./images/icon/laptop.svg"
+                  alt="concierge"
+                  className="w-[28px] h-[28px]"
+                />
               </span>
               <h5 className="font-bold text-secondary text-[20px]">
                 Concierge
               </h5>
               <p className="text-[#1A202C]">
-                We handle guest liaison, enquiries and booking issues.
+                We handle guest liaison, enquiries and <br /> booking issues.
               </p>
+              <img src="./images/bordersnake.svg" alt="border" />
+            </div>
+            <div className="space-y-4 flex flex-col items-start">
+              <span className="p-4 bg-white rounded-full flex flex-col items-center shadow text-primary">
+                <img
+                  src="./images/icon/bookings.svg"
+                  alt="booking"
+                  className="w-[28px] h-[28px]"
+                />
+              </span>
+              <h5 className="font-bold text-secondary text-[20px]">Booking</h5>
+              <p className="text-[#1A202C]">
+                We manage booking support on your <br /> behalf with sales channels.
+              </p>
+              <img src="./images/bordersnake.svg" alt="border" />
             </div>
           </div>
           <div>
@@ -37,7 +56,43 @@ const Help: React.FC = () => {
               className="w-full"
             />
           </div>
-          <div></div>
+          <div className="flex flex-col gap-8 justify-self-end">
+            <div className="space-y-4 flex flex-col items-start">
+              <span className="p-4 bg-white rounded-full flex flex-col items-center shadow text-primary">
+                <img
+                  src="./images/icon/full-support.svg"
+                  alt="full support"
+                  className="w-[28px] h-[28px]"
+                />
+              </span>
+              <h5 className="font-bold text-secondary text-[20px]">
+                Full Support
+              </h5>
+              <p className="text-[#1A202C]">
+                Support 7 days of the week through EMAIL, <br /> CHAT or PHONE.
+              </p>
+              <img src="./images/bordersnake.svg" alt="border" />
+            </div>
+            <div className="space-y-4 flex flex-col items-start">
+              <span className="p-4 bg-white rounded-full flex flex-col items-center shadow text-primary">
+                <img
+                  src="./images/icon/multi-language.svg"
+                  alt="Multi Language"
+                  className="w-[28px] h-[28px]"
+                />
+              </span>
+              <h5 className="font-bold text-secondary text-[20px]">Multi-language</h5>
+              <p className="text-[#1A202C]">
+                We speak English, Bengali, French and <br /> Japaniese.
+              </p>
+              <img src="./images/bordersnake.svg" alt="border" />
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center">
+          <button className="bg-primary text-white px-8 py-2.5 rounded hover:bg-primaryHov transition duration-300">
+            Get Support
+          </button>
         </div>
       </div>
     </section>

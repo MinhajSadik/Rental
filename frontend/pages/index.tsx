@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import { HeadTag, Header, Footer } from "@/components/common";
-import { Banner, FeatureAds, SliderFeature, Help } from "@/components/pagescom/home";
+import { Banner, FeatureAds, SliderFeature, Help, Furnished, Testimonial } from "@/components/pagescom/home";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +13,6 @@ export default function Home() {
       {/* ==== Header ==== */}
       <Header />
 
-      Hello world
-
       {/* ==== Main ==== */}
       <main>
         {/* ==== Banner ==== */}
@@ -25,6 +23,10 @@ export default function Home() {
         <FeatureAds/>
         {/* ==== Help ==== */}
         <Help/>
+        {/* ==== Furnished ==== */}
+        <Furnished/>
+        {/* ==== Testimonial ==== */}
+        <Testimonial/>
       </main>
 
       {/* ==== Footer ==== */}
