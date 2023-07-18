@@ -13,11 +13,23 @@ class UserController {
     register(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return res.status(200).json("OKAY");
+                return res.status(200).json({
+                    message: "Registration will open soon!",
+                });
             }
             catch (error) {
                 if (error instanceof Error) {
                     res.status(500).json(error.message);
+                }
+            }
+        });
+    }
+    login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+            }
+            catch (error) {
+                if (error instanceof Error) {
                 }
             }
         });

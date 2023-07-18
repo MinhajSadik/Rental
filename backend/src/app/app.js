@@ -12,10 +12,22 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     return res.status(200).json({
-        message: "Application working fine!"
+        message: "Application working fine!",
     });
 });
 app.use("/user", user_route_1.default);
+app.use("*", (req, res, next) => {
+    res.status(404).json({
+        success: false,
+        message: "Not found",
+        errorMessages: [
+            {
+                path: req.originalUrl,
+                message: "API not found",
+            },
+        ],
+    });
+});
 exports.default = app;
