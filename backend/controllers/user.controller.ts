@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 class UserController {
-  async register(req: Request, res: Response): Promise<any> {
+  async register(req: Request, res: Response) {
     try {
       return res.status(200).json("OKAY");
     } catch (error) {
