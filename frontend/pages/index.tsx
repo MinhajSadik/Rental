@@ -13,6 +13,8 @@ export default function Home() {
       {/* ==== Header ==== */}
       <Header />
 
+      Hello world
+
       {/* ==== Main ==== */}
       <main>
         {/* ==== Banner ==== */}
