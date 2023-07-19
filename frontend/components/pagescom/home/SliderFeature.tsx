@@ -67,7 +67,7 @@ const SliderFeature: React.FC = () => {
   
   return (
     <section className="bg-transparent">
-      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:py-20 py-16 space-y-4">
+      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:py-[100px] py-20 space-y-4">
         <h2 className="text-center xl:text-[42px] md:text-4xl text-3xl text-[#2C3849] font-semibold">
           What You Want?
         </h2>

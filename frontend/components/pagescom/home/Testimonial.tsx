@@ -24,7 +24,7 @@ const Testimonial: React.FC = () => {
 
   return (
     <section className="bg-transparent">
-      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:py-20 py-16 space-y-4">
+      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:py-[100px] py-20 space-y-4">
         <div className="space-y-4">
           <h2 className="text-center text-[35px] font-semibold text-secondary">
             Trusted by Thousands of <br /> Happy Customer

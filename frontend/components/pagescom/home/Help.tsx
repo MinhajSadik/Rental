@@ -4,7 +4,7 @@ import { BsLaptop } from "react-icons/bs";
 const Help: React.FC = () => {
   return (
     <section className="bg-transparent">
-      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:pt-10 pt-8 lg:pb-20 pb-16 space-y-8">
+      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:pt-8 lg:pb-[100px] pt-6 pb-20 space-y-8">
         <div className="space-y-2">
           <h2 className="text-center text-[42px] text-secondary font-semibold">
             We're Here to <span className="text-primary">Help!</span>
