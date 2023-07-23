@@ -1,12 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { testimonialData } from "@/constants";
 import Image from "next/image";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
-const Testimonial: React.FC = () => {
+const CustomerReview: React.FC = () => {
   const sliderRef = useRef<any>(null);
 
   const settings = {
@@ -74,4 +73,4 @@ const Testimonial: React.FC = () => {
   );
 };
 
-export default Testimonial;
+export default CustomerReview;

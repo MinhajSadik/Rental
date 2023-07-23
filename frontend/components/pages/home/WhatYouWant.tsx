@@ -32,7 +32,7 @@ const NextBtn = (props: any) => {
   )
 };
 
-const SliderFeature: React.FC = () => {
+const WhatYouWant: React.FC = () => {
 
   var settings = {    
     infinite: false,
@@ -92,4 +92,4 @@ const SliderFeature: React.FC = () => {
   );
 };
 
-export default SliderFeature;
+export default WhatYouWant;

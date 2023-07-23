@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { categoryData, cityData } from "@/constants";
 
-const Banner: React.FC = () => {
+const Hero: React.FC = () => {
   // ==== selected city and area state ====
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedArea, setSelectedArea] = useState<string>("");
@@ -155,4 +155,4 @@ const Banner: React.FC = () => {
   );
 };
 
-export default Banner;
+export default Hero;

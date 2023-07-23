@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import Link from "next/link";
-import { Input } from "@/components";
+import { Input, Button } from "@/components";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 const Form: React.FC = () => {
+
   // State to store form data
   const [formData, setFormData] = useState({
     emailOrPhone: "",
@@ -28,11 +29,11 @@ const Form: React.FC = () => {
   };
 
   return (
-    <form className="space-y-12" onSubmit={handleSubmit}>
+    <div className="space-y-8 mx-auto">
       <h2 className="text-secondary text-[24px] text-center font-semibold">
         Your Trusted Rental Partner
       </h2>
-      <div className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <label htmlFor="emailOrPhone" className="text-[20px] text-secondary">
           Enter Your mobile Number Or Email
         </label>
@@ -61,22 +62,19 @@ const Form: React.FC = () => {
             />
             <span className="text-sm text-gray-400">Remember Me</span>
           </div>
-          <Link href="/forget-password" className="text-sm text-primary hover:underline">
+          <Link className="text-sm text-primary cursor-pointer hover:underline" href="/forget-password">
             Forget Password
           </Link>
         </div>
         <div className="flex justify-center items-center mt-2">
-          <button
-            className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300"
-            type="submit"
-          >
+          <Button>
             Log In
-          </button>
+          </Button>
         </div>
         <div className="flex items-center gap-4 justify-between mt-2">
-          <div className="max-w-[150px] w-full border-b border-gray-200"></div>
-          <p className="text-secondary">or connected With</p>
-          <div className="max-w-[150px] w-full border-b border-gray-200"></div>
+          <div className="max-w-[140px] w-full border-b border-gray-200"></div>
+          <p className="text-gray-500">or connected With</p>
+          <div className="max-w-[140px] w-full border-b border-gray-200"></div>
         </div>
         <div className="flex justify-center items-center mt-2">
           <button className="px-6 py-2.5 w-full border border-gray-400 flex items-center justify-center gap-2 rounded hover:border-primary transition duration-300 font-semibold text-secondary hover:bg-gray-50">
@@ -90,12 +88,12 @@ const Form: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center justify-center mt-2">
-          <Link className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center" href="/sign-up">
+          <Link className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center" href="/signup">
             SignUp
           </Link>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
