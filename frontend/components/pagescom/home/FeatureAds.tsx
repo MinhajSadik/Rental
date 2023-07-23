@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 const FeatureAds: React.FC = () => {
   return (
     <section className="bg-transparent">
-      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:pt-10 pt-8 lg:pb-20 pb-16 space-y-8">
+      <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:pt-8 lg:pb-[100px] pt-6 pb-20 space-y-8">
         <div className="space-y-4">
           <h2 className="text-[42px] font-semibold text-secondary">
             Featured <span className="text-primary">ADs</span>
@@ -62,7 +62,7 @@ const FeatureAds: React.FC = () => {
                     <BiSolidPhone size={20}/>
                     Call
                   </button>
-                  <button className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primary transition duration-300 text-sm">
+                  <button className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primaryHov transition duration-300 text-sm">
                     <MdEmail size={20}/>
                     E-Mail
                   </button>
