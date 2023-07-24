@@ -29,7 +29,7 @@ const SubFormOne: React.FC = () => {
       <h2 className="text-secondary text-[24px] text-center font-semibold mb-8">
         Forget Password
       </h2>
-      <label htmlFor="emailOrPhone" className="text-[20px] text-secondary">
+      <label htmlFor="emailOrPhone" className="text-lg text-secondary">
         Enter Your Mobile Number Or Email
       </label>
       <Input
@@ -41,7 +41,7 @@ const SubFormOne: React.FC = () => {
       />
       <div className="flex justify-center items-center mt-1.5">
         <button
-          className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300"
+          className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300"
           type="submit"
         >
           Send Code

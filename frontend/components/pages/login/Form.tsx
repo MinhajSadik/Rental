@@ -34,7 +34,7 @@ const Form: React.FC = () => {
         Your Trusted Rental Partner
       </h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <label htmlFor="emailOrPhone" className="text-[20px] text-secondary">
+        <label htmlFor="emailOrPhone" className="text-lg text-secondary">
           Enter Your mobile Number Or Email
         </label>
         <Input
@@ -88,7 +88,7 @@ const Form: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center justify-center mt-2">
-          <Link className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center" href="/signup">
+          <Link className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center" href="/signup">
             SignUp
           </Link>
         </div>

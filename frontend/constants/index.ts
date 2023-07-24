@@ -4,6 +4,7 @@ import navLinks from "./navLinks";
 import sliderFeatureData from "./sliderFeatureData";
 import testimonialData from "./testimonialData";
 import footerData from "./footerData";
+import selectIdTypesData from "./selectIdTypesData";
 
 export {
   categoryData,
@@ -11,5 +12,6 @@ export {
   navLinks,
   sliderFeatureData,
   testimonialData,
-  footerData
+  footerData,
+  selectIdTypesData
 };

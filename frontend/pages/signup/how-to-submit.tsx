@@ -1,25 +1,25 @@
 import { Inter } from "next/font/google";
 import { HeadTag, Header, Footer } from "@/components/common";
-import { ForgetPasswordFormSection } from "@/components/pages/forgetpassword";
+import { HowToSubmitSection } from "@/components/pages/howtosubmitid";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Login() {
+export default function HowToSubmit() {
   return (
     <div
       className={`min-h-screen flex flex-col w-full bg-white ${inter.className}`}
     >
       {/* ==== HeadTag ==== */}
-      <HeadTag title="Forget Password" />
+      <HeadTag title="How to submit" />
       {/* ==== Header ==== */}
       <Header />
       {/* ==== Main ==== */}
       <main>
-        {/* ==== ForgetPassword Form Section ==== */}
-        <ForgetPasswordFormSection/>
+        {/* ==== How to Submit ==== */}
+        <HowToSubmitSection/>
       </main>
       {/* ==== Footer ==== */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

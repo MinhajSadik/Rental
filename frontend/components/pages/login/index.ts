@@ -1,3 +1,4 @@
 import Form from "./Form";
+import LoginFormSection from "./LoginFormSection";
 
-export { Form };
+export { Form, LoginFormSection };

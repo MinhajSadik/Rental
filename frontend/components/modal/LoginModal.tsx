@@ -61,7 +61,7 @@ const LoginModal: React.FC = () => {
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <label
               htmlFor="emailOrPhone"
-              className="text-[20px] text-secondary"
+              className="text-lg text-secondary"
             >
               Enter Your mobile Number Or Email
             </label>
@@ -116,7 +116,7 @@ const LoginModal: React.FC = () => {
             </div>
             <div className="flex items-center justify-center mt-2">
               <button
-                className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center"
+                className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center"
                 onClick={handleOpenSignup}
               >
                 SignUp

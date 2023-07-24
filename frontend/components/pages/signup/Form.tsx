@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Input } from "@/components";
+import { useRouter } from "next/router";
 
 const Form: React.FC = () => {
+
+  // ==== Router ====
+  const router = useRouter();
+
   // State to store form data
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +23,7 @@ const Form: React.FC = () => {
     event.preventDefault();
     // Here, you can process the form data as per your requirements.
     console.log(formData);
+    router.push("/signup/verify");
   };
 
   // Function to handle form field changes
@@ -45,7 +51,7 @@ const Form: React.FC = () => {
       </h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="space-y-2.5">
-          <label htmlFor="name" className="text-[20px] text-secondary">
+          <label htmlFor="name" className="text-lg text-secondary">
             Name*
           </label>
           <Input
@@ -57,7 +63,7 @@ const Form: React.FC = () => {
           />
         </div>
         <div className="space-y-2.5">
-          <label htmlFor="phoneNumber" className="text-[20px] text-secondary">
+          <label htmlFor="phoneNumber" className="text-lg text-secondary">
             Phone Number*
           </label>
           <Input
@@ -69,7 +75,7 @@ const Form: React.FC = () => {
           />
         </div>
         <div className="space-y-2.5">
-          <label htmlFor="email" className="text-[20px] text-secondary">
+          <label htmlFor="email" className="text-lg text-secondary">
             Email*
           </label>
           <Input
@@ -81,7 +87,7 @@ const Form: React.FC = () => {
           />
         </div>
         <div className="space-y-2.5">
-          <label htmlFor="password" className="text-[20px] text-secondary">
+          <label htmlFor="password" className="text-lg text-secondary">
             Password*
           </label>
           <Input
@@ -93,7 +99,7 @@ const Form: React.FC = () => {
           />
         </div>
         <div className="space-y-2.5">
-          <label htmlFor="confirmPassword" className="text-[20px] text-secondary">
+          <label htmlFor="confirmPassword" className="text-lg text-secondary">
             Confirm Password*
           </label>
           <Input
@@ -105,7 +111,7 @@ const Form: React.FC = () => {
           />
         </div>
         <div className="space-y-3.5">
-          <label htmlFor="userType" className="text-[20px] text-secondary">
+          <label htmlFor="userType" className="text-lg text-secondary">
             Sign Up As*
           </label>
           <select
@@ -134,7 +140,7 @@ const Form: React.FC = () => {
         </div>
         <div className="flex justify-center items-center mt-2">
           <button
-            className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300"
+            className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 text-center"
             type="submit"
           >
             Verify Your ID

@@ -3,8 +3,14 @@ import { Card, BlureEffect } from "@/components";
 import { CloseButton, Input } from "@/components";
 import { useDispatch } from "react-redux";
 import { closeSignup } from "@/features/signupToggleSlice";
+import { useRouter } from "next/router";
 
 const SignupModal: React.FC = () => {
+
+  // ==== Router ====
+  const router = useRouter();
+
+  // ==== Redux state managment ====
   const dispatch = useDispatch();
 
   const handleCloseSignup = (): void => {
@@ -27,6 +33,7 @@ const SignupModal: React.FC = () => {
     event.preventDefault();
     // Here, you can process the form data as per your requirements.
     console.log(formData);
+    router.push("/signup/verify");
   };
 
   // Function to handle form field changes
@@ -58,7 +65,7 @@ const SignupModal: React.FC = () => {
           </h2>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div className="space-y-2.5">
-              <label htmlFor="name" className="text-[20px] text-secondary">
+              <label htmlFor="name" className="text-lg text-secondary">
                 Name*
               </label>
               <Input
@@ -72,7 +79,7 @@ const SignupModal: React.FC = () => {
             <div className="space-y-2.5">
               <label
                 htmlFor="phoneNumber"
-                className="text-[20px] text-secondary"
+                className="text-lg text-secondary"
               >
                 Phone Number*
               </label>
@@ -85,7 +92,7 @@ const SignupModal: React.FC = () => {
               />
             </div>
             <div className="space-y-2.5">
-              <label htmlFor="email" className="text-[20px] text-secondary">
+              <label htmlFor="email" className="text-lg text-secondary">
                 Email*
               </label>
               <Input
@@ -97,7 +104,7 @@ const SignupModal: React.FC = () => {
               />
             </div>
             <div className="space-y-2.5">
-              <label htmlFor="password" className="text-[20px] text-secondary">
+              <label htmlFor="password" className="text-lg text-secondary">
                 Password*
               </label>
               <Input
@@ -124,7 +131,7 @@ const SignupModal: React.FC = () => {
               />
             </div>
             <div className="space-y-3.5">
-              <label htmlFor="userType" className="text-[20px] text-secondary">
+              <label htmlFor="userType" className="text-lg text-secondary">
                 Sign Up As*
               </label>
               <select
@@ -154,7 +161,7 @@ const SignupModal: React.FC = () => {
             </div>
             <div className="flex justify-center items-center mt-2">
               <button
-                className="bg-primary text-white font-medium text-[20px] px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300"
+                className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 text-center"
                 type="submit"
               >
                 Verify Your ID

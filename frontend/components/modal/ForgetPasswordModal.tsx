@@ -15,6 +15,8 @@ const ForgetPasswordModal: React.FC = () => {
       <Card>
         <CloseButton onClick={handleCloseForgetPassword}/>
         <SubFormOne />
+        {/* <SubFormTwo/> */}
+        {/* <SubFormThree/> */}
       </Card>
     </BlureEffect>
   );

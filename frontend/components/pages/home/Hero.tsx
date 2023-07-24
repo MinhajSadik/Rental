@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="bg-white py-4 flex items-center gap-2 border border-blue-200 rounded-[10px] shadow-xl">
             <div className="border-r-2 border-[#486284] px-2.5 space-y-1 relative">
-              <h4 className="font-bold">Category</h4>
+              <h4 className="font-bold text-secondary">Category</h4>
               <div
                 className="flex items-center gap-6 text-[#969693] cursor-pointer hover:text-gray-500"
                 onClick={toggleCategoryDropdown}
@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
               )}
             </div>
             <div className="border-r-2 border-[#486284] px-2.5 space-y-1 relative">
-              <h4 className="font-bold">City</h4>
+              <h4 className="font-bold text-secondary">City</h4>
               <div
                 className="flex items-center gap-6 text-[#969693] cursor-pointer hover:text-gray-500"
                 onClick={toggleCityDropdown}
@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
               )}
             </div>
             <div className="px-2 space-y-1 relative">
-              <h4 className="font-bold">Area</h4>
+              <h4 className="font-bold text-secondary">Area</h4>
               <div
                 className="flex items-center gap-6 text-[#969693] cursor-pointer hover:text-gray-500"
                 onClick={toggleAreaDropdown}
