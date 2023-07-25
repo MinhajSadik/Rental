@@ -1,3 +1,5 @@
 import UploadCardSection from "./UploadCardSection";
+import FrontCard from "./FrontCard";
+import BackCard from "./BackCard";
 
-export { UploadCardSection };
+export { UploadCardSection, FrontCard, BackCard };

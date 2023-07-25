@@ -34,6 +34,7 @@ const SignupModal: React.FC = () => {
     // Here, you can process the form data as per your requirements.
     console.log(formData);
     router.push("/signup/verify");
+    dispatch(closeSignup());
   };
 
   // Function to handle form field changes

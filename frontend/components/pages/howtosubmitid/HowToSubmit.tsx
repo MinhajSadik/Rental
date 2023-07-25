@@ -9,14 +9,14 @@ const HowToSubmit: React.FC = () => {
         </h2>
         <div className="flex flex-col items-center justify-center gap-6 ">
           <Link 
-            className="text-lg bg-primary text-white py-3.5 px-4 rounded max-w-lg w-full hover:bg-primaryHov transition duration-300 font-medium"
+            className="text-lg bg-primary text-white py-3.5 px-4 rounded max-w-lg w-full hover:bg-primaryHov transition duration-300 font-medium text-center"
             href="/"
           >
             Captured image with your device camera
           </Link>
           <p className="text-lg text-secondary font-medium">OR</p>
           <Link
-            className="bg-[#e3e8f0] max-w-sm w-full text-lg py-3.5 px-4 rounded text-secondary font-medium hover:bg-[#d4d9e2] transition duration-300 text-center"
+            className="bg-[#e3e8f0] max-w-lg w-full text-lg py-3.5 px-4 rounded text-secondary font-medium hover:bg-[#d4d9e2] transition duration-300 text-center"
             href="/signup/upload-card"
           >
             Upload file from your device
