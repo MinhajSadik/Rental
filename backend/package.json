@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "npx tsc",
-    "start": "node src/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q src/server.js\""
+    "start": "node dest/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dest/server.js\""
   },
   "dependencies": {
     "@types/cors": "^2.8.13",
