@@ -10,7 +10,7 @@ const HowToSubmit: React.FC = () => {
         <div className="flex flex-col items-center justify-center gap-6 ">
           <Link 
             className="text-lg bg-primary text-white py-3.5 px-4 rounded max-w-lg w-full hover:bg-primaryHov transition duration-300 font-medium text-center"
-            href="/"
+            href="/signup/capture-id"
           >
             Captured image with your device camera
           </Link>
