@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Oval } from "react-loader-spinner";
+import { withVerifyWrapper } from "@/components/pages/verify";
 
 const ImageVerify: React.FC = () => {
   return (
@@ -14,7 +14,6 @@ const ImageVerify: React.FC = () => {
         </p>
       </div>
       <div className="flex flex-col justify-center items-center min-h-[280px]">
-        {/* <h4 className="text-xl text-secondary">Loading....</h4> */}
         <Oval
           height={80}
           width={80}
@@ -28,4 +27,6 @@ const ImageVerify: React.FC = () => {
   );
 };
 
-export default ImageVerify;
+const ImageVerifySection = withVerifyWrapper(ImageVerify);
+
+export default ImageVerifySection;
