@@ -1,25 +1,29 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
+import { UserService } from "../services/user.service";
 
-class UserController {
-  async register(req: Request, res: Response): Promise<any> {
-    try {
-      return res.status(200).json({
-        message: "Registration will open soon!",
-      });
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(500).json(error.message);
-      }
-    }
-  }
-
-  async login(req: Request, res: Response): Promise<any> {
-    try {
-    } catch (error) {
-      if (error instanceof Error) {
-      }
-    }
+const register =  async (req: Request, res: Response, next: NextFunction)=> {
+  try {
+    const user = req.body;
+    const createdUser = await UserService.register(user)
+    return res.status(200).json({
+      success:  true,
+      message: "User registration successful!",
+      data: createdUser
+    });
+  } catch (error) {
+    next(error)
   }
 }
 
-export default new UserController();
+const login =  async (req: Request, res: Response,  next: NextFunction): Promise<any> => {
+  try {
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+export const UserController = {
+  register,
+  login
+};

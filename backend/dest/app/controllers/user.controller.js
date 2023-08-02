@@ -9,30 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class UserController {
-    register(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return res.status(200).json({
-                    message: "Registration will open soon!",
-                });
-            }
-            catch (error) {
-                if (error instanceof Error) {
-                    res.status(500).json(error.message);
-                }
-            }
+exports.UserController = void 0;
+const user_service_1 = require("../services/user.service");
+const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = req.body;
+        const createdUser = yield user_service_1.UserService.register(user);
+        return res.status(200).json({
+            success: true,
+            message: "Registration will open soon!",
+            data: createdUser
         });
     }
-    login(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-            }
-            catch (error) {
-                if (error instanceof Error) {
-                }
-            }
-        });
+    catch (error) {
+        next(error);
     }
-}
-exports.default = new UserController();
+});
+const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.UserController = {
+    register,
+    login
+};

@@ -1,8 +1,10 @@
 import { Router } from "express";
-import userController from "../controllers/user.controller";
+import { UserController } from "../controllers/user.controller";
+import validateRequest from "../middlewares/user.validation";
+import { UserValidation } from "../validators/user.validator";
 
 const router = Router();
 
-router.get("/register", userController.register);
+router.post("/register", validateRequest(UserValidation.createUserZodSchema) ,UserController.register);
 
 export default router;
