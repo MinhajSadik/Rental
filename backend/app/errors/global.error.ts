@@ -6,20 +6,21 @@ const globalErrorHandler = (error: any, req: Request, res: Response, next: NextF
     let statusCode = 500;
     let success = false;
     let message = "Something went wrong";
-    let errorMessages: IGenericError[] = []
+    let errorMessages: IGenericError[] = [] || error
 
     // handle Zod user data validation 
     if(error.name === "ZodError"){
         const simplifiedErrors =  handleZodError(error);
-        errorMessages = simplifiedErrors
+        errorMessages = simplifiedErrors 
     }
+
     return res.status(500).json({
         statusCode,
         success,
         message,
-        errorMessages
+        errorMessages,
+        stack: error?.stack || undefined
     })
-
 }
 
 export default globalErrorHandler
