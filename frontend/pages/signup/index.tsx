@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import { HeadTag, Header, Footer } from "@/components/common";
-import { ForgetPasswordFormSection } from "@/components/pages/forgetpassword";
+import { SignupFormSection } from "@/components/pages/signup";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,16 +10,16 @@ export default function Login() {
       className={`min-h-screen flex flex-col w-full bg-white ${inter.className}`}
     >
       {/* ==== HeadTag ==== */}
-      <HeadTag title="Forget Password" />
+      <HeadTag title="Sign Up" />
       {/* ==== Header ==== */}
       <Header />
       {/* ==== Main ==== */}
       <main>
-        {/* ==== ForgetPassword Form Section ==== */}
-        <ForgetPasswordFormSection/>
+        {/* ==== Signup Form Section ==== */}
+        <SignupFormSection/>
       </main>
       {/* ==== Footer ==== */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

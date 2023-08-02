@@ -4,6 +4,7 @@ import { store } from '@/redux/store';
 import { Provider } from 'react-redux';
 import '../styles/sliderfeature.css';
 import '../styles/testimonialslider.css';
+import '../styles/modalanimation.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
