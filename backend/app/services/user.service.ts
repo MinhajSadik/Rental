@@ -2,6 +2,7 @@ import { IUser } from "../interfaces/user.interface";
 import { User } from "../models/user.model";
 import bcrypt from "bcrypt"
 import  httpStatus  from 'http-status';
+import  jwt, { Secret }  from 'jsonwebtoken';
 
 const register = async(user: IUser): Promise<IUser> => {
     // hash user password
@@ -22,7 +23,7 @@ const login = async(user: Partial<IUser>) => {
             data: null
         }
     }
-    // check password
+    // match password
     const isPasswordMatched = await bcrypt.compare(user.password as string, isUserExist.password);
     if(!isPasswordMatched){
         return {
@@ -34,12 +35,22 @@ const login = async(user: Partial<IUser>) => {
     }
 
     // generate access token and refresh token
+    const jwtPayload = {
+        userId: isUserExist._id,
+        email: isUserExist.email,
+        role: isUserExist.role
+    }
+    
+    const accessToken = await jwt.sign(jwtPayload, process.env.JWT_SECRET as Secret);
+    const refreshToken = await jwt.sign(jwtPayload, process.env.JWT_REFRESH_SECRET as Secret);
+
     return {
         statusCode: httpStatus.OK,
         success: true,
-        message: "You will get access token and refresh token",
+        message: "User logged in successfully!",
+        refreshToken,
         data: {
-            accessToken: "You will get access token here"
+            accessToken
         }
     }
 }

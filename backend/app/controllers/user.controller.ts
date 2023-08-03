@@ -21,8 +21,10 @@ const register =  async (req: Request, res: Response, next: NextFunction)=> {
 
 const login =  async (req: Request, res: Response,  next: NextFunction) => {
   try {
-    const result = await UserService.login(req.body)
-    return sendResponse(res, result as IGenericResponse)
+    const {refreshToken, ...others} = await UserService.login(req.body)
+    // set the refresh token to the cookie
+    res.cookie("refreshToken", refreshToken)
+    return sendResponse(res, others as IGenericResponse)
   } catch (error) {
     next(error)
   }

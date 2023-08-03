@@ -20,6 +20,10 @@ const userSchema = new mongoose_1.Schema({
     password: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        required: true,
     }
 });
 exports.User = (0, mongoose_1.model)("User", userSchema);
