@@ -63,7 +63,31 @@ const login = (user) => __awaiter(void 0, void 0, void 0, function* () {
         }
     };
 });
+const forgetPassword = (user) => __awaiter(void 0, void 0, void 0, function* () {
+    // check weather the user exist in database or not
+    const isUserExist = yield user_model_1.User.findOne({ email: user.email });
+    if (!isUserExist) {
+        return {
+            statusCode: http_status_1.default.NOT_FOUND,
+            success: false,
+            message: "User does not exist",
+            data: null
+        };
+    }
+    // change user password
+    // hash the password first
+    const hashedPassword = yield bcrypt_1.default.hash(user.password, 12);
+    // now update the user password
+    const updatedUser = yield user_model_1.User.findByIdAndUpdate(isUserExist._id, { $set: { password: hashedPassword } }, { new: true });
+    return {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: "Password changed successfully",
+        data: updatedUser
+    };
+});
 exports.UserService = {
     register,
-    login
+    login,
+    forgetPassword
 };

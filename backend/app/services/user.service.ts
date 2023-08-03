@@ -40,7 +40,7 @@ const login = async(user: Partial<IUser>) => {
         email: isUserExist.email,
         role: isUserExist.role
     }
-    
+
     const accessToken = await jwt.sign(jwtPayload, process.env.JWT_SECRET as Secret);
     const refreshToken = await jwt.sign(jwtPayload, process.env.JWT_REFRESH_SECRET as Secret);
 
@@ -55,7 +55,33 @@ const login = async(user: Partial<IUser>) => {
     }
 }
 
+const forgetPassword = async(user: Partial<IUser>) => {
+    // check weather the user exist in database or not
+    const isUserExist = await User.findOne({email: user.email});
+    if(!isUserExist){
+        return {
+            statusCode: httpStatus.NOT_FOUND,
+            success: false,
+            message: "User does not exist",
+            data: null
+        }
+    }
+    // change user password
+    // hash the password first
+    const hashedPassword = await bcrypt.hash(user.password as string, 12);
+
+    // now update the user password
+    const updatedUser = await User.findByIdAndUpdate(isUserExist._id, {$set: {password: hashedPassword}}, {new: true})
+    return {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Password changed successfully",
+        data: updatedUser
+    }
+}
+
 export const UserService = {
     register,
-    login
+    login,
+    forgetPassword
 }

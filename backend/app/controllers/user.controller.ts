@@ -30,8 +30,18 @@ const login =  async (req: Request, res: Response,  next: NextFunction) => {
   }
 }
 
+const forgetPassword = async (req: Request, res: Response,  next: NextFunction) => {
+  try {
+    const result = await UserService.forgetPassword(req.body)
+    return sendResponse(res, result as IGenericResponse)
+  } catch (error) {
+    next(error)
+  }
+}
+
 
 export const UserController = {
   register,
-  login
+  login,
+  forgetPassword
 };

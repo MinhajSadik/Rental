@@ -10,4 +10,5 @@ const user_validator_1 = require("../validators/user.validator");
 const router = (0, express_1.Router)();
 router.post("/register", (0, user_validation_1.default)(user_validator_1.UserValidation.createUserZodSchema), user_controller_1.UserController.register);
 router.post("/login", user_controller_1.UserController.login);
+router.put("/forget-password", user_controller_1.UserController.forgetPassword);
 exports.default = router;

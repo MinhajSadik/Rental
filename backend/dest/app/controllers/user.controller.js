@@ -54,7 +54,17 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         next(error);
     }
 });
+const forgetPassword = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield user_service_1.UserService.forgetPassword(req.body);
+        return (0, sendResponse_1.default)(res, result);
+    }
+    catch (error) {
+        next(error);
+    }
+});
 exports.UserController = {
     register,
-    login
+    login,
+    forgetPassword
 };
