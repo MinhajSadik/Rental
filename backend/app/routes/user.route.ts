@@ -8,5 +8,6 @@ const router = Router();
 router.post("/register", validateRequest(UserValidation.createUserZodSchema) ,UserController.register);
 
 router.post("/login" ,UserController.login);
+router.put("/forget-password" ,UserController.forgetPassword);
 
 export default router;
