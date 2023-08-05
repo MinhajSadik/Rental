@@ -15,16 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const mongoDBConnection = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield mongoose_1.default.connect(process.env.MONGODB_URI);
-        console.log("Database connected successfully!");
+class MongoDBConnection {
+    constructor(mongoURI) {
+        this.mongoURI = mongoURI;
     }
-    catch (error) {
-        console.log({
-            message: "Database is not connected",
-            error: error.message
+    connect() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield mongoose_1.default.connect(this.mongoURI);
+                console.log("Database connected successfully!");
+            }
+            catch (error) {
+                console.log({
+                    message: "Database is not connected",
+                    error: error.message,
+                });
+            }
         });
     }
-});
+}
+const mongoDBConnection = new MongoDBConnection(process.env.MONGODB_URI);
 exports.default = mongoDBConnection;

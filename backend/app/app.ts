@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import express, { Application, NextFunction, Request, Response } from "express";
 import userRouter from "./routes/user.route";
 import mongoDBConnection from "./configs/mdb.config";
-import globalErrorHandler from "./errors/global.error";
+import globalErrorHandler from "./errors/handleGlobalError";
 
 dotenv.config();
 const app: Application = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connecting to database
-mongoDBConnection()
+mongoDBConnection.connect()
 
 app.get("/", (req: Request, res: Response) => {
   return res.status(200).json({
@@ -37,5 +37,5 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
 });
 
 
-app.use(globalErrorHandler)
+app.use(globalErrorHandler.handle)
 export default app;

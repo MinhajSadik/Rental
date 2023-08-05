@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { UserController } from "../controllers/user.controller";
-import validateRequest from "../middlewares/user.validation";
+import userController from "../controllers/user.controller";
+import requestValidator from "../middlewares/user.validation";
 import { UserValidation } from "../validators/user.validator";
 
 const router = Router();
 
-router.post("/register", validateRequest(UserValidation.createUserZodSchema) ,UserController.register);
+router.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
 
-router.post("/login" ,UserController.login);
-router.put("/forget-password" ,UserController.forgetPassword);
+router.post("/login", userController.login);
+router.put("/forget-password", userController.forgetPassword);
 
 export default router;
