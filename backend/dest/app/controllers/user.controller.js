@@ -23,48 +23,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
-const sendResponse_1 = __importDefault(require("../utils/sendResponse"));
+const sendResponse_1 = require("../utils/sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
-const user_service_1 = require("./../services/user.service");
-const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = req.body;
-        const createdUser = yield user_service_1.UserService.register(user);
-        console.log("From Controller", user);
-        return (0, sendResponse_1.default)(res, {
-            statusCode: http_status_1.default.OK,
-            success: true,
-            message: "User registration successful!",
-            data: createdUser
+const user_service_1 = __importDefault(require("../services/user.service"));
+class UserController {
+    constructor() {
+        this.register = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = req.body;
+                const createdUser = yield user_service_1.default.register(user);
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "User registration successful!",
+                    data: createdUser,
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const _a = yield user_service_1.default.login(req.body), { refreshToken } = _a, others = __rest(_a, ["refreshToken"]);
+                // set the refresh token to the cookie
+                res.cookie("refreshToken", refreshToken);
+                return sendResponse_1.handleResponse.sendResponse(res, others);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.forgetPassword = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield user_service_1.default.forgetPassword(req.body);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
         });
     }
-    catch (error) {
-        next(error);
-    }
-});
-const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const _a = yield user_service_1.UserService.login(req.body), { refreshToken } = _a, others = __rest(_a, ["refreshToken"]);
-        // set the refresh token to the cookie
-        res.cookie("refreshToken", refreshToken);
-        return (0, sendResponse_1.default)(res, others);
-    }
-    catch (error) {
-        next(error);
-    }
-});
-const forgetPassword = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield user_service_1.UserService.forgetPassword(req.body);
-        return (0, sendResponse_1.default)(res, result);
-    }
-    catch (error) {
-        next(error);
-    }
-});
-exports.UserController = {
-    register,
-    login,
-    forgetPassword
-};
+}
+exports.default = new UserController();

@@ -8,14 +8,14 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
 const mdb_config_1 = __importDefault(require("./configs/mdb.config"));
-const global_error_1 = __importDefault(require("./errors/global.error"));
+const handleGlobalError_1 = __importDefault(require("./errors/handleGlobalError"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // connecting to database
-(0, mdb_config_1.default)();
+mdb_config_1.default.connect();
 app.get("/", (req, res) => {
     return res.status(200).json({
         message: "Application working fine!",
@@ -34,5 +34,5 @@ app.use("*", (req, res, next) => {
         ],
     });
 });
-app.use(global_error_1.default);
+app.use(handleGlobalError_1.default.handle);
 exports.default = app;
