@@ -1,6 +1,8 @@
+import { openAllFilter } from "@/features/allFilterToggleSlice";
 import { useState, useEffect, useRef } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FiChevronDown } from "react-icons/fi";
+import { useDispatch } from "react-redux";
 
 const SearchArea: Array<string> = [
   "Sylhet - Akhalia",
@@ -37,6 +39,8 @@ const FilterProperty: React.FC = () => {
   const [selectedBedCategory, setSelectedBedCategory] = useState<number | null>(null);
 
   const [selectedBathCategory, setSelectedBathCategory] = useState< number | null>(null);
+
+  const dispatch = useDispatch();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -418,21 +422,21 @@ const FilterProperty: React.FC = () => {
             <div className="absolute shadow-xl border bg-white px-4 pt-4 pb-6 z-20 rounded-[10px] space-y-4">
               <div className="grid grid-cols-2 items-center gap-x-6 gap-y-4 px-4 pb-2.5">
                 <div className="cursor-pointer space-y-4">
-                  <h4 className="text-xl text-center text-[#808080]">
+                  <h4 className="text-xl text-start text-[#808080]">
                     Minimum
                   </h4>
                   <input
                     type="number"
-                    className="max-w-[180px] px-4 py-2.5 rounded-md border border-[#202020]/30 hover:border-[#202020]/60"
+                    className="max-w-[180px] px-4 py-2.5 rounded-md border border-[#202020]/30 focus:outline-none focus:border-2 focus:border-primary transition duration-300"
                   />
                 </div>
                 <div className="cursor-pointer space-y-4">
-                  <h4 className="text-xl text-center text-[#808080]">
+                  <h4 className="text-xl text-start text-[#808080]">
                     Maximum
                   </h4>
                   <input
                     type="number"
-                    className="max-w-[180px] px-4 py-2.5 rounded-md border border-[#202020]/30 hover:border-[#202020]/60"
+                    className="max-w-[180px] px-4 py-2.5 rounded-md border border-[#202020]/30 focus:outline-none focus:border-2 focus:border-primary transition duration-300"
                   />
                 </div>
                 <button
@@ -473,7 +477,7 @@ const FilterProperty: React.FC = () => {
             </div>
             {/* ==== Card ==== */}
             {isBedBathCardVisible && (
-              <div className="absolute shadow-xl border bg-white px-4 pt-4 pb-6 z-20 rounded-[10px] space-y-4 max-w-[450px] w-full">
+              <div className="absolute shadow-xl border bg-white px-4 pt-4 pb-6 z-20 rounded-[10px] space-y-4 max-w-[450px] w-full right-0">
                 <div className="space-y-2.5 px-4 pb-2.5">
                   <h4 className="text-xl text-[#808080]">Beds</h4>
                   <div className="flex items-center flex-wrap gap-4">
@@ -617,14 +621,17 @@ const FilterProperty: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="flex items-center gap-2 max-w-[180px] w-full px-3.5 py-3 border border-primary rounded-lg cursor-pointer hover:border-[#202020]/60 transition duration-300">
+          <button
+            className="flex items-center gap-2 max-w-[180px] w-full px-3.5 py-3 border border-primary rounded-lg cursor-pointer hover:border-[#202020]/60 transition duration-300"
+            onClick={() => dispatch(openAllFilter())}
+          >
             <img
               src="/images/icon/filter.svg"
               alt="Filter icon"
               className="w-[22px] h-[22px]"
             />
             <span className="text-primary font-medium">Show all filters</span>
-          </div>
+          </button>
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Inter } from "next/font/google";
 import { HeadTag, Header, Footer } from "@/components/common";
 import {
@@ -25,12 +26,16 @@ export default function Home() {
 
   const forgetPasswordToggle = useSelector((state: RootState) => state.forgetPasswordToggle.isOpen); 
 
+  useEffect(() => {
+    if (loginToggle || signupToggle || forgetPasswordToggle) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [loginToggle, signupToggle, forgetPasswordToggle]);
+
   return (
-    <div
-      className={`min-h-screen flex flex-col w-full bg-white ${
-        loginToggle || signupToggle || forgetPasswordToggle ? "fixed" : ""
-      } ${inter.className}`}
-    >
+    <div className="min-h-screen flex flex-col w-full bg-white">
       {/* ==== Head ==== */}
       <HeadTag title="Rental - Find Your Perfect Home: Explore Premier House Rentals" />
 

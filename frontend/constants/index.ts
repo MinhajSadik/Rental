@@ -5,6 +5,7 @@ import sliderFeatureData from "./sliderFeatureData";
 import testimonialData from "./testimonialData";
 import footerData from "./footerData";
 import selectIdTypesData from "./selectIdTypesData";
+import appertmentCardData from "./appertmentCardData";
 
 export {
   categoryData,
@@ -13,5 +14,6 @@ export {
   sliderFeatureData,
   testimonialData,
   footerData,
-  selectIdTypesData
+  selectIdTypesData,
+  appertmentCardData
 };
