@@ -4,6 +4,8 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import userRouter from "./routes/user.route";
 import mongoDBConnection from "./configs/mdb.config";
 import globalErrorHandler from "./errors/handleGlobalError";
+import generatePin from "./utils/generateOTP";
+import { pinVerification } from "./middlewares/pin.verify";
 
 dotenv.config();
 const app: Application = express();
@@ -21,6 +23,8 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+
+
 app.use("/api/v1/user", userRouter);
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
@@ -35,7 +39,6 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
     ],
   });
 });
-
 
 app.use(globalErrorHandler.handle)
 export default app;
