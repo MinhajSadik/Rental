@@ -6,6 +6,7 @@ import ShareCard from "./ShareCard";
 import SaveCard from "./SaveCard";
 import Form from "./Form";
 import Map from "./Map";
+import RelatedProperties from "./RelatedProperties";
 
 export {
   PropertyDescription,
@@ -15,5 +16,6 @@ export {
   ShareCard,
   SaveCard,
   Form,
-  Map
+  Map,
+  RelatedProperties
 };

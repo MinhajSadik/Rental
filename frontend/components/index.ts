@@ -5,6 +5,7 @@ import BlureEffect from "./BlureEffect";
 import CloseButton from "./CloseButton";
 import FormContainer from "./FormContainer";
 import ImageVerify from "./pages/verify/ImageVerify";
+import PropertyCard from "./PropertyCard";
 
 export {
   Input,
@@ -13,5 +14,6 @@ export {
   BlureEffect,
   CloseButton,
   FormContainer,
-  ImageVerify
+  ImageVerify,
+  PropertyCard
 };

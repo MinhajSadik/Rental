@@ -4,7 +4,7 @@ import { MdOutlineVerified } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import { RxShare2 } from "react-icons/rx";
 import { BsSave } from "react-icons/bs";
-import { Gallery, Description, Map } from "@/components/pages/property/individual-property";
+import { Gallery, Description, Map, RelatedProperties } from "@/components/pages/property/individual-property";
 import { useDispatch } from "react-redux";
 import { openReviewToggle } from "@/features/reviewToggleSlice";
 import { openShareToggle } from "@/features/shareToggleSlice";
@@ -68,6 +68,8 @@ const PropertyDescription: React.FC = () => {
       <Description/>
       {/* ==== Map ===== */}
       <Map/>
+      {/* ==== Related Properties ==== */}
+      <RelatedProperties/>
     </section>
   )
 }
