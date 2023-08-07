@@ -1,28 +1,46 @@
 import React from "react";
 import { HeadTag, Header, Footer } from "@/components/common";
 import { Inter } from "next/font/google";
-import { PropertyDescription, ReviewCard, SaveCard, ShareCard } from "@/components/pages/property/individual-property";
+import {
+  ApartmentImage,
+  PropertyDescription,
+  ReviewCard,
+  SaveCard,
+  ShareCard,
+  Video,
+} from "@/components/pages/property/individual-property";
 import { useSelector } from "react-redux";
 import { selectIsReviewToggleOpen } from "@/features/reviewToggleSlice";
 import { useEffect } from "react";
 import { selectIsShareToggleOpen } from "@/features/shareToggleSlice";
 import { selectIsSavePropertyToggleOpen } from "@/features/savePropertyToggleSlice";
+import { selectIsApartmentVideoOpen } from "@/features/apartmentVideoToggleSlice";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const PropertyPage: React.FC = () => {
-
   const isOpenReviewToggle = useSelector(selectIsReviewToggleOpen);
   const isOpenShareToggle = useSelector(selectIsShareToggleOpen);
   const isOpenSavePropertyToggle = useSelector(selectIsSavePropertyToggleOpen);
+  const isAppertmentVideoToggle = useSelector(selectIsApartmentVideoOpen);
 
   useEffect(() => {
-    if (isOpenReviewToggle || isOpenShareToggle || isOpenSavePropertyToggle) {
+    if (
+      isOpenReviewToggle ||
+      isOpenShareToggle ||
+      isOpenSavePropertyToggle ||
+      isAppertmentVideoToggle
+    ) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [isOpenReviewToggle, isOpenShareToggle]);
+  }, [
+    isOpenReviewToggle,
+    isOpenShareToggle,
+    isOpenSavePropertyToggle,
+    isAppertmentVideoToggle,
+  ]);
 
   return (
     <div
@@ -40,17 +58,23 @@ const PropertyPage: React.FC = () => {
       {/* ==== Save Card ==== */}
       {isOpenSavePropertyToggle && <SaveCard />}
 
+      {/* ==== Video ==== */}
+      {isAppertmentVideoToggle && <Video />}
+
+      {/* ==== Apartment Image ==== */}
+      {/* <ApartmentImage/> */}
+
       {/* ==== Header ==== */}
       <Header />
       {/* ==== Main ==== */}
       <main>
         {/* ==== Property Desctiption ==== */}
-        <PropertyDescription/>
+        <PropertyDescription />
       </main>
       {/* ==== Footer ==== */}
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default PropertyPage;

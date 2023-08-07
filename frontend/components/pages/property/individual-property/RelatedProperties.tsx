@@ -8,10 +8,10 @@ const RelatedProperties: React.FC = () => {
         Related <span className="text-primary">Properties</span>
       </h4>
       <div className="grid grid-cols-3 gap-6">
-        {appertmentCardData.slice(0, 3).map((card, i) => (
+        {appertmentCardData.slice(0, 3).map((card) => (
           <PropertyCard
             item={card}
-            i={i}
+            key={card.id}
             onClick={() => {}}
             callClick={() => {}}
             emailClick={() => {}}

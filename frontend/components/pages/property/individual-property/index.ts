@@ -7,6 +7,8 @@ import SaveCard from "./SaveCard";
 import Form from "./Form";
 import Map from "./Map";
 import RelatedProperties from "./RelatedProperties";
+import Video from "./Video";
+import ApartmentImage from "./ApartmentImage";
 
 export {
   PropertyDescription,
@@ -17,5 +19,7 @@ export {
   SaveCard,
   Form,
   Map,
-  RelatedProperties
+  RelatedProperties,
+  Video,
+  ApartmentImage
 };

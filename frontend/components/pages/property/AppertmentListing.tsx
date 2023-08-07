@@ -101,11 +101,11 @@ const AppertmentListing: React.FC = () => {
         </div>
         <div className="grid grid-cols-3 items-center gap-6">
           {/* ==== appertment card ==== */}
-          {appertmentCardData.map((card, i) => (
+          {appertmentCardData.map((card) => (
             // ==== card ====
             <PropertyCard
               item={card}
-              i={i}
+              key={card.id}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 if (e.target instanceof HTMLButtonElement) {
                   return;

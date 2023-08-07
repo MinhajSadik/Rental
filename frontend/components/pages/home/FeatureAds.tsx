@@ -14,10 +14,10 @@ const FeatureAds: React.FC = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-3 sm:grid-cols-2 xl:gap-6 gap-4">
-          {appertmentCardData.slice(0, 3).map((item, i) => (
+          {appertmentCardData.slice(0, 3).map((item) => (
             <PropertyCard 
               item={item} 
-              i={i}
+              key={item.id}
               onClick={() => {}}
               callClick={() => {}}
               emailClick={() => {}} 

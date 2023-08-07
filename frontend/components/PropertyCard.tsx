@@ -15,7 +15,7 @@ interface Property {
 
 interface PropertyCardProps {
   item: Property;
-  i: number;
+  key: string;
   onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
   callClick: () => void;
   emailClick: () => void;
@@ -23,7 +23,6 @@ interface PropertyCardProps {
 
 const PropertyCard: React.FC<PropertyCardProps> = ({
   item,
-  i,
   onClick,
   callClick,
   emailClick,
@@ -31,7 +30,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   return (
     <div
       className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer shadow-md shadow-[#ABBED1]/30 hover:shadow-lg transition duration-300"
-      key={i}
       onClick={onClick}
     >
       <img
