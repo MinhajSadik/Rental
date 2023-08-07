@@ -3,7 +3,6 @@ import { Form } from "@/components/pages/property/individual-property";
 
 const Description: React.FC = () => {
   return (
-    // <div className="flex gap-8 items-start mt-8">
     <div className="flex items-start xl:gap-10 gap-8 mt-8">
       {/* ==== Left ==== */}
       <div className="space-y-12">

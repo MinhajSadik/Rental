@@ -5,6 +5,7 @@ import ReviewCard from "./ReviewCard";
 import ShareCard from "./ShareCard";
 import SaveCard from "./SaveCard";
 import Form from "./Form";
+import Map from "./Map";
 
 export {
   PropertyDescription,
@@ -14,4 +15,5 @@ export {
   ShareCard,
   SaveCard,
   Form,
+  Map
 };
