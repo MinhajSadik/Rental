@@ -1,9 +1,23 @@
+import { PropertyCard } from "@/components";
+import { appertmentCardData } from "@/constants";
+
 const RelatedProperties: React.FC = () => {
   return (
     <div className="mt-14 space-y-6">
       <h4 className="text-secondary font-bold text-[28px] text-center">
         Related <span className="text-primary">Properties</span>
       </h4>
+      <div className="grid grid-cols-3 gap-6">
+        {appertmentCardData.slice(0, 3).map((card, i) => (
+          <PropertyCard
+            item={card}
+            i={i}
+            onClick={() => {}}
+            callClick={() => {}}
+            emailClick={() => {}}
+          />
+        ))}
+      </div>
     </div>
   )
 }

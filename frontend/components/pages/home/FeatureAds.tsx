@@ -1,4 +1,4 @@
-import featuredAdsData from "@/constants/featureAdsData";
+import { appertmentCardData } from "@/constants";
 import { PropertyCard } from "@/components";
 
 const FeatureAds: React.FC = () => {
@@ -14,10 +14,13 @@ const FeatureAds: React.FC = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-3 sm:grid-cols-2 xl:gap-6 gap-4">
-          {featuredAdsData.map((item, i) => (
+          {appertmentCardData.slice(0, 3).map((item, i) => (
             <PropertyCard 
               item={item} 
-              i={i} 
+              i={i}
+              onClick={() => {}}
+              callClick={() => {}}
+              emailClick={() => {}} 
             />
           ))}
         </div>

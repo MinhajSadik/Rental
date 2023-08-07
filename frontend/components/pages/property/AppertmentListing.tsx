@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { appertmentCardData } from "@/constants";
-import Image from "next/image";
-import { BiSolidPhone } from "react-icons/bi";
-import { MdEmail } from "react-icons/md";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import { openPropertyEmail } from "@/features/propertyemailToggleSlice";
 import { useDispatch } from "react-redux";
 import { openPropertyCall } from "@/features/propertyCallToggleSlice";
 import { useRouter } from "next/router";
+import { PropertyCard } from "@/components";
 
 const appertmentTenants: Array<string> = [
   "All",
@@ -105,76 +103,18 @@ const AppertmentListing: React.FC = () => {
           {/* ==== appertment card ==== */}
           {appertmentCardData.map((card, i) => (
             // ==== card ====
-            <div
-              className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer hover:shadow-lg transition duration-300"
-              key={i}
-              onClick={(e) => {
+            <PropertyCard
+              item={card}
+              i={i}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 if (e.target instanceof HTMLButtonElement) {
                   return;
                 }
                 router.push(`/property/${card.id}`);
               }}
-            >
-              <Image
-                src={card.img[0]}
-                alt="appertment"
-                className="rounded-t-[10px] w-full"
-                width={420}
-                height={250}
-              />
-              <div className="p-4 space-y-3.5">
-                <div className="space-y-2">
-                  <h4 className="text-[20px] font-semibold text-secondary">
-                    {card.price.month} BDT/month
-                  </h4>
-                  <span className="text-[12px] text-[#969693]">
-                    {card.area}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 mt-1 text-[#575959]">
-                  <div className="flex items-center gap-2">
-                    <i>
-                      <img src="./images/icon/size.svg" alt="icon" />
-                    </i>
-                    <span className="text-[12px]">{card.roomsize} Sq Ft</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i>
-                      <img src="./images/icon/bath.svg" alt="icon" />
-                    </i>
-                    <span className="text-[12px]">
-                      {card.bathroom >= 10
-                        ? card.bathroom
-                        : `0${card.bathroom}`}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <i>
-                      <img src="./images/icon/beth.svg" alt="icon" />
-                    </i>
-                    <span className="text-[12px]">
-                      {card.bedroom >= 10 ? card.bedroom : `0${card.bedroom}`}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <button
-                    className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primaryHov transition duration-300 text-sm"
-                    onClick={() => dispatch(openPropertyCall())}
-                  >
-                    <BiSolidPhone size={20} />
-                    Call
-                  </button>
-                  <button
-                    className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primaryHov transition duration-300 text-sm"
-                    onClick={() => dispatch(openPropertyEmail())}
-                  >
-                    <MdEmail size={20} />
-                    E-Mail
-                  </button>
-                </div>
-              </div>
-            </div>
+              callClick={() => dispatch(openPropertyCall())}
+              emailClick={() => dispatch(openPropertyEmail())}
+            />
           ))}
         </div>
         <div className="flex flex-col items-end space-y-4">
