@@ -7,5 +7,5 @@ export interface appertmentCardTypes {
     area: string;
     roomsize: number;
     bathroom: number;
-    bedroom: number
+    bedroom: number;
 };

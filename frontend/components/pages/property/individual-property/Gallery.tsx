@@ -23,28 +23,28 @@ const Gallery: React.FC = () => {
           alt="property thumbnail"
           width={650}
           height={412}
-          className="rounded-[5px] w-full h-full"
+          className="rounded-[5px] w-full h-full cursor-pointer"
         />
         <Image
           src="/images/property-picture2.png"
           alt="property thumbnail"
           width={650}
           height={412}
-          className="rounded-[5px] w-full h-full"
+          className="rounded-[5px] w-full h-full cursor-pointer"
         />
         <Image
           src="/images/property-picture3.png"
           alt="property thumbnail"
           width={650}
           height={412}
-          className="rounded-[5px] w-full h-full"
+          className="rounded-[5px] w-full h-full cursor-pointer"
         />
         <Image
           src="/images/property-picture4.png"
           alt="property thumbnail"
           width={650}
           height={412}
-          className="rounded-[5px] w-full h-full"
+          className="rounded-[5px] w-full h-full cursor-pointer"
         />
       </div>
     </div>

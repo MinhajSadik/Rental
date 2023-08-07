@@ -5,8 +5,15 @@ import { SlLocationPin } from "react-icons/sl";
 import { RxShare2 } from "react-icons/rx";
 import { BsSave } from "react-icons/bs";
 import { Gallery, Description } from "@/components/pages/property/individual-property";
+import { useDispatch } from "react-redux";
+import { openReviewToggle } from "@/features/reviewToggleSlice";
+import { openShareToggle } from "@/features/shareToggleSlice";
+import { openSavePropertyToggle } from "@/features/savePropertyToggleSlice";
 
 const PropertyDescription: React.FC = () => {
+
+  const dispatch = useDispatch();
+
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:py-10 py-8">
       <div className="space-y-5">
@@ -17,7 +24,12 @@ const PropertyDescription: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2.5">
               <BiStar className="text-primary" size={22}/>
-              <button className="text-[#7D7D7D] hover:text-secondary underline transition duration-300">5 reviews.</button>
+              <button 
+                className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
+                onClick={() => dispatch(openReviewToggle())}
+              >
+                5 reviews.
+              </button>
             </div>
             <div className="flex items-center gap-2.5">
               <MdOutlineVerified className="text-primary" size={22}/>
@@ -31,11 +43,21 @@ const PropertyDescription: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <RxShare2 className="text-primary" size={22}/>
-              <button className="text-[#7D7D7D] hover:text-secondary underline transition duration-300">Share</button>
+              <button 
+                className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
+                onClick={() => dispatch(openShareToggle())}
+              >
+                Share
+              </button>
             </div>
             <div className="flex items-center gap-2">
               <BsSave className="text-primary" size={18}/>
-              <button className="text-[#7D7D7D] hover:text-secondary underline transition duration-300">Save</button>
+              <button 
+                className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
+                onClick={() => dispatch(openSavePropertyToggle())}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>

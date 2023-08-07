@@ -8,6 +8,7 @@ import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import { openPropertyEmail } from "@/features/propertyemailToggleSlice";
 import { useDispatch } from "react-redux";
 import { openPropertyCall } from "@/features/propertyCallToggleSlice";
+import { useRouter } from "next/router";
 
 const appertmentTenants: Array<string> = [
   "All",
@@ -26,13 +27,14 @@ const shortingAppertmentList: Array<string> = [
 ];
 
 const AppertmentListing: React.FC = () => {
-
   const [activeAppertmentTenants, setActiveAppertmentTenants] =
     useState<string>("All");
   const [isShortingAppertmentOpen, setIsShortingAppertmentOpen] =
     useState<boolean>(false);
-  
+
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:pt-6 lg:pb-8 pt-4 pb-6">
@@ -57,13 +59,22 @@ const AppertmentListing: React.FC = () => {
             ))}
           </ul>
           <div
-            className={`flex justify-between items-center border hover:border-[#202020]/60 px-4 py-2 max-w-[200px] w-full rounded-lg cursor-pointer relative ${isShortingAppertmentOpen ? "border-[#202020]/60" : "border-[#000000]/30"} transition duration-300`}
+            className={`flex justify-between items-center border hover:border-[#202020]/60 px-4 py-2 max-w-[200px] w-full rounded-lg cursor-pointer relative ${
+              isShortingAppertmentOpen
+                ? "border-[#202020]/60"
+                : "border-[#000000]/30"
+            } transition duration-300`}
             onClick={() =>
               setIsShortingAppertmentOpen(!isShortingAppertmentOpen)
             }
           >
             <span className="text-secondary font-medium">Popular</span>
-            <FiChevronDown className={`text-secondary font-medium ${isShortingAppertmentOpen ? "rotate-180" : "rotate-0"} transition duration-300`} size={22} />
+            <FiChevronDown
+              className={`text-secondary font-medium ${
+                isShortingAppertmentOpen ? "rotate-180" : "rotate-0"
+              } transition duration-300`}
+              size={22}
+            />
             {/* ===== dropdown item ==== */}
             {isShortingAppertmentOpen && (
               <div className="absolute bg-white shadow w-full left-0 rounded-lg top-[45px]">
@@ -93,9 +104,16 @@ const AppertmentListing: React.FC = () => {
         <div className="grid grid-cols-3 items-center gap-6">
           {/* ==== appertment card ==== */}
           {appertmentCardData.map((card, i) => (
+            // ==== card ====
             <div
-              className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer hover:shadow-lg transition duration-300" 
+              className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer hover:shadow-lg transition duration-300"
               key={i}
+              onClick={(e) => {
+                if (e.target instanceof HTMLButtonElement) {
+                  return;
+                }
+                router.push(`/property/${card.id}`);
+              }}
             >
               <Image
                 src={card.img[0]}
@@ -109,23 +127,25 @@ const AppertmentListing: React.FC = () => {
                   <h4 className="text-[20px] font-semibold text-secondary">
                     {card.price.month} BDT/month
                   </h4>
-                  <span className="text-[12px] text-[#969693]">{card.area}</span>
+                  <span className="text-[12px] text-[#969693]">
+                    {card.area}
+                  </span>
                 </div>
                 <div className="flex items-center gap-4 mt-1 text-[#575959]">
                   <div className="flex items-center gap-2">
                     <i>
                       <img src="./images/icon/size.svg" alt="icon" />
                     </i>
-                    <span className="text-[12px]">
-                      {card.roomsize} Sq Ft
-                    </span>
+                    <span className="text-[12px]">{card.roomsize} Sq Ft</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <i>
                       <img src="./images/icon/bath.svg" alt="icon" />
                     </i>
                     <span className="text-[12px]">
-                      {card.bathroom >= 10 ? card.bathroom : `0${card.bathroom}`}
+                      {card.bathroom >= 10
+                        ? card.bathroom
+                        : `0${card.bathroom}`}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -138,18 +158,18 @@ const AppertmentListing: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
-                  <button 
+                  <button
                     className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primaryHov transition duration-300 text-sm"
                     onClick={() => dispatch(openPropertyCall())}
                   >
-                    <BiSolidPhone size={20}/>
+                    <BiSolidPhone size={20} />
                     Call
                   </button>
-                  <button 
+                  <button
                     className="flex items-center gap-1 bg-primary text-white px-4 py-1.5 rounded hover:bg-primaryHov transition duration-300 text-sm"
                     onClick={() => dispatch(openPropertyEmail())}
                   >
-                    <MdEmail size={20}/>
+                    <MdEmail size={20} />
                     E-Mail
                   </button>
                 </div>
@@ -160,10 +180,10 @@ const AppertmentListing: React.FC = () => {
         <div className="flex flex-col items-end space-y-4">
           <div className="flex justify-end items-center gap-6">
             <button className="bg-white shadow-sm p-2 rounded-full text-primary border hover:shadow-md">
-              <HiArrowLeft size={20}/>
+              <HiArrowLeft size={20} />
             </button>
             <button className="bg-white shadow-sm p-2 rounded-full text-primary border hover:shadow-md">
-              <HiArrowRight size={20}/>
+              <HiArrowRight size={20} />
             </button>
           </div>
           <span className="text-[#969693] text-sm">Page 1 of 19</span>

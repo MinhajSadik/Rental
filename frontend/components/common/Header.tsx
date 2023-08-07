@@ -54,7 +54,7 @@ const Header: React.FC = () => {
             Login
           </button>
           <Link
-            href="/"
+            href="/property"
             className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
           >
             Add Property
@@ -82,9 +82,9 @@ const Header: React.FC = () => {
             </Link>
             <Link
               className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
-              href="/signup"
+              href="/property"
             >
-              Sign up
+              Add Property
             </Link>
           </div>
         </nav>

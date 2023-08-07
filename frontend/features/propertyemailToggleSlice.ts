@@ -1,19 +1,17 @@
+// Import necessary dependencies
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@/redux/store';
 
-// Define a type for the slice state
 interface PropertyEmailToggleState {
   isOpen: boolean;
 }
 
-// Define the initial state using that type
 const initialState: PropertyEmailToggleState = {
   isOpen: false,
 };
 
 export const propertyEmailToggleSlice = createSlice({
   name: 'propertyEmailToggle',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     openPropertyEmail: (state) => {
