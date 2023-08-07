@@ -50,8 +50,8 @@ class UserService {
                 email: isUserExist.email,
                 role: isUserExist.role,
             };
-            const accessToken = yield jsonwebtoken_1.default.sign(jwtPayload, process.env.JWT_SECRET);
-            const refreshToken = yield jsonwebtoken_1.default.sign(jwtPayload, process.env.JWT_REFRESH_SECRET);
+            const accessToken = yield jsonwebtoken_1.default.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: "1d" });
+            const refreshToken = yield jsonwebtoken_1.default.sign(jwtPayload, process.env.JWT_REFRESH_SECRET, { expiresIn: "1d" });
             return {
                 statusCode: http_status_1.default.OK,
                 success: true,
@@ -81,6 +81,65 @@ class UserService {
                 success: true,
                 message: "Password changed successfully",
                 data: updatedUser,
+            };
+        });
+    }
+    static auth(token) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const isValidToken = yield jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+            if (!isValidToken) {
+                return {
+                    statusCode: http_status_1.default.BAD_REQUEST,
+                    success: false,
+                    message: "Invalid token",
+                    data: null,
+                };
+            }
+            const isUserExist = yield user_model_1.User.findOne({ email: isValidToken.email });
+            if (!isUserExist) {
+                return {
+                    statusCode: http_status_1.default.NOT_FOUND,
+                    success: false,
+                    message: "User does not exist",
+                    data: null,
+                };
+            }
+            return {
+                statusCode: http_status_1.default.OK,
+                success: true,
+                message: "User retrieved successfully",
+                data: isUserExist,
+            };
+        });
+    }
+    static refreshToken(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!refreshToken) {
+                return {
+                    statusCode: http_status_1.default.BAD_REQUEST,
+                    success: false,
+                    message: "Refresh token not provided",
+                    data: null,
+                };
+            }
+            const isValidToken = yield jsonwebtoken_1.default.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+            if (!isValidToken) {
+                return {
+                    statusCode: http_status_1.default.BAD_REQUEST,
+                    success: false,
+                    message: "Invalid refresh token",
+                    data: null,
+                };
+            }
+            // Generate a new access token
+            const accessToken = jsonwebtoken_1.default.sign(isValidToken, process.env.JWT_SECRET, { expiresIn: '1d' });
+            return {
+                statusCode: http_status_1.default.OK,
+                success: true,
+                message: "Token generated successfully!",
+                data: {
+                    accessToken: accessToken
+                },
             };
         });
     }

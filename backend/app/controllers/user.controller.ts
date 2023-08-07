@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import  { IGenericResponse, handleResponse } from "../utils/sendResponse";
 import httpStatus from "http-status";
 import UserService from "../services/user.service";
+import { Secret } from "jsonwebtoken";
 
 class UserController {
   register = async (req: Request, res: Response, next: NextFunction) => {
@@ -38,6 +39,27 @@ class UserController {
       next(error);
     }
   };
+
+  auth = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const token = req.headers.authorization as string
+     
+      const result = await UserService.auth(token);
+      return handleResponse.sendResponse(res, result as IGenericResponse);
+    } catch (error) {
+      next(error)
+    }
+  }
+  
+  refreshToken = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const refreshToken = req.headers.authorization as string
+      const result = await UserService.refreshToken(refreshToken)
+      return handleResponse.sendResponse(res, result as IGenericResponse);
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default new UserController();

@@ -16,8 +16,18 @@ const sendResponse_1 = require("./sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
 const pin_model_1 = require("../models/pin.model");
 const nodemailer_1 = __importDefault(require("nodemailer"));
+const user_model_1 = require("../models/user.model");
 const generatePin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const isUserExist = yield user_model_1.User.findOne({ email: req.body.email });
+        if (!isUserExist) {
+            return sendResponse_1.handleResponse.sendResponse(res, {
+                statusCode: http_status_1.default.NOT_FOUND,
+                success: false,
+                message: "User does not exist",
+                data: null,
+            });
+        }
         const randomNumber = Math.floor(Math.random() * 10000);
         const pinCode = String(randomNumber).padStart(4, '0');
         const pinExpiry = Date.now() + 10 * 60 * 1000;
@@ -41,7 +51,7 @@ const generatePin = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             });
             // Define the email details
             const mailOptions = {
-                from: 'Md Rubel Ahmed Rana <mdrubelahmedrana521@gmail.com>',
+                from: 'Little Programmer <littleprogrammer@gmail.com>',
                 to: req.body.email,
                 subject: 'Password Reset Pin Code',
                 html: `

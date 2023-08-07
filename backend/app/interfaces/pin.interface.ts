@@ -2,7 +2,7 @@ import { Model } from "mongoose"
 
 export type IPin = {
     pin:  string,
-    expireAt: string,
+    expireAt: string | number,
     userEmail: string
 }
 

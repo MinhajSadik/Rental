@@ -17,18 +17,23 @@ class MySQLConnection {
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const db = yield mysql_1.default.createConnection({
-                    host: "127.0.0.1",
-                    port: 3306,
-                    user: "root",
-                    password: "admin",
-                    database: "usersDb"
+                const connection = mysql_1.default.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: 'admin',
+                    database: 'rentalDb'
                 });
-                console.log("Database connected successfully!");
+                connection.connect(err => {
+                    if (err) {
+                        console.error('Error connecting to MySQL:', err);
+                        return;
+                    }
+                    console.log('Connected to MySQL server');
+                });
             }
             catch (error) {
                 console.log({
-                    message: "Database is not connected",
+                    message: "There was a server side error occurred",
                     error: error.message,
                 });
             }

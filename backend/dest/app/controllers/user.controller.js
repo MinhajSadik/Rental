@@ -63,6 +63,26 @@ class UserController {
                 next(error);
             }
         });
+        this.auth = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const token = req.headers.authorization;
+                const result = yield user_service_1.default.auth(token);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.refreshToken = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const refreshToken = req.headers.authorization;
+                const result = yield user_service_1.default.refreshToken(refreshToken);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
     }
 }
 exports.default = new UserController();

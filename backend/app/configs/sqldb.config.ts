@@ -1,25 +1,31 @@
-import sql from "mysql"
+import mysql from "mysql"
 
 
 class MySQLConnection {
     async connect(): Promise<void> {
         try {
-            const db = await sql.createConnection({
-                host: "127.0.0.1",
-                port: 3306 ,
-                user: "root",
-                password: "admin",
-                database: "usersDb"
-            })
-            console.log("Database connected successfully!");
+            const connection = mysql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: 'admin',
+                database: 'rentalDb'
+            });
+            connection.connect(err => {
+                if (err) {
+                    console.error('Error connecting to MySQL:', err);
+                    return;
+                }
+                console.log('Connected to MySQL server');
+            });
         } catch (error: any) {
             console.log({
-                message: "Database is not connected",
+                message: "There was a server side error occurred",
                 error: error.message,
             });
         }
     }
 }
+
 
 
 export default new MySQLConnection()

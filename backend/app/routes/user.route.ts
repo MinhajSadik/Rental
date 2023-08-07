@@ -5,14 +5,16 @@ import { UserValidation } from "../validators/user.validator";
 import generatePin from "../utils/generateOTP";
 import { pinVerification } from "../middlewares/pin.verify";
 
-const router = Router();
+const userRouter: Router = Router();
 
-router.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
+userRouter.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
 
-router.post("/login", userController.login);
+userRouter.post("/login", userController.login);
+userRouter.get("/auth", userController.auth);
+userRouter.get("/refresh-token", userController.refreshToken);
 
-router.post("/generate-otp", generatePin);
+userRouter.post("/generate-otp", generatePin);
 
-router.put("/forget-password", pinVerification.verifyPin, userController.forgetPassword);
+userRouter.put("/forget-password", pinVerification.verifyPin, userController.forgetPassword);
 
-export default router;
+export default userRouter;
