@@ -3,6 +3,7 @@ import { User } from "../models/user.model";
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import { Pin } from "../models/pin.model";
 
 
 class UserService {
@@ -64,6 +65,45 @@ class UserService {
       },
     };
   }
+
+  static async verifyOTP(otp: string) {
+    const isPinExist = await Pin.findOne({pin: otp});
+     if(!isPinExist){
+         return  {
+             statusCode: httpStatus.NOT_FOUND,
+             success: false,
+             message: "Your pin code does not exist",
+             data: null
+         }
+     }
+     // check time expiration
+     const currentTime: any = Date.now()
+    if (currentTime > isPinExist.expireAt) {
+        return {
+            statusCode: httpStatus.BAD_REQUEST,
+            success: false,
+            message: "Time expired",
+            data: null
+        }
+    }
+     // match the pin
+     if(isPinExist.pin !== otp){
+         return {
+             statusCode: httpStatus.BAD_REQUEST,
+             success: false,
+             message: "Invalid pin code",
+             data: null
+         }
+     }
+
+     return {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Your can change your password",
+      data: null
+  }
+    
+ }
 
   static async forgetPassword(user: Partial<IUser>) {
     const isUserExist = await User.findOne({ email: user.email });
@@ -150,6 +190,27 @@ class UserService {
       accessToken: accessToken
     },
   };
+  }
+
+  static async updateProfile(user: Partial<IUser>){
+    const isUserExist = await User.findOne({email: user.email});
+    if(isUserExist){
+      const updatedUser = await User.findOneAndUpdate({email: user.email}, {...user}, {upsert: true, new: true})
+      return {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User updated successfully",
+        data: updatedUser,
+      };
+    }
+
+    const newUser = await User.create(user);
+    return {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "User updated successfully",
+      data: newUser,
+    };
   }
 }
 

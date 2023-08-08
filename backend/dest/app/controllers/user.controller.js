@@ -54,6 +54,15 @@ class UserController {
                 next(error);
             }
         });
+        this.verifyOTP = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield user_service_1.default.verifyOTP(req.body.pin);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
         this.forgetPassword = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield user_service_1.default.forgetPassword(req.body);
@@ -77,6 +86,15 @@ class UserController {
             try {
                 const refreshToken = req.headers.authorization;
                 const result = yield user_service_1.default.refreshToken(refreshToken);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.updateProfile = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield user_service_1.default.updateProfile(req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
             }
             catch (error) {

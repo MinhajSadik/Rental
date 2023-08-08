@@ -6,6 +6,7 @@ import globalErrorHandler from "./errors/handleGlobalError";
 import rootRouter from "./routes/root.route";
 import cookieParser from "cookie-parser"
 
+
 dotenv.config();
 const app: Application = express();
 
@@ -23,8 +24,8 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
-
 app.use("/api/v1", rootRouter);
+
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({

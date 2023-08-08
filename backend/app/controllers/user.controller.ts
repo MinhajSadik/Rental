@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import  { IGenericResponse, handleResponse } from "../utils/sendResponse";
 import httpStatus from "http-status";
 import UserService from "../services/user.service";
-import { Secret } from "jsonwebtoken";
+import { Pin } from "../models/pin.model";
 
 class UserController {
   register = async (req: Request, res: Response, next: NextFunction) => {
@@ -31,6 +31,15 @@ class UserController {
     }
   };
 
+  verifyOTP = async(req: Request, res: Response, next: NextFunction) => {
+      try {
+        const result = await UserService.verifyOTP(req.body.pin)
+        return handleResponse.sendResponse(res, result as IGenericResponse);
+      } catch (error) {
+      next(error)
+      }
+  }
+
   forgetPassword = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await UserService.forgetPassword(req.body);
@@ -55,6 +64,15 @@ class UserController {
     try {
       const refreshToken = req.headers.authorization as string
       const result = await UserService.refreshToken(refreshToken)
+      return handleResponse.sendResponse(res, result as IGenericResponse);
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  updateProfile =  async (req: Request, res: Response, next: NextFunction) =>{
+    try {
+      const result = await UserService.updateProfile(req.body)
       return handleResponse.sendResponse(res, result as IGenericResponse);
     } catch (error) {
       next(error)

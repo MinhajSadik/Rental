@@ -17,7 +17,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const pin_model_1 = require("../models/pin.model");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const user_model_1 = require("../models/user.model");
-const generatePin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const generateOTP = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const isUserExist = yield user_model_1.User.findOne({ email: req.body.email });
         if (!isUserExist) {
@@ -29,7 +29,7 @@ const generatePin = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             });
         }
         const randomNumber = Math.floor(Math.random() * 10000);
-        const pinCode = String(randomNumber).padStart(4, '0');
+        const pinCode = String(randomNumber).padStart(6, '0');
         const pinExpiry = Date.now() + 10 * 60 * 1000;
         const pinCodeObject = {
             pin: pinCode,
@@ -91,4 +91,4 @@ const generatePin = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         next(error);
     }
 });
-exports.default = generatePin;
+exports.default = generateOTP;

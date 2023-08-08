@@ -32,7 +32,7 @@ class VerifyOTPCode {
                 }
                 // check time expiration
                 const currentTime = Date.now();
-                if (currentTime < isPinExist.expireAt) {
+                if (currentTime > isPinExist.expireAt) {
                     return sendResponse_1.handleResponse.sendResponse(res, {
                         statusCode: http_status_1.default.BAD_REQUEST,
                         success: false,
@@ -49,6 +49,7 @@ class VerifyOTPCode {
                         data: null
                     });
                 }
+                next();
             }
             catch (error) {
                 next(error);

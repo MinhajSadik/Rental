@@ -16,6 +16,7 @@ const user_model_1 = require("../models/user.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const http_status_1 = __importDefault(require("http-status"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const pin_model_1 = require("../models/pin.model");
 class UserService {
     static register(user) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -60,6 +61,44 @@ class UserService {
                 data: {
                     accessToken,
                 },
+            };
+        });
+    }
+    static verifyOTP(otp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const isPinExist = yield pin_model_1.Pin.findOne({ pin: otp });
+            if (!isPinExist) {
+                return {
+                    statusCode: http_status_1.default.NOT_FOUND,
+                    success: false,
+                    message: "Your pin code does not exist",
+                    data: null
+                };
+            }
+            // check time expiration
+            const currentTime = Date.now();
+            if (currentTime > isPinExist.expireAt) {
+                return {
+                    statusCode: http_status_1.default.BAD_REQUEST,
+                    success: false,
+                    message: "Time expired",
+                    data: null
+                };
+            }
+            // match the pin
+            if (isPinExist.pin !== otp) {
+                return {
+                    statusCode: http_status_1.default.BAD_REQUEST,
+                    success: false,
+                    message: "Invalid pin code",
+                    data: null
+                };
+            }
+            return {
+                statusCode: http_status_1.default.OK,
+                success: true,
+                message: "Your can change your password",
+                data: null
             };
         });
     }
@@ -140,6 +179,27 @@ class UserService {
                 data: {
                     accessToken: accessToken
                 },
+            };
+        });
+    }
+    static updateProfile(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const isUserExist = yield user_model_1.User.findOne({ email: user.email });
+            if (isUserExist) {
+                const updatedUser = yield user_model_1.User.findOneAndUpdate({ email: user.email }, Object.assign({}, user), { upsert: true, new: true });
+                return {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "User updated successfully",
+                    data: updatedUser,
+                };
+            }
+            const newUser = yield user_model_1.User.create(user);
+            return {
+                statusCode: http_status_1.default.OK,
+                success: true,
+                message: "User updated successfully",
+                data: newUser,
             };
         });
     }

@@ -7,7 +7,7 @@ import { IPin } from "../interfaces/pin.interface";
 import { User } from "../models/user.model";
 
 
-const generatePin = async(req: Request, res: Response, next: NextFunction) => {
+const generateOTP = async(req: Request, res: Response, next: NextFunction) => {
     try {
         const isUserExist = await User.findOne({ email: req.body.email });
         if (!isUserExist) {
@@ -19,13 +19,13 @@ const generatePin = async(req: Request, res: Response, next: NextFunction) => {
             });
           }
         const randomNumber = Math.floor(Math.random() * 10000);
-        const pinCode = String(randomNumber).padStart(4, '0');
+        const pinCode = String(randomNumber).padStart(6, '0');
         const pinExpiry = Date.now() + 10 * 60 * 1000;
         const pinCodeObject: IPin = {
-        pin: pinCode,
-        expireAt: pinExpiry,
-        userEmail: req.body.email
-    }
+            pin: pinCode,
+            expireAt: pinExpiry,
+            userEmail: req.body.email
+        }
     // save the pin code in Database
     const result = await Pin.create(pinCodeObject)
     if(result){
@@ -81,4 +81,4 @@ const generatePin = async(req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export default generatePin
+export default generateOTP
