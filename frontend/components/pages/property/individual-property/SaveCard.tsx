@@ -1,14 +1,20 @@
 import { BlureEffect } from "@/components";
-import { closeSavePropertyToggle } from "@/features/savePropertyToggleSlice";
 import { MdOutlineClose } from "react-icons/md";
-import { useDispatch } from "react-redux";
 
-const SaveCard: React.FC = () => {
+interface SaveCardProps {
+  setSaveToggle: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const dispatch = useDispatch();
+const SaveCard: React.FC<SaveCardProps> = ({ setSaveToggle }) => {
+
+  const closeSaveToggle = (): void => {
+    setSaveToggle(false);
+  };
 
   return (
-    <BlureEffect>
+    <BlureEffect
+      // onClick={closeSaveToggle}
+    >
       <div className="max-w-[540px] w-full max-h-[440px] overflow-y-auto bg-white rounded-[10px] pt-6 pb-8 px-6 space-y-4">
         <div className="flex justify-between items-center gap-6">
           <h4 className="text-[25px] font-medium text-secondary">
@@ -16,7 +22,7 @@ const SaveCard: React.FC = () => {
           </h4>
           <button
             className="text-[#A29999] hover:text-secondary transition duration-300"
-            onClick={() => dispatch(closeSavePropertyToggle())}
+            onClick={closeSaveToggle}
           >
             <MdOutlineClose size={24} />
           </button>

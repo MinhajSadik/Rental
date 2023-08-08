@@ -3,10 +3,12 @@ import { BlureEffect } from "@/components";
 import { Card } from "@components/pages/property";
 import { IoMdClose } from "react-icons/io";
 import { FiChevronDown } from "react-icons/fi";
-import { closeAllFilter } from "@/features/allFilterToggleSlice";
-import { useDispatch } from "react-redux";
 
-const AllFilterCard: React.FC = () => {
+interface AllFilterCardProps {
+  setAllFilterToggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AllFilterCard: React.FC<AllFilterCardProps> = ({ setAllFilterToggle }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const options: Array<string> = [
@@ -25,8 +27,6 @@ const AllFilterCard: React.FC = () => {
       setSelectedOptions([...selectedOptions, option]);
     }
   };
-
-  const dispatch = useDispatch();
 
   const dateOption: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -59,15 +59,21 @@ const AllFilterCard: React.FC = () => {
 
   const handleReset = (): void => {
     setSelectedOptions([]);
-    dispatch(closeAllFilter());
+    setAllFilterToggle(false);
   }
 
   const handleDone = (): void => {
-    dispatch(closeAllFilter());
+    setAllFilterToggle(false);
+  };
+
+  const closeAllFilterToggle = (): void => {
+    setAllFilterToggle(false);
   };
 
   return (
-    <BlureEffect>
+    <BlureEffect
+      // onClick={closeAllFilterToggle}
+    >
       <Card>
         <div className="flex justify-between items-center gap-4">
           <div>
@@ -77,7 +83,7 @@ const AllFilterCard: React.FC = () => {
           </div>
           <button
             className="absolute right-5 top-6 text-[#9E9E9E] hover:text-secondary transition duration-300"
-            onClick={() => dispatch(closeAllFilter())}
+            onClick={closeAllFilterToggle}            
           >
             <IoMdClose size={24} />
           </button>

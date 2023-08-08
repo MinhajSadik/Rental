@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BiStar } from "react-icons/bi";
 import { MdOutlineVerified } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import { RxShare2 } from "react-icons/rx";
 import { BsSave } from "react-icons/bs";
-import { Gallery, Description, Map, RelatedProperties } from "@/components/pages/property/individual-property";
-import { useDispatch } from "react-redux";
-import { openReviewToggle } from "@/features/reviewToggleSlice";
-import { openShareToggle } from "@/features/shareToggleSlice";
-import { openSavePropertyToggle } from "@/features/savePropertyToggleSlice";
+import { Gallery, Description, Map, RelatedProperties, ReviewCard, ShareCard, SaveCard } from "@/components/pages/property/individual-property";
 
 const PropertyDescription: React.FC = () => {
 
-  const dispatch = useDispatch();
+  // ==== review toggle ====
+  const [reviewToggle, setReviewToggle] = useState<boolean>(false);
+
+  // ==== share toggle ====
+  const [shareToggle, setShareToggle] = useState<boolean>(false);
+
+  // ==== save toggle ====
+  const [saveToggle, setSaveToggle] = useState<boolean>(false);
+
+  // ==== useEffect ====
+  useEffect(() => {
+    if (reviewToggle || shareToggle || saveToggle) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [reviewToggle, shareToggle, saveToggle]);
 
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:py-10 py-8">
@@ -26,7 +38,7 @@ const PropertyDescription: React.FC = () => {
               <BiStar className="text-primary" size={22}/>
               <button 
                 className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
-                onClick={() => dispatch(openReviewToggle())}
+                onClick={() => setReviewToggle(true)}
               >
                 5 reviews.
               </button>
@@ -45,7 +57,7 @@ const PropertyDescription: React.FC = () => {
               <RxShare2 className="text-primary" size={22}/>
               <button 
                 className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
-                onClick={() => dispatch(openShareToggle())}
+                onClick={() => setShareToggle(true)}
               >
                 Share
               </button>
@@ -54,7 +66,7 @@ const PropertyDescription: React.FC = () => {
               <BsSave className="text-primary" size={18}/>
               <button 
                 className="text-[#7D7D7D] hover:text-secondary underline transition duration-300"
-                onClick={() => dispatch(openSavePropertyToggle())}
+                onClick={() => setSaveToggle(true)}
               >
                 Save
               </button>
@@ -70,6 +82,20 @@ const PropertyDescription: React.FC = () => {
       <Map/>
       {/* ==== Related Properties ==== */}
       <RelatedProperties/>
+
+      {reviewToggle && (
+        <ReviewCard
+          setReviewToggle={setReviewToggle}
+        />
+      )}
+
+      {shareToggle && (
+        <ShareCard setShareToggle={setShareToggle}/>
+      )}
+
+      {saveToggle && (
+        <SaveCard setSaveToggle={setSaveToggle}/>
+      )}
     </section>
   )
 }

@@ -8,7 +8,7 @@ interface BlureEffectProps {
 const BlureEffect: React.FC<BlureEffectProps> = ({ children, onClick }) => {
   return (
     <div 
-      className="bg-neutral-400/40 w-full h-screen z-30 flex flex-col items-center justify-center p-6 fixed left-0 top-0"
+      className="bg-neutral-400/40 w-screen h-screen z-30 flex flex-col items-center justify-center p-6 fixed left-0 top-0"
       onClick={onClick}
     >
       {children}

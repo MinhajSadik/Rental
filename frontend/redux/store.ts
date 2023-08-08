@@ -5,10 +5,6 @@ import forgetpasswordToggleReducer from "@/features/forgetpasswordToggleSlice";
 import propertyemailToggleSlice from "@/features/propertyemailToggleSlice";
 import propertyCallToggleSlice from "@/features/propertyCallToggleSlice";
 import allFilterToggleSlice from "@/features/allFilterToggleSlice";
-import reviewToggleSlice from "@/features/reviewToggleSlice";
-import shareToggleSlice from "@/features/shareToggleSlice";
-import savePropertyToggleSlice from "@/features/savePropertyToggleSlice";
-import apartmentVideoToggleSlice from "@/features/apartmentVideoToggleSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,10 +14,6 @@ export const store = configureStore({
     propertyEmailToggle: propertyemailToggleSlice,
     propertyCallToggle: propertyCallToggleSlice,
     allFilterToggle: allFilterToggleSlice,
-    reviewToggle: reviewToggleSlice,
-    shareToggle: shareToggleSlice,
-    savePropertyToggle: savePropertyToggleSlice,
-    apartmentVideoToggle: apartmentVideoToggleSlice,
   },
 });
 

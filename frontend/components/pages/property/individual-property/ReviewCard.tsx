@@ -2,21 +2,27 @@ import { BlureEffect } from "@/components";
 import { MdOutlineClose } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { closeReviewToggle } from "@/features/reviewToggleSlice";
 
-const ReviewCard: React.FC = () => {
+interface ReviewCardProps {
+  setReviewToggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const dispatch = useDispatch();
+const ReviewCard: React.FC<ReviewCardProps> = ({ setReviewToggle }) => {
+
+  const closeReviewToggle = (): void => {
+    setReviewToggle(false);
+  }
 
   return (
-    <BlureEffect>
+    <BlureEffect 
+      // onClick={closeReviewToggle}
+    >
       <div className="max-w-[540px] w-full max-h-[440px] overflow-y-auto bg-white rounded-[10px] pt-6 pb-8 px-6 space-y-4">
         <div className="flex justify-between items-center gap-6">
           <h4 className="text-[25px] font-medium text-secondary">Reviews</h4>
           <button 
             className="text-[#A29999] hover:text-secondary transition duration-300"
-            onClick={() => dispatch(closeReviewToggle())}
+            onClick={closeReviewToggle}
           >
             <MdOutlineClose size={24} />
           </button>

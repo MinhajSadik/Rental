@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { appertmentCardData } from "@/constants";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
-import { openPropertyEmail } from "@/features/propertyemailToggleSlice";
-import { useDispatch } from "react-redux";
-import { openPropertyCall } from "@/features/propertyCallToggleSlice";
 import { useRouter } from "next/router";
 import { PropertyCard } from "@/components";
+import { CallCard, EmailCard } from "@/components/pages/property";
 
 const appertmentTenants: Array<string> = [
   "All",
@@ -30,9 +28,18 @@ const AppertmentListing: React.FC = () => {
   const [isShortingAppertmentOpen, setIsShortingAppertmentOpen] =
     useState<boolean>(false);
 
-  const dispatch = useDispatch();
-
   const router = useRouter();
+
+  const [callToggle, setCallToggle] = useState<boolean>(false);
+  const [emailToggle, setEmailToggle] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (callToggle || emailToggle) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [callToggle || emailToggle]);
 
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:pt-6 lg:pb-8 pt-4 pb-6">
@@ -112,8 +119,8 @@ const AppertmentListing: React.FC = () => {
                 }
                 router.push(`/property/${card.id}`);
               }}
-              callClick={() => dispatch(openPropertyCall())}
-              emailClick={() => dispatch(openPropertyEmail())}
+              callClick={() => setCallToggle(true)}
+              emailClick={() => setEmailToggle(true)}
             />
           ))}
         </div>
@@ -129,6 +136,18 @@ const AppertmentListing: React.FC = () => {
           <span className="text-[#969693] text-sm">Page 1 of 19</span>
         </div>
       </div>
+
+      {callToggle && (
+        <CallCard
+          setCallToggle={setCallToggle}
+        />
+      )}
+
+      {emailToggle && (
+        <EmailCard
+          setEmailToggle={setEmailToggle}
+        />
+      )}
     </section>
   );
 };

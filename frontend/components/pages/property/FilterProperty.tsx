@@ -1,8 +1,8 @@
-import { openAllFilter } from "@/features/allFilterToggleSlice";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FiChevronDown } from "react-icons/fi";
 import { useDispatch } from "react-redux";
+import { AllFilterCard } from "@/components/pages/property";
 
 const SearchArea: Array<string> = [
   "Sylhet - Akhalia",
@@ -110,6 +110,16 @@ const FilterProperty: React.FC = () => {
   const handleSelectedBedBathDone = (): void => {
     setIsBedBathCardVisible(false);
   };
+
+  const [allFilterToggle, setAllFilterToggle] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (allFilterToggle) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [allFilterToggle]);
 
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:py-10 py-8">
@@ -623,7 +633,7 @@ const FilterProperty: React.FC = () => {
           </div>
           <button
             className="flex items-center gap-2 max-w-[180px] w-full px-3.5 py-3 border border-primary rounded-lg cursor-pointer hover:border-[#202020]/60 transition duration-300"
-            onClick={() => dispatch(openAllFilter())}
+            onClick={() => setAllFilterToggle(true)}
           >
             <img
               src="/images/icon/filter.svg"
@@ -634,6 +644,12 @@ const FilterProperty: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {allFilterToggle && (
+        <AllFilterCard
+          setAllFilterToggle={setAllFilterToggle}
+        />
+      )}
     </section>
   );
 };

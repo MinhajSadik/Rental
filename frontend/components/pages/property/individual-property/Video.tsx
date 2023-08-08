@@ -1,14 +1,18 @@
 import { BlureEffect } from "@/components";
-import { closeApartmentVideo } from "@/features/apartmentVideoToggleSlice";
-import { useDispatch } from "react-redux";
 
-const Video: React.FC = () => {
+interface VideoProps {
+  setApartmentVideoToggle: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const dispatch = useDispatch();
+const Video: React.FC<VideoProps> = ({ setApartmentVideoToggle }) => {
+
+  const closeApartmentVideo = (): void => {
+    setApartmentVideoToggle(false);    
+  };
 
   return (
     <BlureEffect
-      onClick={() => dispatch(closeApartmentVideo())}
+      onClick={closeApartmentVideo}
     >
       <iframe
         width="640"

@@ -2,15 +2,21 @@ import React from "react";
 import { Card } from "@components/pages/property";
 import { IoMdClose } from "react-icons/io";
 import { BlureEffect } from "@/components";
-import { useDispatch } from "react-redux";
-import { closePropertyEmail } from "@/features/propertyemailToggleSlice";
 
-const EmailCard: React.FC = () => {
+interface EmailCardProps {
+  setEmailToggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const dispatch = useDispatch();
+const EmailCard: React.FC<EmailCardProps> = ({ setEmailToggle }) => {
+
+  const closeEmailToggle = (): void => {
+    setEmailToggle(false);
+  };
 
   return (
-    <BlureEffect>
+    <BlureEffect
+      // onClick={closeEmailToggle}
+    >
       <Card>
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-2">
@@ -19,7 +25,7 @@ const EmailCard: React.FC = () => {
           </div>
           <button 
             className="absolute right-5 top-6 text-[#9E9E9E] hover:text-secondary transition duration-300"
-            onClick={() => dispatch(closePropertyEmail())}
+            onClick={closeEmailToggle}
           >
             <IoMdClose size={24} />
           </button>

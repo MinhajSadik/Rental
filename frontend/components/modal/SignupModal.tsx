@@ -1,21 +1,17 @@
 import { useState } from "react";
 import { Card, BlureEffect } from "@/components";
 import { CloseButton, Input } from "@/components";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { closeSignup } from "@/features/signupToggleSlice";
-import { useRouter } from "next/router";
 
 const SignupModal: React.FC = () => {
 
   // ==== Router ====
   const router = useRouter();
 
-  // ==== Redux state managment ====
+  // ==== dispatch ====
   const dispatch = useDispatch();
-
-  const handleCloseSignup = (): void => {
-    dispatch(closeSignup());
-  };
 
   // State to store form data
   const [formData, setFormData] = useState({
@@ -56,10 +52,16 @@ const SignupModal: React.FC = () => {
     }));
   };
 
+  const closeSignupToggle = (): void => {
+    dispatch(closeSignup());
+  }
+
   return (
-    <BlureEffect>
+    <BlureEffect
+      // onClick={closeSignupToggle}
+    >
       <Card>
-        <CloseButton onClick={handleCloseSignup} />
+        <CloseButton onClick={closeSignupToggle} />
         <div className="space-y-8 mx-auto">
           <h2 className="text-secondary text-[24px] text-center font-semibold">
             Sign Up

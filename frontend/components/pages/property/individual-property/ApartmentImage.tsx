@@ -3,11 +3,10 @@ import Image from "next/image";
 
 interface ApartmentImageProps {
   img: string;
-  aprtmentImageToggle: boolean;
   setApartmentImageToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ApartmentImage: React.FC<ApartmentImageProps> = ({img, aprtmentImageToggle, setApartmentImageToggle}) => {
+const ApartmentImage: React.FC<ApartmentImageProps> = ({img, setApartmentImageToggle}) => {
 
   const closeApartmentImage = (): void => {
     setApartmentImageToggle(false);

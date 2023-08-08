@@ -1,15 +1,21 @@
 import { BlureEffect } from "@/components";
-import { closePropertyCall } from "@/features/propertyCallToggleSlice";
 import { Card } from "@components/pages/property";
 import { IoMdClose } from "react-icons/io";
-import { useDispatch } from "react-redux";
 
-const CallCard: React.FC = () => {
+interface CallCardProps {
+  setCallToggle: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const dispatch = useDispatch();
+const CallCard: React.FC<CallCardProps> = ({ setCallToggle }) => {
+
+  const closeCallCard = (): void => {
+    setCallToggle(false);
+  }
 
   return (
-    <BlureEffect>
+    <BlureEffect 
+      // onClick={closeCallCard}
+    >
       <Card>
         <div className="flex justify-between items-center gap-4">
           <div className="space-y-2">
@@ -18,7 +24,7 @@ const CallCard: React.FC = () => {
           </div>
           <button 
             className="absolute right-5 top-6 text-[#9E9E9E] hover:text-secondary transition duration-300"
-            onClick={() => dispatch(closePropertyCall())}
+            onClick={closeCallCard}
           >
             <IoMdClose size={24} />
           </button>

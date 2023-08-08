@@ -9,8 +9,6 @@ import { PiMessengerLogo } from "react-icons/pi";
 import { IoLogoFacebook } from "react-icons/io";
 import { ImTwitter } from "react-icons/im";
 import { BiCodeAlt } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { closeShareToggle } from "@/features/shareToggleSlice";
 
 interface ShareLink {
   icon: JSX.Element;
@@ -52,12 +50,20 @@ const ShareLink: Array<ShareLink> = [
   },
 ];
 
-const ShareCard: React.FC = () => {
+interface ShareCardProps {
+  setShareToggle: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-  const dispatch = useDispatch();
+const ShareCard: React.FC<ShareCardProps> = ({ setShareToggle }) => {
+
+  const handleShareToggle = (): void => {
+    setShareToggle(false);
+  }
 
   return (
-    <BlureEffect>
+    <BlureEffect 
+      // onClick={handleShareToggle}
+    >
       <div className="max-w-[390px] w-full max-h-[440px] overflow-y-auto bg-white rounded-[10px] pt-6 pb-8 px-6 space-y-6">
         <div className="space-y-4">
           <div className="flex justify-between items-center gap-6">
@@ -66,7 +72,7 @@ const ShareCard: React.FC = () => {
             </h4>
             <button
               className="text-[#A29999] hover:text-secondary transition duration-300"
-              onClick={() => dispatch(closeShareToggle())}
+              onClick={handleShareToggle}
             >
               <MdOutlineClose size={24} />
             </button>
