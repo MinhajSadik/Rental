@@ -7,15 +7,15 @@ const sendResponse_1 = require("./sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
 const uploadImage = (req, res, next) => {
     try {
-        if (!req.file) {
-            return res.status(400).send('No file uploaded.');
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).send('No files uploaded.');
         }
-        const imageUrl = req.file.path;
+        const imageUrls = req.files.map(file => file.path);
         return sendResponse_1.handleResponse.sendResponse(res, {
             statusCode: http_status_1.default.OK,
             success: true,
             message: "Image uploaded successfully",
-            data: imageUrl
+            data: imageUrls
         });
     }
     catch (error) {

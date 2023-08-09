@@ -4,7 +4,7 @@ import requestValidator from "../middlewares/user.validation";
 import { UserValidation } from "../validators/user.validator";
 import generateOTP from "../utils/generateOTP";
 import uploadImage from "../utils/uploadImage";
-import upload from "../configs/cloudinary.config";
+import { upload } from "../configs/cloudinary.config";
 
 const userRouter: Router = Router();
 
@@ -26,5 +26,5 @@ userRouter.post("/verify-otp", userController.verifyOTP);
 
 userRouter.put("/forget-password", userController.forgetPassword);
 
-userRouter.post("/upload-image", upload.single('image'), uploadImage)
+userRouter.post("/upload-image", upload.uploadImages.array('images', 10), uploadImage)
 export default userRouter;

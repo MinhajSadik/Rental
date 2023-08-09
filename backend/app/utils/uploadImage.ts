@@ -3,18 +3,17 @@ import { handleResponse } from "./sendResponse";
 import httpStatus from "http-status";
 
 
-
 const uploadImage = (req: Request , res: Response, next: NextFunction) => {
     try {
-        if (!req.file) {
-            return res.status(400).send('No file uploaded.');
-        }
-        const imageUrl = req.file.path;
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).send('No files uploaded.');
+          }
+        const imageUrls = req.files.map(file => file.path);
         return handleResponse.sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
             message: "Image uploaded successfully",
-            data: imageUrl
+            data: imageUrls
         })
     } catch (error) {
         next(error)
