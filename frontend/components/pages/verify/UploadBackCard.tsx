@@ -15,11 +15,11 @@ const BackCard: React.FC = () => {
     <Upload
       title="Upload Back of your identify card"
       icon="/images/placeholder_id_back_card.svg"
-      btnOne={{
+      input={{
         text: "Choose File",
         handle: handleChooseFile,
       }}
-      btnTwo={{ 
+      btn={{ 
         text: "Continue", 
         handle: handleContinue 
       }}

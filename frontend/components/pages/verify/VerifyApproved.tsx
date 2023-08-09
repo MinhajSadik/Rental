@@ -10,7 +10,10 @@ const VerifyApproved: React.FC = () => {
 
   return (
     <VerifyResult
-      status="Success"
+      status={{
+        text: "Verified",
+        color: "text-green-500"
+      }}
       title="ID Verified"
       subTitle="Thank you for verifying your ID."
       btn={{

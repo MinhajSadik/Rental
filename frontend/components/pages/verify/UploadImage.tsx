@@ -15,11 +15,11 @@ const UploadImage: React.FC = () => {
     <Upload
       title="Upload Image of your face"
       icon="/images/placeholder_image.svg"
-      btnOne={{
+      input={{
         text: "Choose File",
         handle: handleChooseFile,
       }}
-      btnTwo={{ 
+      btn={{ 
         text: "Continue", 
         handle: handleContinue 
       }}
