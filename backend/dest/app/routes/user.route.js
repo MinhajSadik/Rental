@@ -11,6 +11,7 @@ const generateOTP_1 = __importDefault(require("../utils/generateOTP"));
 const uploadImage_1 = __importDefault(require("../utils/uploadImage"));
 const cloudinary_config_1 = __importDefault(require("../configs/cloudinary.config"));
 const userRouter = (0, express_1.Router)();
+userRouter.get("/", user_controller_1.default.allUsers);
 userRouter.post("/register", user_validation_1.default.validateRequest(user_validator_1.UserValidation.createUserZodSchema), user_controller_1.default.register);
 userRouter.post("/login", user_controller_1.default.login);
 userRouter.patch("/update-profile", user_validation_1.default.validateRequest(user_validator_1.UserValidation.updateUserZodSchema), user_controller_1.default.updateProfile);

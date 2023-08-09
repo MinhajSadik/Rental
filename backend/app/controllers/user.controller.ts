@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import  { IGenericResponse, handleResponse } from "../utils/sendResponse";
 import httpStatus from "http-status";
 import UserService from "../services/user.service";
-import { Pin } from "../models/pin.model";
 
 class UserController {
   register = async (req: Request, res: Response, next: NextFunction) => {
@@ -74,6 +73,20 @@ class UserController {
     try {
       const result = await UserService.updateProfile(req.body)
       return handleResponse.sendResponse(res, result as IGenericResponse);
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  allUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await UserService.allUsers();
+      return handleResponse.sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Users retrieved successfully",
+        data: result
+      })
     } catch (error) {
       next(error)
     }

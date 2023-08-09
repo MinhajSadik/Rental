@@ -203,5 +203,11 @@ class UserService {
             };
         });
     }
+    static allUsers() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const users = yield user_model_1.User.find({});
+            return users;
+        });
+    }
 }
 exports.default = UserService;

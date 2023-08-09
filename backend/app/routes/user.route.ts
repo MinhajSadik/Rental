@@ -8,6 +8,8 @@ import upload from "../configs/cloudinary.config";
 
 const userRouter: Router = Router();
 
+userRouter.get("/", userController.allUsers)
+
 userRouter.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
 
 userRouter.post("/login", userController.login);

@@ -212,6 +212,11 @@ class UserService {
       data: newUser,
     };
   }
+
+  static async allUsers(): Promise<IUser[]> {
+    const users = await User.find({})
+    return users
+  }
 }
 
 export  default UserService;
