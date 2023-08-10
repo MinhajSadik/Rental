@@ -64,16 +64,16 @@ const propertySchema = new Schema<IProperty>({
             type: Boolean
         }
     },
-    // images: [
-    //     {
-    //         type: [String],
-    //         required: true
-    //     }
-    // ],
-    // video: {
-    //     type: String,
-    //     required: true
-    // }
+    images: [
+        {
+            type: [String],
+            required: true
+        }
+    ],
+    video: {
+        type: String,
+        required: true
+    }
 })
 
 const Property = model<IProperty, IPropertyModel>("Property", propertySchema)

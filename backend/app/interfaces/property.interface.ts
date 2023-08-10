@@ -21,8 +21,8 @@ export type IProperty = {
         gasFacility: boolean,
         CCTVFacility: boolean
     },
-    // images: string[],
-    // video: string
+    images: string[],
+    video: string
 }
 
 

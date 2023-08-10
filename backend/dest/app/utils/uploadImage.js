@@ -14,7 +14,7 @@ const uploadImage = (req, res, next) => {
         return sendResponse_1.handleResponse.sendResponse(res, {
             statusCode: http_status_1.default.OK,
             success: true,
-            message: "Image uploaded successfully",
+            message: "Images uploaded successfully",
             data: imageUrls
         });
     }

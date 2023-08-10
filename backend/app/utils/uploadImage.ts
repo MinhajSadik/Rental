@@ -12,7 +12,7 @@ const uploadImage = (req: Request , res: Response, next: NextFunction) => {
         return handleResponse.sendResponse(res, {
             statusCode: httpStatus.OK,
             success: true,
-            message: "Image uploaded successfully",
+            message: "Images uploaded successfully",
             data: imageUrls
         })
     } catch (error) {

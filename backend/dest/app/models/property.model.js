@@ -64,16 +64,16 @@ const propertySchema = new mongoose_1.Schema({
             type: Boolean
         }
     },
-    // images: [
-    //     {
-    //         type: [String],
-    //         required: true
-    //     }
-    // ],
-    // video: {
-    //     type: String,
-    //     required: true
-    // }
+    images: [
+        {
+            type: [String],
+            required: true
+        }
+    ],
+    video: {
+        type: String,
+        required: true
+    }
 });
 const Property = (0, mongoose_1.model)("Property", propertySchema);
 exports.default = Property;

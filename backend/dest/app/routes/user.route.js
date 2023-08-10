@@ -20,5 +20,5 @@ userRouter.get("/refresh-token", user_controller_1.default.refreshToken);
 userRouter.post("/generate-otp", generateOTP_1.default);
 userRouter.post("/verify-otp", user_controller_1.default.verifyOTP);
 userRouter.put("/forget-password", user_controller_1.default.forgetPassword);
-userRouter.post("/upload-image", cloudinary_config_1.upload.uploadImages.array('images', 10), uploadImage_1.default);
+userRouter.post("/upload-image", cloudinary_config_1.upload.uploadImages.array('images'), uploadImage_1.default);
 exports.default = userRouter;
