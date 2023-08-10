@@ -8,11 +8,13 @@ const property_controller_1 = __importDefault(require("../controllers/property.c
 const cloudinary_config_1 = require("../configs/cloudinary.config");
 const uploadImage_1 = __importDefault(require("../utils/uploadImage"));
 const uploadVideo_1 = __importDefault(require("../utils/uploadVideo"));
+const requestValidator_1 = __importDefault(require("../middlewares/requestValidator"));
+const property_validator_1 = require("../validators/property.validator");
 const propertyRouter = (0, express_1.Router)();
 propertyRouter.get("/:id", property_controller_1.default.getProperty);
 propertyRouter.delete("/:id", property_controller_1.default.deleteProperty);
-propertyRouter.patch("/update-property/:id", property_controller_1.default.updateProperty);
-propertyRouter.post("/add-property", property_controller_1.default.addProperty);
+propertyRouter.patch("/update-property/:id", requestValidator_1.default.validateRequest(property_validator_1.PropertyValidation.updatePropertyZodSchema), property_controller_1.default.updateProperty);
+propertyRouter.post("/add-property", requestValidator_1.default.validateRequest(property_validator_1.PropertyValidation.createPropertyZodSchema), property_controller_1.default.addProperty);
 propertyRouter.get("/", property_controller_1.default.getProperties);
 propertyRouter.post("/upload-video", cloudinary_config_1.upload.uploadVideo.single('video'), uploadVideo_1.default);
 propertyRouter.post("/upload-image", cloudinary_config_1.upload.uploadImages.array('images'), uploadImage_1.default);

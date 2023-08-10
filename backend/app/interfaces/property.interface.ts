@@ -13,7 +13,7 @@ export type IProperty = {
         balconies:  number,
         generator: boolean,
         carParking: number,
-        floorNo: number,
+        floorNo: string,
         floorType: string,
         wifiFacility: boolean
         liftFacility: boolean,

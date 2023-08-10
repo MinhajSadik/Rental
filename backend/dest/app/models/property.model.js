@@ -43,7 +43,7 @@ const propertySchema = new mongoose_1.Schema({
             type: Number
         },
         floorNo: {
-            type: Number
+            type: String
         },
         floorType: {
             type: String

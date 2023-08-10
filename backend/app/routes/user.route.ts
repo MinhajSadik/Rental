@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/user.controller";
-import requestValidator from "../middlewares/user.validation";
+import requestValidator from "../middlewares/requestValidator";
 import { UserValidation } from "../validators/user.validator";
 import generateOTP from "../utils/generateOTP";
 import uploadImage from "../utils/uploadImage";

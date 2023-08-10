@@ -43,7 +43,7 @@ const propertySchema = new Schema<IProperty>({
             type: Number
         },
         floorNo: {
-            type: Number
+            type: String
         },
         floorType: {
             type: String
