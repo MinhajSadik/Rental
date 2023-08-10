@@ -64,15 +64,15 @@ const propertySchema = new mongoose_1.Schema({
             type: Boolean
         }
     },
-    images: [
-        {
-            type: [String],
-            required: true
-        }
-    ],
+    images: [String],
     video: {
         type: String,
         required: true
+    },
+    owner: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
     }
 });
 const Property = (0, mongoose_1.model)("Property", propertySchema);

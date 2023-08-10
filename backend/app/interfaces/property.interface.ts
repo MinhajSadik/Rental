@@ -22,7 +22,8 @@ export type IProperty = {
         CCTVFacility: boolean
     },
     images: string[],
-    video: string
+    video: string,
+    owner: Types.ObjectId
 }
 
 

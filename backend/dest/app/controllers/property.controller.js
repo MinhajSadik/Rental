@@ -31,6 +31,66 @@ class PropertyController {
                 next(error);
             }
         });
+        this.getProperties = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield property_service_1.default.getProperties();
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "Properties retrieved successfully!",
+                    data: result
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.getProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.params.id;
+                const result = yield property_service_1.default.getProperty(id);
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "Property retrieved successfully!",
+                    data: result
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.deleteProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.params.id;
+                const result = yield property_service_1.default.deleteProperty(id);
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "Property deleted successfully!",
+                    data: result
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.updateProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.params.id;
+                const updatedData = req.body;
+                const result = yield property_service_1.default.updateProperty(id, updatedData);
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "Property updated successfully!",
+                    data: result
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
     }
 }
 exports.default = new PropertyController();

@@ -64,15 +64,15 @@ const propertySchema = new Schema<IProperty>({
             type: Boolean
         }
     },
-    images: [
-        {
-            type: [String],
-            required: true
-        }
-    ],
+    images: [String],
     video: {
         type: String,
         required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
     }
 })
 

@@ -19,6 +19,25 @@ class PropertyService {
             const newProperty = yield property_model_1.default.create(property);
             return newProperty;
         });
+        this.getProperties = () => __awaiter(this, void 0, void 0, function* () {
+            const newProperty = yield property_model_1.default.find({});
+            return newProperty;
+        });
+        this.getProperty = (id) => __awaiter(this, void 0, void 0, function* () {
+            const newProperty = yield property_model_1.default.findById(id);
+            return newProperty;
+        });
+        this.deleteProperty = (id) => __awaiter(this, void 0, void 0, function* () {
+            const newProperty = yield property_model_1.default.findByIdAndDelete(id);
+            return newProperty;
+        });
+        this.updateProperty = (id, updatedData) => __awaiter(this, void 0, void 0, function* () {
+            const newProperty = yield property_model_1.default.findByIdAndUpdate(id, Object.assign({}, updatedData), {
+                upsert: true,
+                new: true
+            });
+            return newProperty;
+        });
     }
 }
 exports.default = new PropertyService();
