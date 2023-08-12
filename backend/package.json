@@ -2,13 +2,13 @@
   "name": "Rental",
   "version": "1.0.0",
   "description": "rental backend REST apis provided for both mobile and web",
-  "main": "server.ts",
+  "main": "dist/server.js",
   "author": "MinhajSadik",
   "license": "MIT",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dest/server.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dest/server.js\"",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
     "dev-start": "ts-node-dev --respawn --transpile-only server.ts"
   },
   "dependencies": {

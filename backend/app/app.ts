@@ -41,6 +41,7 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+
 app.use(globalErrorHandler.handle)
 export default app;
 
