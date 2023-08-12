@@ -7,6 +7,7 @@ import rootRouter from "./routes/root.route";
 import cookieParser from "cookie-parser"
 
 
+
 dotenv.config();
 const app: Application = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser())
 // connecting to database
 mongoDBConnection.connect()
 
+
 app.get("/", (req: Request, res: Response) => {
   return res.status(200).json({
     message: "Application working fine!",
@@ -25,7 +27,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/v1", rootRouter);
-
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   res.status(404).json({
@@ -42,3 +43,5 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
 
 app.use(globalErrorHandler.handle)
 export default app;
+
+

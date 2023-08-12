@@ -8,23 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mysql_1 = __importDefault(require("mysql"));
-// pass: CuzdtrPAsnVX37Bi
-class MySQLConnection {
+exports.client = void 0;
+const pg_1 = require("pg");
+// PostgreSQL connection URL
+const connectionString = "postgresql://postgres:CuzdtrPAsnVX37Bi@db.jpwrdaownwpejueukrmx.supabase.co:5432/postgres";
+// Create a new PostgreSQL client
+exports.client = new pg_1.Client({
+    connectionString: connectionString
+});
+class PGConnection {
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const connection = mysql_1.default.createConnection("postgresql://postgres:CuzdtrPAsnVX37Bi@db.jpwrdaownwpejueukrmx.supabase.co:5432/postgres");
-                connection.connect(err => {
-                    if (err) {
-                        console.error('Error connecting to MySQL:', err.message);
-                        return;
-                    }
-                    console.log('Connected to MySQL server');
+                exports.client.connect()
+                    .then(() => {
+                    console.log('Connected to PostgreSQL database');
+                })
+                    .catch((err) => {
+                    console.error('Error connecting to database:', err);
                 });
             }
             catch (error) {
@@ -36,5 +38,5 @@ class MySQLConnection {
         });
     }
 }
-const mySQLConnection = new MySQLConnection();
-exports.default = mySQLConnection;
+const pgConnection = new PGConnection();
+exports.default = pgConnection;
