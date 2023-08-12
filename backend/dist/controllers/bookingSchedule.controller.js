@@ -31,6 +31,20 @@ class BookingScheduleController {
                 next(error);
             }
         });
+        this.getAllBookingSchedules = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield bookingSchedule_service_1.default.getAllBookingSchedules();
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.OK,
+                    success: true,
+                    message: "Booking schedules retrieved successfully!",
+                    data: result
+                });
+            }
+            catch (error) {
+                next(error);
+            }
+        });
     }
 }
 exports.default = new BookingScheduleController();

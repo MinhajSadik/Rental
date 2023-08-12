@@ -5,4 +5,6 @@ const bookingScheduleRoute = Router();
 
 bookingScheduleRoute.post("/add-booking-schedule", bookingScheduleController.addBookingSchedule)
 
+bookingScheduleRoute.get("/", bookingScheduleController.getAllBookingSchedules)
+
 export default bookingScheduleRoute

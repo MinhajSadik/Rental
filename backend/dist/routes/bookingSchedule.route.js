@@ -7,4 +7,5 @@ const express_1 = require("express");
 const bookingSchedule_controller_1 = __importDefault(require("../controllers/bookingSchedule.controller"));
 const bookingScheduleRoute = (0, express_1.Router)();
 bookingScheduleRoute.post("/add-booking-schedule", bookingSchedule_controller_1.default.addBookingSchedule);
+bookingScheduleRoute.get("/", bookingSchedule_controller_1.default.getAllBookingSchedules);
 exports.default = bookingScheduleRoute;

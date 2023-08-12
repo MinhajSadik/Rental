@@ -16,6 +16,10 @@ class BookingScheduleService {
             const newSchedule = yield bookingSchedule_model_1.BookingSchedule.create(bookingSchedule);
             return newSchedule;
         });
+        this.getAllBookingSchedules = () => __awaiter(this, void 0, void 0, function* () {
+            const schedules = yield bookingSchedule_model_1.BookingSchedule.find().populate("property");
+            return schedules;
+        });
     }
 }
 exports.default = new BookingScheduleService();

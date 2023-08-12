@@ -17,6 +17,20 @@ class BookingScheduleController {
          next(error)   
         }
     }
+    getAllBookingSchedules = async(req: Request, res: Response, next: NextFunction) => {
+        try {
+            const result = await BookingScheduleService.getAllBookingSchedules();
+            return handleResponse.sendResponse(res, {
+                statusCode: httpStatus.OK,
+                success: true,
+                message: "Booking schedules retrieved successfully!",
+                data: result
+            })
+        } catch (error) {
+            next(error)
+        }
+
+    }
 }
 
 export default new BookingScheduleController()

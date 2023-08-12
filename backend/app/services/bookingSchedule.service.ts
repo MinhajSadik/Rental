@@ -6,6 +6,10 @@ class BookingScheduleService {
         const newSchedule = await BookingSchedule.create(bookingSchedule)
         return newSchedule
     }
+    getAllBookingSchedules = async(): Promise<IBookingSchedule[]> => {
+        const schedules = await BookingSchedule.find().populate("property")
+        return schedules
+    }
 }
 
 export default new BookingScheduleService()
