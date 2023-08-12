@@ -14,6 +14,15 @@ const createUserZodSchema = z.object({
     password: z.string({
         required_error: "Password is required"
     }).optional(),
+    role: z.string().optional(),
+    IDCard: z.object({
+      front: z.string({
+        required_error: "Front part is required"
+      }),
+      back: z.string({
+        required_error: "Back part is required"
+      })
+    })
   })
 });
 
@@ -32,6 +41,16 @@ const updateUserZodSchema = z.object({
     password: z.string({
         required_error: "Password is required"
     }).optional(),
+    role: z.string().optional(),
+    IDCard: z.object({
+      front: z.string({
+        required_error: "Front part is required"
+      }),
+      back: z.string({
+        required_error: "Back part is required"
+      })
+    }).optional(),
+    isVerified: z.boolean()
   })
 });
 

@@ -5,12 +5,21 @@ export type IUser = {
     email: string,
     phoneNumber: string,
     password: string,
-    role: string
+    role: string,
+    IDCard: {
+        front: string,
+        back: string
+    },
+    isVerified: boolean
 }
 
 export type IUserModel = Model<IUser, Record<string, unknown>>
 
 
+export type ILogin = {
+    emailOrPhone: string,
+    password: string
+}
 
 export type IJwtPayload = {
     userId: Types.ObjectId,

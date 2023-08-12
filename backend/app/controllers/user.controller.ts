@@ -4,6 +4,7 @@ import httpStatus from "http-status";
 import UserService from "../services/user.service";
 
 class UserController {
+
   register = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const user = req.body;

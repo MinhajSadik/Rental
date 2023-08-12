@@ -18,17 +18,20 @@ const http_status_1 = __importDefault(require("http-status"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const pin_model_1 = require("../models/pin.model");
 class UserService {
-    static register(user) {
-        return __awaiter(this, void 0, void 0, function* () {
+    constructor() {
+        this.register = (user) => __awaiter(this, void 0, void 0, function* () {
             const hashedPassword = yield bcrypt_1.default.hash(user.password, 12);
             user.password = hashedPassword;
             const newUser = yield user_model_1.User.create(user);
             return newUser;
         });
-    }
-    static login(user) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const isUserExist = yield user_model_1.User.findOne({ email: user.email });
+        this.login = (user) => __awaiter(this, void 0, void 0, function* () {
+            const isUserExist = yield user_model_1.User.findOne({
+                $or: [
+                    { email: user.emailOrPhone },
+                    { phoneNumber: user.emailOrPhone }
+                ]
+            });
             if (!isUserExist) {
                 return {
                     statusCode: http_status_1.default.NOT_FOUND,
@@ -60,12 +63,11 @@ class UserService {
                 refreshToken,
                 data: {
                     accessToken,
+                    user: isUserExist
                 },
             };
         });
-    }
-    static verifyOTP(otp) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.verifyOTP = (otp) => __awaiter(this, void 0, void 0, function* () {
             const isPinExist = yield pin_model_1.Pin.findOne({ pin: otp });
             if (!isPinExist) {
                 return {
@@ -101,9 +103,7 @@ class UserService {
                 data: null
             };
         });
-    }
-    static forgetPassword(user) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.forgetPassword = (user) => __awaiter(this, void 0, void 0, function* () {
             const isUserExist = yield user_model_1.User.findOne({ email: user.email });
             if (!isUserExist) {
                 return {
@@ -122,9 +122,7 @@ class UserService {
                 data: updatedUser,
             };
         });
-    }
-    static auth(token) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.auth = (token) => __awaiter(this, void 0, void 0, function* () {
             const isValidToken = yield jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
             if (!isValidToken) {
                 return {
@@ -150,9 +148,7 @@ class UserService {
                 data: isUserExist,
             };
         });
-    }
-    static refreshToken(refreshToken) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.refreshToken = (refreshToken) => __awaiter(this, void 0, void 0, function* () {
             if (!refreshToken) {
                 return {
                     statusCode: http_status_1.default.BAD_REQUEST,
@@ -181,9 +177,7 @@ class UserService {
                 },
             };
         });
-    }
-    static updateProfile(user) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.updateProfile = (user) => __awaiter(this, void 0, void 0, function* () {
             const isUserExist = yield user_model_1.User.findOne({ email: user.email });
             if (isUserExist) {
                 const updatedUser = yield user_model_1.User.findOneAndUpdate({ email: user.email }, Object.assign({}, user), { upsert: true, new: true });
@@ -202,12 +196,10 @@ class UserService {
                 data: newUser,
             };
         });
-    }
-    static allUsers() {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.allUsers = () => __awaiter(this, void 0, void 0, function* () {
             const users = yield user_model_1.User.find({});
             return users;
         });
     }
 }
-exports.default = UserService;
+exports.default = new UserService();

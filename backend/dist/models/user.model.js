@@ -23,6 +23,21 @@ const userSchema = new mongoose_1.Schema({
     role: {
         type: String,
         required: true,
+        default: "user"
+    },
+    IDCard: {
+        front: {
+            type: String,
+            required: true
+        },
+        back: {
+            type: String,
+            required: true
+        },
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 });
 exports.User = (0, mongoose_1.model)("User", userSchema);

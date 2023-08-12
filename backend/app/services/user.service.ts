@@ -1,4 +1,4 @@
-import { IJwtPayload, IUser } from "../interfaces/user.interface";
+import { IJwtPayload, ILogin, IUser } from "../interfaces/user.interface";
 import { User } from "../models/user.model";
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";
@@ -7,15 +7,20 @@ import { Pin } from "../models/pin.model";
 
 
 class UserService {
-  static async register(user: IUser): Promise<IUser> {
+  register = async(user: IUser): Promise<IUser> => {
     const hashedPassword = await bcrypt.hash(user.password, 12);
     user.password = hashedPassword;
     const newUser = await User.create(user);
     return newUser;
   }
   
-  static async login(user: Partial<IUser>) {
-    const isUserExist = await User.findOne({ email: user.email });
+  login = async(user: ILogin) => {
+    const isUserExist = await User.findOne({
+      $or: [
+          { email: user.emailOrPhone },
+          { phoneNumber: user.emailOrPhone }
+      ]
+  });
     if (!isUserExist) {
       return {
         statusCode: httpStatus.NOT_FOUND,
@@ -62,11 +67,12 @@ class UserService {
       refreshToken,
       data: {
         accessToken,
+        user: isUserExist
       },
     };
   }
 
-  static async verifyOTP(otp: string) {
+  verifyOTP = async(otp: string) => {
     const isPinExist = await Pin.findOne({pin: otp});
      if(!isPinExist){
          return  {
@@ -105,7 +111,7 @@ class UserService {
     
  }
 
-  static async forgetPassword(user: Partial<IUser>) {
+  forgetPassword = async(user: Partial<IUser>) => {
     const isUserExist = await User.findOne({ email: user.email });
     if (!isUserExist) {
       return {
@@ -131,7 +137,7 @@ class UserService {
     };
   }
 
-  static async auth(token: string) {
+  auth = async(token: string) => {
     const isValidToken  = await jwt.verify(token,  process.env.JWT_SECRET as Secret) as JwtPayload
     if(!isValidToken){
       return {
@@ -161,7 +167,7 @@ class UserService {
     
   }
 
-  static async refreshToken(refreshToken: string){
+  refreshToken = async(refreshToken: string) => {
      if (!refreshToken) {
       return {
         statusCode: httpStatus.BAD_REQUEST,
@@ -192,7 +198,7 @@ class UserService {
   };
   }
 
-  static async updateProfile(user: Partial<IUser>){
+  updateProfile = async(user: Partial<IUser>) => {
     const isUserExist = await User.findOne({email: user.email});
     if(isUserExist){
       const updatedUser = await User.findOneAndUpdate({email: user.email}, {...user}, {upsert: true, new: true})
@@ -213,10 +219,10 @@ class UserService {
     };
   }
 
-  static async allUsers(): Promise<IUser[]> {
+  allUsers = async(): Promise<IUser[]> => {
     const users = await User.find({})
     return users
   }
 }
 
-export  default UserService;
+export  default new UserService();

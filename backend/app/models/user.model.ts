@@ -22,6 +22,21 @@ const userSchema = new Schema<IUser>({
     role: {
         type: String,
         required: true,
+        default: "user"
+    },
+    IDCard: {
+        front: {
+            type: String,
+            required: true
+        },
+        back: {
+            type: String,
+            required: true
+        },
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 })
 

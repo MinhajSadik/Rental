@@ -1,29 +1,56 @@
+import httpStatus from "http-status"
 import { IProperty } from "../interfaces/property.interface"
 import Property from "../models/property.model"
+import { IGenericResponse } from "../utils/sendResponse"
 
 class PropertyService {
-    addProperty = async (property: IProperty): Promise<IProperty | null> => {
+    addProperty = async (property: IProperty): Promise<IGenericResponse> => {
         const newProperty = await Property.create(property)
-        return newProperty
+        return {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Property added successfully!",
+            data: newProperty
+        }
     }
-    getProperties = async (): Promise<IProperty[]> => {
-        const newProperty = await Property.find({})
-        return newProperty
+    getProperties = async (): Promise<IGenericResponse> => {
+        const properties = await Property.find({})
+        return {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Properties retrieved successfully!",
+            data: properties
+        }
     }
-    getProperty = async (id: string): Promise<IProperty | null> => {
-        const newProperty = await Property.findById(id)
-        return newProperty
+    getProperty = async (id: string): Promise<IGenericResponse> => {
+        const property = await Property.findById(id)
+        return {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Property retrieved successfully!",
+            data: property
+        }
     }
-    deleteProperty = async (id: string): Promise<IProperty | null> => {
-        const newProperty = await Property.findByIdAndDelete(id)
-        return newProperty
+    deleteProperty = async (id: string): Promise<IGenericResponse> => {
+        const property = await Property.findByIdAndDelete(id)
+        return {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Property retrieved successfully!",
+            data: property
+        }
     }
-    updateProperty = async (id: string, updatedData: Partial<IProperty>): Promise<IProperty | null> => {
-        const newProperty = await Property.findByIdAndUpdate(id, {...updatedData}, {
+    updateProperty = async (id: string, updatedData: Partial<IProperty>):Promise<IGenericResponse> => {
+        const property = await Property.findByIdAndUpdate(id, {...updatedData}, {
             upsert: true,
             new: true
         })
-        return newProperty
+        return {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Property retrieved successfully!",
+            data: property
+        }
     }
 }
 

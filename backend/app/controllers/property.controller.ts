@@ -7,12 +7,7 @@ class PropertyController {
     addProperty = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result  = await PropertyService.addProperty(req.body)
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.OK,
-                success: true,
-                message: "Property added successfully!",
-                data: result
-            })
+            return handleResponse.sendResponse(res, result)
         } catch (error) {
             next(error)
         }
@@ -20,12 +15,7 @@ class PropertyController {
     getProperties = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const result  = await PropertyService.getProperties()
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.OK,
-                success: true,
-                message: "Properties retrieved successfully!",
-                data: result
-            })
+            return handleResponse.sendResponse(res, result)
         } catch (error) {
             next(error)
         }
@@ -34,12 +24,7 @@ class PropertyController {
         try {
             const id = req.params.id as string
             const result  = await PropertyService.getProperty(id)
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.OK,
-                success: true,
-                message: "Property retrieved successfully!",
-                data: result
-            })
+            return handleResponse.sendResponse(res, result)
         } catch (error) {
             next(error)
         }
@@ -48,12 +33,7 @@ class PropertyController {
         try {
             const id = req.params.id as string
             const result  = await PropertyService.deleteProperty(id)
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.OK,
-                success: true,
-                message: "Property deleted successfully!",
-                data: result
-            })
+            return handleResponse.sendResponse(res, result)
         } catch (error) {
             next(error)
         }
@@ -63,12 +43,7 @@ class PropertyController {
             const id = req.params.id as string
             const updatedData = req.body
             const result  = await PropertyService.updateProperty(id, updatedData)
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.OK,
-                success: true,
-                message: "Property updated successfully!",
-                data: result
-            })
+            return handleResponse.sendResponse(res,  result)
         } catch (error) {
             next(error)
         }
