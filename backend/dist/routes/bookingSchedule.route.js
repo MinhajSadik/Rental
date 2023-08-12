@@ -8,4 +8,7 @@ const bookingSchedule_controller_1 = __importDefault(require("../controllers/boo
 const bookingScheduleRoute = (0, express_1.Router)();
 bookingScheduleRoute.post("/add-booking-schedule", bookingSchedule_controller_1.default.addBookingSchedule);
 bookingScheduleRoute.get("/", bookingSchedule_controller_1.default.getAllBookingSchedules);
+bookingScheduleRoute.get("/:id", bookingSchedule_controller_1.default.getSingleBookingSchedule);
+bookingScheduleRoute.patch("/:id", bookingSchedule_controller_1.default.updateBookingSchedule);
+bookingScheduleRoute.delete("/:id", bookingSchedule_controller_1.default.deleteBookingSchedule);
 exports.default = bookingScheduleRoute;

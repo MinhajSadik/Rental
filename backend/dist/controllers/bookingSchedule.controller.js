@@ -14,18 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bookingSchedule_service_1 = __importDefault(require("../services/bookingSchedule.service"));
 const sendResponse_1 = require("../utils/sendResponse");
-const http_status_1 = __importDefault(require("http-status"));
 class BookingScheduleController {
     constructor() {
         this.addBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.addBookingSchedule(req.body);
-                return sendResponse_1.handleResponse.sendResponse(res, {
-                    statusCode: http_status_1.default.OK,
-                    success: true,
-                    message: "Booking schedule confirmed",
-                    data: result
-                });
+                return sendResponse_1.handleResponse.sendResponse(res, result);
             }
             catch (error) {
                 next(error);
@@ -34,12 +28,34 @@ class BookingScheduleController {
         this.getAllBookingSchedules = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.getAllBookingSchedules();
-                return sendResponse_1.handleResponse.sendResponse(res, {
-                    statusCode: http_status_1.default.OK,
-                    success: true,
-                    message: "Booking schedules retrieved successfully!",
-                    data: result
-                });
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.getSingleBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield bookingSchedule_service_1.default.getSingleBookingSchedule(req.params.id);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.updateBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield bookingSchedule_service_1.default.updateBookingSchedule(req.params.id, req.body);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+        this.deleteBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield bookingSchedule_service_1.default.deleteBookingSchedule(req.params.id);
+                return sendResponse_1.handleResponse.sendResponse(res, result);
             }
             catch (error) {
                 next(error);

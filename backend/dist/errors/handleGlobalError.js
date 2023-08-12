@@ -15,6 +15,11 @@ class GlobalErrorHandler {
             const simplifiedErrors = (0, handleZodError_1.default)(error);
             errorMessages = simplifiedErrors;
         }
+        // Handle MongoDB Cast error (invalid mongodb ObjectId)
+        if (error.name === "CastError") {
+            statusCode = 400;
+            message = "Invalid ObjectId";
+        }
         res.status(500).json({
             statusCode,
             success,
