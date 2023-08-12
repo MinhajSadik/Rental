@@ -1,5 +1,10 @@
 import { BiSolidPhone } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 
 interface Property {
   id: string;
@@ -21,24 +26,88 @@ interface PropertyCardProps {
   emailClick: () => void;
 }
 
+// ==== Previous Button ====
+const PreviousBtn = (props: any) => {
+  const { className, onClick, currentSlide } = props;
+
+  const handleIconClick = (e: React.MouseEvent<SVGElement>) => {};
+
+  return (
+    <>
+      {currentSlide !== 0 && (
+        <button className={`${className} group prev-button`} onClick={onClick}>
+          <FaChevronLeft
+            size={14}
+            className="text-gray-600 group-hover:text-gray-700"
+            onClick={handleIconClick}
+          />
+          <span className="text-black">hello</span>
+        </button>
+      )}
+    </>
+  );
+};
+
+// ==== Next Button ====
+const NextBtn = (props: any) => {
+  const { className, onClick, slideCount, currentSlide } = props;
+
+  const handleIconClick = (e: React.MouseEvent<SVGElement>) => {};
+  
+  return (
+    <>
+      {currentSlide !== slideCount - 1 && (
+        <button className={`${className} group next-button`} onClick={onClick}>
+          <FaChevronRight
+            size={14}
+            className="text-gray-600 group-hover:text-gray-700"
+            onClick={handleIconClick}
+          />
+        </button>
+      )}
+    </>
+  );
+};
+
 const PropertyCard: React.FC<PropertyCardProps> = ({
   item,
   onClick,
   callClick,
   emailClick,
 }) => {
+  const Settings = {
+    dots: true,
+    dotsClass: "slick-dots circle-indicator",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: false,
+    prevArrow: <PreviousBtn />,
+    nextArrow: <NextBtn />,
+    customPaging: (i: any) => (
+      <button className="opacity-0">
+        {i}
+      </button>
+    )
+  };
+
   return (
     <div
-      className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer shadow-md shadow-[#ABBED1]/30 hover:shadow-lg transition duration-300"
+      className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer shadow-md shadow-[#ABBED1]/30 hover:shadow-lg transition duration-300 property-card"
       onClick={onClick}
     >
-      <img
-        src={item.img[0]}
-        alt="Image"
-        width={400}
-        height={400}
-        className="w-full rounded-t-[10px]"
-      />
+      <div className="property">
+        <Slider {...Settings}>
+          {item.img.map((img, i) => (
+            <img
+              src={img}
+              alt="Image"
+              width={400}
+              height={400}
+              className="w-full rounded-t-[10px]"
+            />
+          ))}
+        </Slider>
+      </div>
       <div className="p-4 flex flex-col gap-2">
         <h5 className="text-secondary font-semibold text-[20px]">
           {item.price.month} BDT/month
@@ -49,9 +118,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
             <i>
               <img src="/images/icon/size.svg" alt="icon" />
             </i>
-            <span className="text-[12px]">
-              {item.roomsize} Sq Ft
-            </span>
+            <span className="text-[12px]">{item.roomsize} Sq Ft</span>
           </div>
           <div className="flex items-center gap-2">
             <i>

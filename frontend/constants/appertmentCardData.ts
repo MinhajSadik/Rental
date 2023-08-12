@@ -5,6 +5,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '1',
         img: [
             "/images/appertment1.jpg",
+            "/images/appertment1.jpg",
+            "/images/appertment1.jpg",
         ],
         price: {
             month: 25000,
@@ -17,6 +19,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '2',
         img: [
+            "/images/appertment2.jpg",
+            "/images/appertment2.jpg",
             "/images/appertment2.jpg",
         ],
         price: {
@@ -31,6 +35,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '3',
         img: [
             "/images/appertment3.jpg",
+            "/images/appertment3.jpg",
+            "/images/appertment3.jpg",
         ],
         price: {
             month: 25000,
@@ -43,6 +49,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '4',
         img: [
+            "/images/appertment4.jpg",
+            "/images/appertment4.jpg",
             "/images/appertment4.jpg",
         ],
         price: {
@@ -57,6 +65,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '5',
         img: [
             "/images/appertment5.jpg",
+            "/images/appertment5.jpg",
+            "/images/appertment5.jpg",
         ],
         price: {
             month: 25000,
@@ -69,6 +79,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '6',
         img: [
+            "/images/appertment6.jpg",
+            "/images/appertment6.jpg",
             "/images/appertment6.jpg",
         ],
         price: {
@@ -83,6 +95,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '7',
         img: [
             "/images/appertment7.jpg",
+            "/images/appertment7.jpg",
+            "/images/appertment7.jpg",
         ],
         price: {
             month: 25000,
@@ -95,6 +109,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '8',
         img: [
+            "/images/appertment8.jpg",
+            "/images/appertment8.jpg",
             "/images/appertment8.jpg",
         ],
         price: {
@@ -109,6 +125,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '9',
         img: [
             "/images/appertment9.jpg",
+            "/images/appertment9.jpg",
+            "/images/appertment9.jpg",
         ],
         price: {
             month: 25000,
@@ -121,6 +139,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '10',
         img: [
+            "/images/appertment10.jpg",
+            "/images/appertment10.jpg",
             "/images/appertment10.jpg",
         ],
         price: {
@@ -135,6 +155,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '11',
         img: [
             "/images/appertment11.jpg",
+            "/images/appertment11.jpg",
+            "/images/appertment11.jpg",
         ],
         price: {
             month: 25000,
@@ -147,6 +169,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '12',
         img: [
+            "/images/appertment12.jpg",
+            "/images/appertment12.jpg",
             "/images/appertment12.jpg",
         ],
         price: {
@@ -161,6 +185,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '13',
         img: [
             "/images/appertment13.jpg",
+            "/images/appertment13.jpg",
+            "/images/appertment13.jpg",
         ],
         price: {
             month: 25000,
@@ -173,6 +199,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '14',
         img: [
+            "/images/appertment14.jpg",
+            "/images/appertment14.jpg",
             "/images/appertment14.jpg",
         ],
         price: {
@@ -187,6 +215,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '15',
         img: [
             "/images/appertment15.jpg",
+            "/images/appertment15.jpg",
+            "/images/appertment15.jpg",
         ],
         price: {
             month: 25000,
@@ -199,6 +229,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '16',
         img: [
+            "/images/appertment16.jpg",
+            "/images/appertment16.jpg",
             "/images/appertment16.jpg",
         ],
         price: {
@@ -213,6 +245,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '17',
         img: [
             "/images/appertment17.jpg",
+            "/images/appertment17.jpg",
+            "/images/appertment17.jpg",
         ],
         price: {
             month: 25000,
@@ -225,6 +259,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '18',
         img: [
+            "/images/appertment18.jpg",
+            "/images/appertment18.jpg",
             "/images/appertment18.jpg",
         ],
         price: {
@@ -239,6 +275,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '19',
         img: [
             "/images/appertment19.jpg",
+            "/images/appertment19.jpg",
+            "/images/appertment19.jpg",
         ],
         price: {
             month: 25000,
@@ -251,6 +289,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '20',
         img: [
+            "/images/appertment20.jpg",
+            "/images/appertment20.jpg",
             "/images/appertment20.jpg",
         ],
         price: {
@@ -278,6 +318,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '22',
         img: [
             "/images/appertment22.jpg",
+            "/images/appertment22.jpg",
+            "/images/appertment22.jpg",
         ],
         price: {
             month: 25000,
@@ -291,6 +333,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
         id: '23',
         img: [
             "/images/appertment23.jpg",
+            "/images/appertment23.jpg",
+            "/images/appertment23.jpg",
         ],
         price: {
             month: 25000,
@@ -303,6 +347,8 @@ const appertmentCardData: Array<appertmentCardTypes> = [
     {
         id: '24',
         img: [
+            "/images/appertment24.jpg",
+            "/images/appertment24.jpg",
             "/images/appertment24.jpg",
         ],
         price: {

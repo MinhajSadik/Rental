@@ -114,7 +114,10 @@ const AppertmentListing: React.FC = () => {
               item={card}
               key={card.id}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                if (e.target instanceof HTMLButtonElement) {
+                if (
+                  e.target instanceof HTMLButtonElement ||
+                  e.target instanceof SVGElement
+                ) {
                   return;
                 }
                 router.push(`/property/${card.id}`);
@@ -137,17 +140,9 @@ const AppertmentListing: React.FC = () => {
         </div>
       </div>
 
-      {callToggle && (
-        <CallCard
-          setCallToggle={setCallToggle}
-        />
-      )}
+      {callToggle && <CallCard setCallToggle={setCallToggle} />}
 
-      {emailToggle && (
-        <EmailCard
-          setEmailToggle={setEmailToggle}
-        />
-      )}
+      {emailToggle && <EmailCard setEmailToggle={setEmailToggle} />}
     </section>
   );
 };
