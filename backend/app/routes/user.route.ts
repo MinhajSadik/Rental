@@ -14,7 +14,7 @@ userRouter.post("/register", requestValidator.validateRequest(UserValidation.cre
 
 userRouter.post("/login", userController.login);
 
-userRouter.patch("/update-profile", requestValidator.validateRequest(UserValidation.updateUserZodSchema),userController.updateProfile);
+userRouter.patch("/update-profile", requestValidator.validateRequest(UserValidation.updateUserZodSchema), userController.updateProfile);
 
 userRouter.get("/auth", userController.auth);
 
