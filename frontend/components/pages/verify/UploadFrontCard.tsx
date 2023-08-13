@@ -1,14 +1,19 @@
+import { useContext } from "react"
 import { Upload } from "@/components/pages/verify";
 import { withVerifyWrapper } from "@/components/pages/verify";
+import { AppContext } from "@/context/ApplicationContext";
+
 
 const FrontCard: React.FC = () => {
+  const { setActiveComponent} = useContext(AppContext)
+
 
   const handleChooseFile = () => {
 
   };
 
   const handleContinue = () => {
-    
+    setActiveComponent(5)
   };
 
   return (

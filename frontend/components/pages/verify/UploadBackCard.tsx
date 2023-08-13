@@ -1,14 +1,18 @@
+import {useContext} from "react"
 import { Upload } from "@/components/pages/verify";
 import { withVerifyWrapper } from "@/components/pages/verify";
+import { AppContext } from "@/context/ApplicationContext";
+
 
 const BackCard: React.FC = () => {
+  const { setActiveComponent} = useContext(AppContext)
 
   const handleChooseFile = () => {
 
   };
 
   const handleContinue = () => {
-
+    setActiveComponent(6)
   };
 
   return (

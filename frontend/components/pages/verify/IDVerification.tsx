@@ -1,7 +1,11 @@
-import Link from "next/link";
+import { useContext } from "react";
 import { withVerifyWrapper } from "@/components/pages/verify";
+import { AppContext } from "@/context/ApplicationContext";
+
 
 const IDVerification: React.FC = () => {
+  const { setActiveComponent} = useContext(AppContext)
+
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-2">
@@ -26,12 +30,12 @@ const IDVerification: React.FC = () => {
         </p>
       </div>
       <div className="flex flex-col justify-center items-center gap-6">
-        <Link
+        <button
+        onClick={() => setActiveComponent(2)}
           className="max-w-md w-full bg-primary text-white py-2.5 px-4 rounded text-lg font-medium hover:bg-primaryHov transition duration-300 text-center"
-          href="/signup/verify-id"
         >
           Verify your Id
-        </Link>
+        </button>
         <p className="text-[#575959]">
           ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore e
