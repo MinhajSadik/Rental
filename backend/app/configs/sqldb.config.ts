@@ -1,20 +1,21 @@
-import sql from "mysql"
+import mysql from "mysql"
 
+// pass: CuzdtrPAsnVX37Bi
 
 class MySQLConnection {
     async connect(): Promise<void> {
         try {
-            const db = await sql.createConnection({
-                host: "127.0.0.1",
-                port: 3306 ,
-                user: "root",
-                password: "admin",
-                database: "usersDb"
-            })
-            console.log("Database connected successfully!");
+            const connection = mysql.createConnection("postgresql://postgres:CuzdtrPAsnVX37Bi@db.jpwrdaownwpejueukrmx.supabase.co:5432/postgres");
+            connection.connect(err => {
+                if (err) {
+                    console.error('Error connecting to MySQL:', err.message);
+                    return;
+                }
+                console.log('Connected to MySQL server');
+            });
         } catch (error: any) {
             console.log({
-                message: "Database is not connected",
+                message: "There was a server side error occurred",
                 error: error.message,
             });
         }
@@ -22,4 +23,6 @@ class MySQLConnection {
 }
 
 
-export default new MySQLConnection()
+const mySQLConnection =   new MySQLConnection()
+
+export default mySQLConnection

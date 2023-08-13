@@ -3,18 +3,29 @@ import { handleResponse } from "./sendResponse";
 import httpStatus from "http-status";
 import { Pin } from "../models/pin.model";
 import nodemailer from "nodemailer"
+import { IPin } from "../interfaces/pin.interface";
+import { User } from "../models/user.model";
 
 
-const generatePin = async(req: Request, res: Response, next: NextFunction) => {
+async function generateOTP (req: Request, res: Response, next: NextFunction) {
     try {
-        const randomNumber = Math.floor(Math.random() * 10000);
-        const pinCode = String(randomNumber).padStart(4, '0');
-        const pinExpiry = Date.now() + 10 * 60 * 1000;
-        const pinCodeObject = {
-        pin: pinCode,
-        expireAt: pinExpiry,
-        userEmail: req.body.email
-    }
+        const isUserExist = await User.findOne({ email: req.body.email });
+        if (!isUserExist) {
+            return handleResponse.sendResponse(res, {
+              statusCode: httpStatus.NOT_FOUND,
+              success: false,
+              message: "User does not exist",
+              data: null,
+            });
+          }
+          const randomNumber = Math.floor(Math.random() * 10000);
+          const pinCode = String(randomNumber).padStart(6, '0');
+          const pinExpiry = new Date(Date.now() + 10 * 60 * 1000);
+          const pinCodeObject: IPin = {
+              pin: pinCode,
+              expireAt: pinExpiry,
+              userEmail: req.body.email
+          };
     // save the pin code in Database
     const result = await Pin.create(pinCodeObject)
     if(result){
@@ -30,7 +41,7 @@ const generatePin = async(req: Request, res: Response, next: NextFunction) => {
         });
         // Define the email details
         const mailOptions = {
-            from: 'Md Rubel Ahmed Rana <mdrubelahmedrana521@gmail.com>',
+            from: 'Little Programmer <littleprogrammer@gmail.com>',
             to: req.body.email,
             subject: 'Password Reset Pin Code',
             html: `
@@ -70,4 +81,4 @@ const generatePin = async(req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export default generatePin
+export default generateOTP

@@ -7,13 +7,19 @@ const pinSchema = new Schema<IPin>({
         required: true,
     },
     expireAt: {
-        type: String,
-        required: true,
+        type: Date,
+        default: Date.now(),
     },
     userEmail: {
         type: String,
         required: true,
     },
+}, 
+{
+    timestamps: true
 })
+
+// remove the pin automatically after 10 minutes
+pinSchema.index({createdAt: 1}, {expireAfterSeconds: 600})
 
 export const Pin = model<IPin, IPinModel>("Pin", pinSchema)

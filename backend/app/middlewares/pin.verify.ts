@@ -4,7 +4,7 @@ import { handleResponse } from "../utils/sendResponse";
 import httpStatus from "http-status";
 
 class VerifyOTPCode {
-     verifyPin = async(req: Request, res: Response, next: NextFunction) => {
+    async verifyPin (req: Request, res: Response, next: NextFunction) {
         try {
          const {pin, userEmail} = req.body;
          const isPinExist = await Pin.findOne({userEmail});
@@ -18,7 +18,7 @@ class VerifyOTPCode {
          }
          // check time expiration
          const currentTime: any = Date.now()
-        if (currentTime < isPinExist.expireAt) {
+        if (currentTime > isPinExist.expireAt) {
             return handleResponse.sendResponse(res, {
                 statusCode: httpStatus.BAD_REQUEST,
                 success: false,
@@ -35,6 +35,7 @@ class VerifyOTPCode {
                  data: null
              })
          }
+         next()
         } catch (error) {
          next(error)
         }

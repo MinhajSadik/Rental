@@ -18,12 +18,28 @@ const userSchema = new Schema<IUser>({
     },
     password: {
         type: String,
-        required: true,
     },
     role: {
         type: String,
         required: true,
+        default: "user"
+    },
+    IDCard: {
+        front: {
+            type: String,
+            required: true
+        },
+        back: {
+            type: String,
+            required: true
+        },
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
+}, {
+    timestamps: true
 })
 
 export const User = model<IUser, IUserModel>("User", userSchema)

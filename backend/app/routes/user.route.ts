@@ -1,18 +1,30 @@
 import { Router } from "express";
 import userController from "../controllers/user.controller";
-import requestValidator from "../middlewares/user.validation";
+import requestValidator from "../middlewares/requestValidator";
 import { UserValidation } from "../validators/user.validator";
-import generatePin from "../utils/generateOTP";
-import { pinVerification } from "../middlewares/pin.verify";
+import generateOTP from "../utils/generateOTP";
+import uploadImage from "../utils/uploadImage";
+import { upload } from "../configs/cloudinary.config";
 
-const router = Router();
+const userRouter: Router = Router();
 
-router.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
+userRouter.get("/", userController.allUsers)
 
-router.post("/login", userController.login);
+userRouter.post("/register", requestValidator.validateRequest(UserValidation.createUserZodSchema), userController.register);
 
-router.post("/generate-otp", generatePin);
+userRouter.post("/login", userController.login);
 
-router.put("/forget-password", pinVerification.verifyPin, userController.forgetPassword);
+userRouter.patch("/update-profile", requestValidator.validateRequest(UserValidation.updateUserZodSchema), userController.updateProfile);
 
-export default router;
+userRouter.get("/auth", userController.auth);
+
+userRouter.get("/refresh-token", userController.refreshToken);
+
+userRouter.post("/generate-otp", generateOTP);
+
+userRouter.post("/verify-otp", userController.verifyOTP);
+
+userRouter.put("/change-password", userController.changePassword);
+
+userRouter.post("/uploadId", upload.uploadImages.array('images'), uploadImage)
+export default userRouter;
