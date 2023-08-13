@@ -30,16 +30,6 @@ class VerifyOTPCode {
                         data: null
                     });
                 }
-                // check time expiration
-                const currentTime = Date.now();
-                if (currentTime > isPinExist.expireAt) {
-                    return sendResponse_1.handleResponse.sendResponse(res, {
-                        statusCode: http_status_1.default.BAD_REQUEST,
-                        success: false,
-                        message: "Time expired",
-                        data: null
-                    });
-                }
                 // match the pin
                 if (isPinExist.pin !== pin) {
                     return sendResponse_1.handleResponse.sendResponse(res, {

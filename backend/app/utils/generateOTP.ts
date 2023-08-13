@@ -18,14 +18,13 @@ async function generateOTP (req: Request, res: Response, next: NextFunction) {
               data: null,
             });
           }
-          const randomNumber = Math.floor(Math.random() * 10000);
-          const pinCode = String(randomNumber).padStart(6, '0');
-          const pinExpiry = new Date(Date.now() + 10 * 60 * 1000);
-          const pinCodeObject: IPin = {
-              pin: pinCode,
-              expireAt: pinExpiry,
-              userEmail: req.body.email
-          };
+        const randomNumber = Math.floor(Math.random() * 10000);
+        const pinCode = String(randomNumber).padStart(6, '0');
+        const pinCodeObject: IPin = {
+            pin: pinCode,
+            expireAt: req.body.expireAt,
+            userEmail: req.body.email
+        }
     // save the pin code in Database
     const result = await Pin.create(pinCodeObject)
     if(result){
@@ -54,6 +53,7 @@ async function generateOTP (req: Request, res: Response, next: NextFunction) {
                 </head>
                 <body>
                     <h1>Your OTP: ${pinCode}</h1>
+                    <p>Your OTP will be expired in a minute</p>
                 </body>
                 </html>
             `,

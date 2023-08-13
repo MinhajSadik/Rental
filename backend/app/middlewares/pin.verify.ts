@@ -16,16 +16,7 @@ class VerifyOTPCode {
                  data: null
              })
          }
-         // check time expiration
-         const currentTime: any = Date.now()
-        if (currentTime > isPinExist.expireAt) {
-            return handleResponse.sendResponse(res, {
-                statusCode: httpStatus.BAD_REQUEST,
-                success: false,
-                message: "Time expired",
-                data: null
-            })
-        }
+         
          // match the pin
          if(isPinExist.pin !== pin){
              return handleResponse.sendResponse(res, {
