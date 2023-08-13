@@ -17,6 +17,7 @@ declare global {
     namespace Express {
       interface Request {
         file: CustomRequest;
+        files: CustomRequest;
       }
     }
   }

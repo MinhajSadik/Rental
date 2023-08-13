@@ -31,10 +31,9 @@ function generateOTP(req, res, next) {
             }
             const randomNumber = Math.floor(Math.random() * 10000);
             const pinCode = String(randomNumber).padStart(6, '0');
-            const pinExpiry = new Date(Date.now() + 10 * 60 * 1000);
             const pinCodeObject = {
                 pin: pinCode,
-                expireAt: pinExpiry,
+                expireAt: req.body.expireAt,
                 userEmail: req.body.email
             };
             // save the pin code in Database
@@ -65,6 +64,7 @@ function generateOTP(req, res, next) {
                 </head>
                 <body>
                     <h1>Your OTP: ${pinCode}</h1>
+                    <p>Your OTP will be expired in a minute</p>
                 </body>
                 </html>
             `,
