@@ -27,8 +27,8 @@ const sendResponse_1 = require("../utils/sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
 const user_service_1 = __importDefault(require("../services/user.service"));
 class UserController {
-    constructor() {
-        this.register = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    register(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = req.body;
                 const createdUser = yield user_service_1.default.register(user);
@@ -43,7 +43,10 @@ class UserController {
                 next(error);
             }
         });
-        this.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    ;
+    login(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const _a = yield user_service_1.default.login(req.body), { refreshToken } = _a, others = __rest(_a, ["refreshToken"]);
                 // set the refresh token to the cookie
@@ -54,7 +57,10 @@ class UserController {
                 next(error);
             }
         });
-        this.verifyOTP = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    ;
+    verifyOTP(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield user_service_1.default.verifyOTP(req.body.pin);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -63,16 +69,21 @@ class UserController {
                 next(error);
             }
         });
-        this.forgetPassword = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    changePassword(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield user_service_1.default.forgetPassword(req.body);
+                const result = yield user_service_1.default.changePassword(req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
             }
             catch (error) {
                 next(error);
             }
         });
-        this.auth = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    ;
+    auth(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const token = req.headers.authorization;
                 const result = yield user_service_1.default.auth(token);
@@ -82,7 +93,9 @@ class UserController {
                 next(error);
             }
         });
-        this.refreshToken = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    refreshToken(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const refreshToken = req.headers.authorization;
                 const result = yield user_service_1.default.refreshToken(refreshToken);
@@ -92,7 +105,9 @@ class UserController {
                 next(error);
             }
         });
-        this.updateProfile = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    updateProfile(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield user_service_1.default.updateProfile(req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -101,7 +116,9 @@ class UserController {
                 next(error);
             }
         });
-        this.allUsers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    allUsers(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield user_service_1.default.allUsers();
                 return sendResponse_1.handleResponse.sendResponse(res, {

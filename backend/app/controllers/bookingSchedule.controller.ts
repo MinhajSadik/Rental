@@ -3,7 +3,7 @@ import BookingScheduleService from "../services/bookingSchedule.service"
 import { handleResponse } from "../utils/sendResponse";
 
 class BookingScheduleController {
-    addBookingSchedule = async(req: Request, res: Response, next: NextFunction) => {
+    async addBookingSchedule (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await BookingScheduleService.addBookingSchedule(req.body);
             return handleResponse.sendResponse(res, result)
@@ -11,7 +11,7 @@ class BookingScheduleController {
          next(error)   
         }
     }
-    getAllBookingSchedules = async(req: Request, res: Response, next: NextFunction) => {
+    async getAllBookingSchedules (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await BookingScheduleService.getAllBookingSchedules();
             return handleResponse.sendResponse(res, result)
@@ -20,7 +20,7 @@ class BookingScheduleController {
         }
 
     }
-    getSingleBookingSchedule = async(req: Request, res: Response, next: NextFunction) => {
+    async getSingleBookingSchedule (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await BookingScheduleService.getSingleBookingSchedule(req.params.id);
             return handleResponse.sendResponse(res, result)
@@ -29,7 +29,7 @@ class BookingScheduleController {
         }
 
     }
-    updateBookingSchedule = async(req: Request, res: Response, next: NextFunction) => {
+    async updateBookingSchedule (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await BookingScheduleService.updateBookingSchedule(req.params.id, req.body);
             return handleResponse.sendResponse(res, result)
@@ -38,7 +38,7 @@ class BookingScheduleController {
         }
 
     }
-    deleteBookingSchedule = async(req: Request, res: Response, next: NextFunction) => {
+    async deleteBookingSchedule (req: Request, res: Response, next: NextFunction) {
         try {
             const result = await BookingScheduleService.deleteBookingSchedule(req.params.id);
             return handleResponse.sendResponse(res, result)

@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bookingSchedule_service_1 = __importDefault(require("../services/bookingSchedule.service"));
 const sendResponse_1 = require("../utils/sendResponse");
 class BookingScheduleController {
-    constructor() {
-        this.addBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    addBookingSchedule(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.addBookingSchedule(req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -25,7 +25,9 @@ class BookingScheduleController {
                 next(error);
             }
         });
-        this.getAllBookingSchedules = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getAllBookingSchedules(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.getAllBookingSchedules();
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -34,7 +36,9 @@ class BookingScheduleController {
                 next(error);
             }
         });
-        this.getSingleBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getSingleBookingSchedule(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.getSingleBookingSchedule(req.params.id);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -43,7 +47,9 @@ class BookingScheduleController {
                 next(error);
             }
         });
-        this.updateBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    updateBookingSchedule(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.updateBookingSchedule(req.params.id, req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -52,7 +58,9 @@ class BookingScheduleController {
                 next(error);
             }
         });
-        this.deleteBookingSchedule = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    deleteBookingSchedule(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield bookingSchedule_service_1.default.deleteBookingSchedule(req.params.id);
                 return sendResponse_1.handleResponse.sendResponse(res, result);

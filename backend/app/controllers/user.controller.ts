@@ -5,7 +5,7 @@ import UserService from "../services/user.service";
 
 class UserController {
 
-  register = async (req: Request, res: Response, next: NextFunction) => {
+  async register (req: Request, res: Response, next: NextFunction) {
     try {
       const user = req.body;
       const createdUser = await UserService.register(user);
@@ -20,7 +20,7 @@ class UserController {
     }
   };
 
-  login = async (req: Request, res: Response, next: NextFunction) => {
+  async login  (req: Request, res: Response, next: NextFunction) {
     try {
       const { refreshToken, ...others } = await UserService.login(req.body);
       // set the refresh token to the cookie
@@ -31,7 +31,7 @@ class UserController {
     }
   };
 
-  verifyOTP = async(req: Request, res: Response, next: NextFunction) => {
+  async verifyOTP (req: Request, res: Response, next: NextFunction) {
       try {
         const result = await UserService.verifyOTP(req.body.pin)
         return handleResponse.sendResponse(res, result as IGenericResponse);
@@ -40,16 +40,16 @@ class UserController {
       }
   }
 
-  forgetPassword = async (req: Request, res: Response, next: NextFunction) => {
+  async changePassword (req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await UserService.forgetPassword(req.body);
+      const result = await UserService.changePassword(req.body);
       return handleResponse.sendResponse(res, result as IGenericResponse);
     } catch (error) {
       next(error);
     }
   };
 
-  auth = async (req: Request, res: Response, next: NextFunction) => {
+  async auth (req: Request, res: Response, next: NextFunction) {
     try {
       const token = req.headers.authorization as string
      
@@ -60,7 +60,7 @@ class UserController {
     }
   }
   
-  refreshToken = async (req: Request, res: Response, next: NextFunction) => {
+  async refreshToken (req: Request, res: Response, next: NextFunction) {
     try {
       const refreshToken = req.headers.authorization as string
       const result = await UserService.refreshToken(refreshToken)
@@ -70,7 +70,7 @@ class UserController {
     }
   }
 
-  updateProfile =  async (req: Request, res: Response, next: NextFunction) =>{
+  async updateProfile  (req: Request, res: Response, next: NextFunction) {
     try {
       const result = await UserService.updateProfile(req.body)
       return handleResponse.sendResponse(res, result as IGenericResponse);
@@ -79,7 +79,7 @@ class UserController {
     }
   }
 
-  allUsers = async (req: Request, res: Response, next: NextFunction) => {
+  async allUsers (req: Request, res: Response, next: NextFunction) {
     try {
       const result = await UserService.allUsers();
       return handleResponse.sendResponse(res, {

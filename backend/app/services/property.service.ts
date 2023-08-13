@@ -4,7 +4,7 @@ import Property from "../models/property.model"
 import { IGenericResponse } from "../utils/sendResponse"
 
 class PropertyService {
-    addProperty = async (property: IProperty): Promise<IGenericResponse> => {
+    async addProperty (property: IProperty): Promise<IGenericResponse> {
         const newProperty = await Property.create(property)
         return {
             statusCode: httpStatus.OK,
@@ -13,7 +13,7 @@ class PropertyService {
             data: newProperty
         }
     }
-    getProperties = async (): Promise<IGenericResponse> => {
+    async getProperties (): Promise<IGenericResponse> {
         const properties = await Property.find({})
         return {
             statusCode: httpStatus.OK,
@@ -22,7 +22,7 @@ class PropertyService {
             data: properties
         }
     }
-    getProperty = async (id: string): Promise<IGenericResponse> => {
+    async getProperty (id: string): Promise<IGenericResponse> {
         const property = await Property.findById(id)
         return {
             statusCode: httpStatus.OK,
@@ -31,7 +31,7 @@ class PropertyService {
             data: property
         }
     }
-    deleteProperty = async (id: string): Promise<IGenericResponse> => {
+    async deleteProperty (id: string): Promise<IGenericResponse> {
         const property = await Property.findByIdAndDelete(id)
         return {
             statusCode: httpStatus.OK,
@@ -40,7 +40,7 @@ class PropertyService {
             data: property
         }
     }
-    updateProperty = async (id: string, updatedData: Partial<IProperty>):Promise<IGenericResponse> => {
+    async updateProperty (id: string, updatedData: Partial<IProperty>):Promise<IGenericResponse> {
         const property = await Property.findByIdAndUpdate(id, {...updatedData}, {
             upsert: true,
             new: true

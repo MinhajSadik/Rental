@@ -17,44 +17,45 @@ const http_status_1 = __importDefault(require("http-status"));
 const pin_model_1 = require("../models/pin.model");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const user_model_1 = require("../models/user.model");
-const generateOTP = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const isUserExist = yield user_model_1.User.findOne({ email: req.body.email });
-        if (!isUserExist) {
-            return sendResponse_1.handleResponse.sendResponse(res, {
-                statusCode: http_status_1.default.NOT_FOUND,
-                success: false,
-                message: "User does not exist",
-                data: null,
-            });
-        }
-        const randomNumber = Math.floor(Math.random() * 10000);
-        const pinCode = String(randomNumber).padStart(6, '0');
-        const pinExpiry = Date.now() + 10 * 60 * 1000;
-        const pinCodeObject = {
-            pin: pinCode,
-            expireAt: pinExpiry,
-            userEmail: req.body.email
-        };
-        // save the pin code in Database
-        const result = yield pin_model_1.Pin.create(pinCodeObject);
-        if (result) {
-            // send OTP to user email
-            const transporter = nodemailer_1.default.createTransport({
-                host: 'smtp.mailgun.org',
-                port: 587,
-                secure: false,
-                auth: {
-                    user: process.env.SMTP_USER,
-                    pass: process.env.SMTP_PASSWORD,
-                },
-            });
-            // Define the email details
-            const mailOptions = {
-                from: 'Little Programmer <littleprogrammer@gmail.com>',
-                to: req.body.email,
-                subject: 'Password Reset Pin Code',
-                html: `
+function generateOTP(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const isUserExist = yield user_model_1.User.findOne({ email: req.body.email });
+            if (!isUserExist) {
+                return sendResponse_1.handleResponse.sendResponse(res, {
+                    statusCode: http_status_1.default.NOT_FOUND,
+                    success: false,
+                    message: "User does not exist",
+                    data: null,
+                });
+            }
+            const randomNumber = Math.floor(Math.random() * 10000);
+            const pinCode = String(randomNumber).padStart(6, '0');
+            const pinExpiry = Date.now() + 10 * 60 * 1000;
+            const pinCodeObject = {
+                pin: pinCode,
+                expireAt: pinExpiry,
+                userEmail: req.body.email
+            };
+            // save the pin code in Database
+            const result = yield pin_model_1.Pin.create(pinCodeObject);
+            if (result) {
+                // send OTP to user email
+                const transporter = nodemailer_1.default.createTransport({
+                    host: 'smtp.mailgun.org',
+                    port: 587,
+                    secure: false,
+                    auth: {
+                        user: process.env.SMTP_USER,
+                        pass: process.env.SMTP_PASSWORD,
+                    },
+                });
+                // Define the email details
+                const mailOptions = {
+                    from: 'Little Programmer <littleprogrammer@gmail.com>',
+                    to: req.body.email,
+                    subject: 'Password Reset Pin Code',
+                    html: `
             <!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -67,28 +68,29 @@ const generateOTP = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
                 </body>
                 </html>
             `,
-            };
-            // Send the email
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
+                };
+                // Send the email
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return sendResponse_1.handleResponse.sendResponse(res, {
+                            statusCode: http_status_1.default.OK,
+                            success: true,
+                            message: "PIN generated successfully",
+                            data: result
+                        });
+                    }
                     return sendResponse_1.handleResponse.sendResponse(res, {
                         statusCode: http_status_1.default.OK,
                         success: true,
-                        message: "PIN generated successfully",
+                        message: "OTP sent to your email. Please check your email",
                         data: result
                     });
-                }
-                return sendResponse_1.handleResponse.sendResponse(res, {
-                    statusCode: http_status_1.default.OK,
-                    success: true,
-                    message: "OTP sent to your email. Please check your email",
-                    data: result
                 });
-            });
+            }
         }
-    }
-    catch (error) {
-        next(error);
-    }
-});
+        catch (error) {
+            next(error);
+        }
+    });
+}
 exports.default = generateOTP;

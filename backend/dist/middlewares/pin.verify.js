@@ -17,8 +17,8 @@ const pin_model_1 = require("../models/pin.model");
 const sendResponse_1 = require("../utils/sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
 class VerifyOTPCode {
-    constructor() {
-        this.verifyPin = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    verifyPin(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { pin, userEmail } = req.body;
                 const isPinExist = yield pin_model_1.Pin.findOne({ userEmail });

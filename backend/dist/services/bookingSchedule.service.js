@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_1 = __importDefault(require("http-status"));
 const bookingSchedule_model_1 = require("../models/bookingSchedule.model");
 class BookingScheduleService {
-    constructor() {
-        this.addBookingSchedule = (bookingSchedule) => __awaiter(this, void 0, void 0, function* () {
+    addBookingSchedule(bookingSchedule) {
+        return __awaiter(this, void 0, void 0, function* () {
             const newSchedule = yield bookingSchedule_model_1.BookingSchedule.create(bookingSchedule);
             return {
                 statusCode: http_status_1.default.OK,
@@ -25,7 +25,9 @@ class BookingScheduleService {
                 data: newSchedule
             };
         });
-        this.getAllBookingSchedules = () => __awaiter(this, void 0, void 0, function* () {
+    }
+    getAllBookingSchedules() {
+        return __awaiter(this, void 0, void 0, function* () {
             const schedules = yield bookingSchedule_model_1.BookingSchedule.find().populate("property");
             return {
                 statusCode: http_status_1.default.OK,
@@ -34,7 +36,9 @@ class BookingScheduleService {
                 data: schedules
             };
         });
-        this.getSingleBookingSchedule = (id) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getSingleBookingSchedule(id) {
+        return __awaiter(this, void 0, void 0, function* () {
             const schedule = yield bookingSchedule_model_1.BookingSchedule.findById(id).populate("property");
             return {
                 statusCode: http_status_1.default.OK,
@@ -43,7 +47,9 @@ class BookingScheduleService {
                 data: schedule
             };
         });
-        this.updateBookingSchedule = (id, updatedData) => __awaiter(this, void 0, void 0, function* () {
+    }
+    updateBookingSchedule(id, updatedData) {
+        return __awaiter(this, void 0, void 0, function* () {
             const schedule = yield bookingSchedule_model_1.BookingSchedule.findByIdAndUpdate(id, updatedData, {
                 new: true
             }).populate("property");
@@ -54,7 +60,9 @@ class BookingScheduleService {
                 data: schedule
             };
         });
-        this.deleteBookingSchedule = (id) => __awaiter(this, void 0, void 0, function* () {
+    }
+    deleteBookingSchedule(id) {
+        return __awaiter(this, void 0, void 0, function* () {
             const result = yield bookingSchedule_model_1.BookingSchedule.findByIdAndDelete(id);
             return {
                 statusCode: http_status_1.default.OK,

@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const http_status_1 = __importDefault(require("http-status"));
 const property_model_1 = __importDefault(require("../models/property.model"));
 class PropertyService {
-    constructor() {
-        this.addProperty = (property) => __awaiter(this, void 0, void 0, function* () {
+    addProperty(property) {
+        return __awaiter(this, void 0, void 0, function* () {
             const newProperty = yield property_model_1.default.create(property);
             return {
                 statusCode: http_status_1.default.OK,
@@ -25,7 +25,9 @@ class PropertyService {
                 data: newProperty
             };
         });
-        this.getProperties = () => __awaiter(this, void 0, void 0, function* () {
+    }
+    getProperties() {
+        return __awaiter(this, void 0, void 0, function* () {
             const properties = yield property_model_1.default.find({});
             return {
                 statusCode: http_status_1.default.OK,
@@ -34,7 +36,9 @@ class PropertyService {
                 data: properties
             };
         });
-        this.getProperty = (id) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getProperty(id) {
+        return __awaiter(this, void 0, void 0, function* () {
             const property = yield property_model_1.default.findById(id);
             return {
                 statusCode: http_status_1.default.OK,
@@ -43,7 +47,9 @@ class PropertyService {
                 data: property
             };
         });
-        this.deleteProperty = (id) => __awaiter(this, void 0, void 0, function* () {
+    }
+    deleteProperty(id) {
+        return __awaiter(this, void 0, void 0, function* () {
             const property = yield property_model_1.default.findByIdAndDelete(id);
             return {
                 statusCode: http_status_1.default.OK,
@@ -52,7 +58,9 @@ class PropertyService {
                 data: property
             };
         });
-        this.updateProperty = (id, updatedData) => __awaiter(this, void 0, void 0, function* () {
+    }
+    updateProperty(id, updatedData) {
+        return __awaiter(this, void 0, void 0, function* () {
             const property = yield property_model_1.default.findByIdAndUpdate(id, Object.assign({}, updatedData), {
                 upsert: true,
                 new: true

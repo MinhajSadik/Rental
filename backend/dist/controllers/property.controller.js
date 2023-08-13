@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const property_service_1 = __importDefault(require("../services/property.service"));
 const sendResponse_1 = require("../utils/sendResponse");
 class PropertyController {
-    constructor() {
-        this.addProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    addProperty(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield property_service_1.default.addProperty(req.body);
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -25,7 +25,9 @@ class PropertyController {
                 next(error);
             }
         });
-        this.getProperties = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getProperties(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield property_service_1.default.getProperties();
                 return sendResponse_1.handleResponse.sendResponse(res, result);
@@ -34,7 +36,9 @@ class PropertyController {
                 next(error);
             }
         });
-        this.getProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    getProperty(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
                 const result = yield property_service_1.default.getProperty(id);
@@ -44,7 +48,9 @@ class PropertyController {
                 next(error);
             }
         });
-        this.deleteProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    deleteProperty(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
                 const result = yield property_service_1.default.deleteProperty(id);
@@ -54,7 +60,9 @@ class PropertyController {
                 next(error);
             }
         });
-        this.updateProperty = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    }
+    updateProperty(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
                 const updatedData = req.body;

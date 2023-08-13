@@ -7,7 +7,7 @@ import { IPin } from "../interfaces/pin.interface";
 import { User } from "../models/user.model";
 
 
-const generateOTP = async(req: Request, res: Response, next: NextFunction) => {
+async function generateOTP (req: Request, res: Response, next: NextFunction) {
     try {
         const isUserExist = await User.findOne({ email: req.body.email });
         if (!isUserExist) {

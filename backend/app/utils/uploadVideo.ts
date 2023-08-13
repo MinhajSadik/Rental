@@ -3,7 +3,7 @@ import { handleResponse } from "./sendResponse";
 import httpStatus from "http-status";
 
 
-const uploadVideo =  async (req: Request, res: Response, next: NextFunction) => {
+async function uploadVideo (req: Request, res: Response, next: NextFunction) {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }

@@ -14,16 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sendResponse_1 = require("./sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
-const uploadVideo = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!req.file) {
-        return res.status(400).send('No file uploaded.');
-    }
-    const videoUrl = req.file.path;
-    return sendResponse_1.handleResponse.sendResponse(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: "Video uploaded ssuccessfully!",
-        data: videoUrl
+function uploadVideo(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.');
+        }
+        const videoUrl = req.file.path;
+        return sendResponse_1.handleResponse.sendResponse(res, {
+            statusCode: http_status_1.default.OK,
+            success: true,
+            message: "Video uploaded ssuccessfully!",
+            data: videoUrl
+        });
     });
-});
+}
 exports.default = uploadVideo;

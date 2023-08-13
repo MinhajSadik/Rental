@@ -3,7 +3,7 @@ import { handleResponse } from "./sendResponse";
 import httpStatus from "http-status";
 
 
-const uploadImage = (req: Request , res: Response, next: NextFunction) => {
+async function uploadImage (req: Request , res: Response, next: NextFunction) {
     try {
         if (!req.files || req.files.length === 0) {
             return res.status(400).send('No files uploaded.');

@@ -11,20 +11,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 class requestValidator {
     constructor() {
-        this.validateRequest = (schema) => (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield schema.parseAsync({
-                    body: req.body,
-                    query: req.query,
-                    params: req.params,
-                    cookies: req.cookies,
-                });
-                return next();
-            }
-            catch (error) {
-                next(error);
-            }
-        });
+        this.validateRequest = (schema) => function (req, res, next) {
+            return __awaiter(this, void 0, void 0, function* () {
+                try {
+                    yield schema.parseAsync({
+                        body: req.body,
+                        query: req.query,
+                        params: req.params,
+                        cookies: req.cookies,
+                    });
+                    return next();
+                }
+                catch (error) {
+                    next(error);
+                }
+            });
+        };
     }
 }
 exports.default = new requestValidator();

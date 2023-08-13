@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import PropertyService from "../services/property.service";
-import { IGenericResponse, handleResponse } from "../utils/sendResponse";
-import httpStatus from "http-status";
+import { handleResponse } from "../utils/sendResponse";
 
 class PropertyController {
-    addProperty = async (req: Request, res: Response, next: NextFunction) => {
+    async addProperty (req: Request, res: Response, next: NextFunction) {
         try {
             const result  = await PropertyService.addProperty(req.body)
             return handleResponse.sendResponse(res, result)
@@ -12,7 +11,7 @@ class PropertyController {
             next(error)
         }
     }
-    getProperties = async (req: Request, res: Response, next: NextFunction) => {
+    async getProperties (req: Request, res: Response, next: NextFunction) {
         try {
             const result  = await PropertyService.getProperties()
             return handleResponse.sendResponse(res, result)
@@ -20,7 +19,7 @@ class PropertyController {
             next(error)
         }
     }
-    getProperty = async (req: Request, res: Response, next: NextFunction) => {
+    async getProperty (req: Request, res: Response, next: NextFunction) {
         try {
             const id = req.params.id as string
             const result  = await PropertyService.getProperty(id)
@@ -29,7 +28,7 @@ class PropertyController {
             next(error)
         }
     }
-    deleteProperty = async (req: Request, res: Response, next: NextFunction) => {
+    async deleteProperty (req: Request, res: Response, next: NextFunction) {
         try {
             const id = req.params.id as string
             const result  = await PropertyService.deleteProperty(id)
@@ -38,7 +37,7 @@ class PropertyController {
             next(error)
         }
     }
-    updateProperty = async (req: Request, res: Response, next: NextFunction) => {
+    async updateProperty (req: Request, res: Response, next: NextFunction) {
         try {
             const id = req.params.id as string
             const updatedData = req.body

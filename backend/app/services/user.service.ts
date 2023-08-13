@@ -7,14 +7,14 @@ import { Pin } from "../models/pin.model";
 
 
 class UserService {
-  register = async(user: IUser): Promise<IUser> => {
+  async register (user: IUser): Promise<IUser> {
     const hashedPassword = await bcrypt.hash(user.password, 12);
     user.password = hashedPassword;
     const newUser = await User.create(user);
     return newUser;
   }
   
-  login = async(user: ILogin) => {
+  async login (user: ILogin) {
     const isUserExist = await User.findOne({
       $or: [
           { email: user.emailOrPhone },
@@ -72,7 +72,7 @@ class UserService {
     };
   }
 
-  verifyOTP = async(otp: string) => {
+  async verifyOTP (otp: string) {
     const isPinExist = await Pin.findOne({pin: otp});
      if(!isPinExist){
          return  {
@@ -109,9 +109,9 @@ class UserService {
       data: null
   }
     
- }
+  }
 
-  forgetPassword = async(user: Partial<IUser>) => {
+  async changePassword (user: Partial<IUser>) {
     const isUserExist = await User.findOne({ email: user.email });
     if (!isUserExist) {
       return {
@@ -137,7 +137,7 @@ class UserService {
     };
   }
 
-  auth = async(token: string) => {
+  async auth (token: string) {
     const isValidToken  = await jwt.verify(token,  process.env.JWT_SECRET as Secret) as JwtPayload
     if(!isValidToken){
       return {
@@ -167,7 +167,7 @@ class UserService {
     
   }
 
-  refreshToken = async(refreshToken: string) => {
+  async refreshToken (refreshToken: string) {
      if (!refreshToken) {
       return {
         statusCode: httpStatus.BAD_REQUEST,
@@ -198,7 +198,7 @@ class UserService {
   };
   }
 
-  updateProfile = async(user: Partial<IUser>) => {
+  async updateProfile (user: Partial<IUser>) {
     const isUserExist = await User.findOne({email: user.email});
     if(isUserExist){
       const updatedUser = await User.findOneAndUpdate({email: user.email}, {...user}, {upsert: true, new: true})
@@ -219,7 +219,7 @@ class UserService {
     };
   }
 
-  allUsers = async(): Promise<IUser[]> => {
+  async allUsers (): Promise<IUser[]> {
     const users = await User.find({})
     return users
   }

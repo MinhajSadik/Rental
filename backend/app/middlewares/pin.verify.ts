@@ -4,7 +4,7 @@ import { handleResponse } from "../utils/sendResponse";
 import httpStatus from "http-status";
 
 class VerifyOTPCode {
-     verifyPin = async(req: Request, res: Response, next: NextFunction) => {
+    async verifyPin (req: Request, res: Response, next: NextFunction) {
         try {
          const {pin, userEmail} = req.body;
          const isPinExist = await Pin.findOne({userEmail});

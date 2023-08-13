@@ -24,7 +24,7 @@ userRouter.post("/generate-otp", generateOTP);
 
 userRouter.post("/verify-otp", userController.verifyOTP);
 
-userRouter.put("/forget-password", userController.forgetPassword);
+userRouter.put("/change-password", userController.changePassword);
 
 userRouter.post("/uploadId", upload.uploadImages.array('images'), uploadImage)
 export default userRouter;
