@@ -2,16 +2,12 @@ import { Card, BlureEffect } from "@/components";
 import { useDispatch } from "react-redux";
 import { CloseButton, Input, Button } from "@/components";
 import { useState } from "react";
-import { openSignup } from "@/features/signupToggleSlice";
+import { FcGoogle } from "react-icons/fc";
 import { closeLogin } from "@/features/loginToggleSlice";
 import { openForgetPassword } from "@/features/forgetpasswordToggleSlice";
-import { FcGoogle } from "react-icons/fc";
+import { openSignup } from "@/features/signupToggleSlice";
 
 const LoginModal: React.FC = () => {
-
-  // ==== Redux State Managment ====
-  const dispatch = useDispatch();
-
   // State to store form data
   const [formData, setFormData] = useState({
     emailOrPhone: "",
@@ -24,6 +20,7 @@ const LoginModal: React.FC = () => {
     event.preventDefault();
     // Here, you can process the form data as per your requirements.
     console.log(formData);
+    dispatch(closeLogin());
   };
 
   // Function to handle form field changes
@@ -35,34 +32,24 @@ const LoginModal: React.FC = () => {
     }));
   };
 
-  // ==== Handle Signup Modal ====
-  const handleOpenSignup = (): void => {
-    dispatch(openSignup());
-    dispatch(closeLogin());
-  };
+  const dispatch = useDispatch();
 
-  const handleOpenForgetPassword = (): void => {
-    dispatch(openForgetPassword());
-    dispatch(closeLogin());
-  };
-
-  const handleCloseLogin = (): void => {
+  const closeLoginToggle = (): void => {
     dispatch(closeLogin());
   };
 
   return (
-    <BlureEffect>
+    <BlureEffect
+    // onClick={closeLoginToggle}
+    >
       <Card>
-        <CloseButton onClick={handleCloseLogin} />
+        <CloseButton onClick={closeLoginToggle} />
         <div className="space-y-8 mx-auto">
           <h2 className="text-secondary text-[24px] text-center font-semibold">
             Your Trusted Rental Partner
           </h2>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <label
-              htmlFor="emailOrPhone"
-              className="text-lg text-secondary"
-            >
+            <label htmlFor="emailOrPhone" className="text-lg text-secondary">
               Enter Your mobile Number Or Email
             </label>
             <Input
@@ -92,7 +79,10 @@ const LoginModal: React.FC = () => {
               </div>
               <span
                 className="text-sm text-primary cursor-pointer hover:underline"
-                onClick={handleOpenForgetPassword}
+                onClick={() => {
+                  dispatch(closeLogin());
+                  dispatch(openForgetPassword());
+                }}
               >
                 Forget Password
               </span>
@@ -117,7 +107,10 @@ const LoginModal: React.FC = () => {
             <div className="flex items-center justify-center mt-2">
               <button
                 className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300 flex items-center justify-center"
-                onClick={handleOpenSignup}
+                onClick={() => {
+                  dispatch(closeLogin());
+                  dispatch(openSignup());
+                }}
               >
                 SignUp
               </button>

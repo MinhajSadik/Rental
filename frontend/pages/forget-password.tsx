@@ -1,25 +1,19 @@
-import { Inter } from "next/font/google";
-import { HeadTag, Header, Footer } from "@/components/common";
+import { ReactElement } from "react";
+import { HeadTag } from "@/components/common";
 import { ForgetPasswordFormSection } from "@/components/pages/forgetpassword";
+import { RootLayout } from "@/components/layouts";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Login() {
+export default function ForgetPassword() {
   return (
-    <div
-      className={`min-h-screen flex flex-col w-full bg-white ${inter.className}`}
-    >
+    <>
       {/* ==== HeadTag ==== */}
       <HeadTag title="Forget Password" />
-      {/* ==== Header ==== */}
-      <Header />
-      {/* ==== Main ==== */}
-      <main>
-        {/* ==== ForgetPassword Form Section ==== */}
-        <ForgetPasswordFormSection/>
-      </main>
-      {/* ==== Footer ==== */}
-      <Footer/>
-    </div>
+      {/* ==== ForgetPassword Form Section ==== */}
+      <ForgetPasswordFormSection />
+    </>
   );
+}
+
+ForgetPassword.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>;
 }

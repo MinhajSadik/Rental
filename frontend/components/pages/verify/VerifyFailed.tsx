@@ -10,7 +10,10 @@ const VerifyFailed: React.FC = () => {
 
   return (
     <VerifyResult
-      status="Failed"
+      status={{
+        text: "Failed",
+        color: "text-red-500"
+      }}
       title="Sorry, ID VERIFICATION FAILED"
       subTitle="Some thing wrong with your verification information.Please try again with your proper information! Or if you have any question please contact support@inquires.com"
       btn={{

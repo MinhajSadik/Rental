@@ -1,25 +1,19 @@
-import { Inter } from "next/font/google";
-import { HeadTag, Header, Footer } from "@/components/common";
+import { ReactElement } from "react";
+import { HeadTag } from "@/components/common";
 import { SignupFormSection } from "@/components/pages/signup";
+import { RootLayout } from "@/components/layouts";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Login() {
+export default function Signup() {
   return (
-    <div
-      className={`min-h-screen flex flex-col w-full bg-white ${inter.className}`}
-    >
+    <>
       {/* ==== HeadTag ==== */}
-      <HeadTag title="Sign Up" />
-      {/* ==== Header ==== */}
-      <Header />
-      {/* ==== Main ==== */}
-      <main>
-        {/* ==== Signup Form Section ==== */}
-        <SignupFormSection/>
-      </main>
-      {/* ==== Footer ==== */}
-      <Footer />
-    </div>
+      <HeadTag title="Signup - Rental" />
+      {/* ==== Signup Form Section ==== */}
+      <SignupFormSection />
+    </>
   );
 }
+
+Signup.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>;
+};

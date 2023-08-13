@@ -15,11 +15,11 @@ const FrontCard: React.FC = () => {
     <Upload
       title="Upload Front of your identify card"
       icon="/images/placeholder_id_front_card.svg"
-      btnOne={{
+      input={{
         text: "Choose File",
         handle: handleChooseFile,
       }}
-      btnTwo={{ 
+      btn={{ 
         text: "Continue", 
         handle: handleContinue 
       }}

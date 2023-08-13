@@ -1,5 +1,5 @@
-import { Inter } from "next/font/google";
-import { HeadTag, Header, Footer } from "@/components/common";
+import { ReactElement } from "react";
+import { HeadTag } from "@/components/common";
 import {
   Hero,
   FeatureAds,
@@ -8,62 +8,32 @@ import {
   Furnished,
   CustomerReview,
 } from "@/components/pages/home";
-import { LoginModal, SignupModal, ForgetPasswordModal } from "@/components/modal";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-
-const inter = Inter({ subsets: ["latin"] });
+import { RootLayout } from "@/components/layouts";
 
 export default function Home() {
-  // ==== Toggle Login Modal (Redux state managment) ====
-  const loginToggle = useSelector(
-    (state: RootState) => state.loginToggle.isOpen
-  );
-  const signupToggle = useSelector(
-    (state: RootState) => state.signupToggle.isOpen
-  );
-
-  const forgetPasswordToggle = useSelector((state: RootState) => state.forgetPasswordToggle.isOpen); 
 
   return (
-    <div
-      className={`min-h-screen flex flex-col w-full bg-white ${
-        loginToggle || signupToggle || forgetPasswordToggle ? "fixed" : ""
-      } ${inter.className}`}
-    >
+    <>
       {/* ==== Head ==== */}
-      <HeadTag title="Rental - Find Your Perfect Home: Explore Premier House Rentals" />
-
-      {/* ==== Login Modal ===== */}
-      {loginToggle && <LoginModal />}
-
-      {/* ==== Signup Modal ==== */}
-      {signupToggle && <SignupModal />}
-
-      {/* ==== Forget Password Modal ==== */}
-      {forgetPasswordToggle && <ForgetPasswordModal/>}
-
-      {/* ==== Header ==== */}
-      <Header />
-
-      {/* ==== Main ==== */}
-      <main>
-        {/* ==== Hero ==== */}
-        <Hero />
-        {/* ==== What You Want ==== */}
-        <WhatYouWant />
-        {/* ==== Feature ADs ==== */}
-        <FeatureAds />
-        {/* ==== Help ==== */}
-        <Help />
-        {/* ==== Furnished ==== */}
-        <Furnished />
-        {/* ==== Testimonial ==== */}
-        <CustomerReview />
-      </main>
-
-      {/* ==== Footer ==== */}
-      <Footer />
-    </div>
+      <HeadTag 
+        title="Rental - Find Your Perfect Home: Explore Premier House Rentals" 
+      />
+      {/* ==== Hero ==== */}
+      <Hero />
+      {/* ==== What You Want ==== */}
+      <WhatYouWant />
+      {/* ==== Feature ADs ==== */}
+      <FeatureAds />
+      {/* ==== Help ==== */}
+      <Help />
+      {/* ==== Furnished ==== */}
+      <Furnished />
+      {/* ==== Testimonial ==== */}
+      <CustomerReview />
+    </>
   );
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>;
+};

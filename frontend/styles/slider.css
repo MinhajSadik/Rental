@@ -1,0 +1,119 @@
+/* ==== Slider Feature ==== */
+.slider-feature {
+  
+}
+
+.slider-feature .slick-arrow.slick-prev,
+.slider-feature .slick-arrow.slick-next {
+  background: #fcfcfc;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-radius: 50%;  
+  box-shadow: 1px 2px 10px -1px rgb(0 0 0 / 30%);
+  transition: all 0.2s ease-in;
+}
+
+.slider-feature .slick-arrow.slick-prev:hover,
+.slider-feature .slick-arrow.slick-next:hover {
+  background: #3267B1;
+}
+
+.slider-feature .slick-arrow.slick-prev {
+  left: 0;
+}
+
+.slider-feature .slick-arrow.slick-next {
+  right: 0;
+}
+
+.slider-feature .slick-slide {
+  padding: 0 10px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
+
+/* ==== Testimonial Slider ==== */
+.testimonial {
+}
+
+.testimonial .slick-slide {
+  padding: 0 10px;
+}
+
+.testimonial .circle-indicator li {
+  height: 10px;
+  width: 10px;
+  background: lightgray;
+  border-radius: 5px;
+}
+
+.testimonial .circle-indicator li:hover {
+  background: gray;
+}
+
+.testimonial .circle-indicator li.slick-active {
+  background: #3267B1;
+}
+
+/* ==== Property Image slider ==== */
+.prperty {
+  
+}
+
+.property .slick-arrow.slick-prev,
+.property .slick-arrow.slick-next {
+  background: #fcfcfc;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-radius: 50%;  
+  box-shadow: 1px 2px 10px -1px rgb(0 0 0 / 30%);
+  transition: all 0.2s ease-in;
+  visibility: hidden;
+}
+
+.property-card:hover .next-button, .property-card:hover .prev-button {
+  visibility: visible;
+}
+
+.property .slick-arrow.slick-prev:hover,
+.property .slick-arrow.slick-next:hover {
+  background: #e5e7eb;
+}
+
+.property .slick-arrow.slick-prev {
+  left: 5px;
+}
+
+.property .slick-arrow.slick-next {
+  right: 5px;
+}
+
+.property .slick-dots {
+  bottom: 5px
+}
+
+.property .circle-indicator li {
+  height: 7px;
+  width: 7px;
+  background: lightgray;
+  border-radius: 5px;
+}
+
+.property .circle-indicator li:hover {
+  background: lightgray;
+}
+
+.property .circle-indicator li.slick-active {
+  background: white;
+}

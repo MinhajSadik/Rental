@@ -1,24 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { navLinks } from "@/constants";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineClose } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { openLogin } from "@/features/loginToggleSlice";
+import {
+  ForgetPasswordModal,
+  LoginModal,
+  SignupModal,
+} from "@/components/modal";
+import { useDispatch, useSelector } from "react-redux";
+import { openLogin, selectIsLoginOpen } from "@/features/loginToggleSlice";
+import { selectIsSignupOpen } from "@/features/signupToggleSlice";
+import { selectIsForgetPasswordOpen } from "@/features/forgetpasswordToggleSlice";
 
 const Header: React.FC = () => {
-
   // ==== navtoggle state ====
   const [navToggle, setNavToggle] = useState<boolean>(false);
 
-  // ==== Toggle Login Modal (Redux state managment) ====
   const dispatch = useDispatch();
+  const isLoginOpen = useSelector(selectIsLoginOpen);
+  const isSignupOpen = useSelector(selectIsSignupOpen);
+  const isForgetPasswordOpen = useSelector(selectIsForgetPasswordOpen);
 
-  // ==== Open Login Modal ====
-  const handleOpenLogin = (): void => {
-    dispatch(openLogin());
-  };
+  useEffect(() => {
+    if (isLoginOpen || isSignupOpen || isForgetPasswordOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isLoginOpen, isSignupOpen, isForgetPasswordOpen]);
 
   return (
     <header>
@@ -33,11 +44,15 @@ const Header: React.FC = () => {
               className="md:w-[80px] w-[60px]"
             />
           </Link>
-          <button 
+          <button
             className="lg:hidden text-secondary hover:text-secondaryHov transition duration-300"
             onClick={() => setNavToggle(!navToggle)}
           >
-            {navToggle ? <MdOutlineClose className="text-2xl"/> : <FaBars className="text-xl" />}
+            {navToggle ? (
+              <MdOutlineClose className="text-2xl" />
+            ) : (
+              <FaBars className="text-xl" />
+            )}
           </button>
         </div>
         <ul className="lg:flex hidden justify-center items-center gap-8">
@@ -50,11 +65,14 @@ const Header: React.FC = () => {
           ))}
         </ul>
         <div className="lg:flex hidden items-center gap-6 font-medium">
-          <button className="text-secondary" onClick={handleOpenLogin}>
+          <button
+            className="text-secondary"
+            onClick={() => dispatch(openLogin())}
+          >
             Login
           </button>
           <Link
-            href="/"
+            href="/add-property"
             className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
           >
             Add Property
@@ -62,7 +80,11 @@ const Header: React.FC = () => {
         </div>
       </nav>
       {/* ==== Mobile View ==== */}
-      <div className={`shadow-md px-2 pt-2 pb-8 absolute w-full left-0 right-0 top-22 lg:hidden transition duration-300 bg-white ${navToggle ? "left-0" : "left-[-100%]"}`}>
+      <div
+        className={`shadow-md px-2 pt-2 pb-8 absolute w-full left-0 right-0 top-22 lg:hidden transition duration-300 bg-white ${
+          navToggle ? "left-0" : "left-[-100%]"
+        }`}
+      >
         <nav className="space-y-4">
           <ul className="flex flex-col gap-2">
             {navLinks.map((link, i) => (
@@ -77,18 +99,27 @@ const Header: React.FC = () => {
             ))}
           </ul>
           <div className="flex flex-col items-start gap-4 md:px-4 px-2">
-            <Link className="text-secondary" href="/login">
-              Login
-            </Link>
-            <Link
-              className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
-              href="/signup"
+            <button
+              className="text-secondary"
+              onClick={() => dispatch(openLogin())}
             >
-              Sign up
+              Login
+            </button>
+            <Link
+              href="/add-property"
+              className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
+            >
+              Add Property
             </Link>
           </div>
         </nav>
       </div>
+
+      {isLoginOpen && <LoginModal />}
+
+      {isSignupOpen && <SignupModal />}
+
+      {isForgetPasswordOpen && <ForgetPasswordModal />}
     </header>
   );
 };

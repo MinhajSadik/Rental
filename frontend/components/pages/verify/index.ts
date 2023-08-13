@@ -17,6 +17,7 @@ import CaptureFrontCardSection from "./CaptureFrontCard";
 import Processing from "./Processing";
 import CaptureBackCardSection from "./CaptureBackCard";
 import CaptureImageSection from "./CaptureImage";
+import VerifyPendingSection from "./VerifyPendingSection";
 
 export {
   VerifySection,
@@ -37,5 +38,6 @@ export {
   Processing,
   CaptureBackCardSection,
   CaptureImageSection,
-  VerifyFailedSection
+  VerifyFailedSection,
+  VerifyPendingSection,
 };

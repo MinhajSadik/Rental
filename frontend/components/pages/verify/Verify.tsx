@@ -9,6 +9,7 @@ import {
   ImageVerifySection,
   VerifyApprovedSection,
   VerifyFailedSection,
+  VerifyPendingSection,
   CameraPermissionSection,
   CaptureFrontCardSection,
   CaptureBackCardSection,
@@ -28,6 +29,7 @@ const Verify: React.FC = () => {
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
+      {/* <VerifyPendingSection/> */}
 
       {/* <CameraPermissionSection/> */}
       {/* <CaptureFrontCardSection/> */}
@@ -36,6 +38,7 @@ const Verify: React.FC = () => {
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
+      {/* <VerifyPendingSection/> */}
     </>
   );
 };
