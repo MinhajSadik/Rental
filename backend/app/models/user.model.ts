@@ -38,6 +38,8 @@ const userSchema = new Schema<IUser>({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 })
 
 export const User = model<IUser, IUserModel>("User", userSchema)

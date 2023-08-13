@@ -74,6 +74,8 @@ const propertySchema = new mongoose_1.Schema({
         required: true,
         ref: "User"
     }
+}, {
+    timestamps: true
 });
 const Property = (0, mongoose_1.model)("Property", propertySchema);
 exports.default = Property;

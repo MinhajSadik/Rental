@@ -32,5 +32,7 @@ const bookingSchedule = new mongoose_1.Schema({
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 });
 exports.BookingSchedule = (0, mongoose_1.model)("BookingSchedule", bookingSchedule);

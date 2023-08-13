@@ -31,7 +31,7 @@ function generateOTP(req, res, next) {
             }
             const randomNumber = Math.floor(Math.random() * 10000);
             const pinCode = String(randomNumber).padStart(6, '0');
-            const pinExpiry = Date.now() + 10 * 60 * 1000;
+            const pinExpiry = new Date(Date.now() + 10 * 60 * 1000);
             const pinCodeObject = {
                 pin: pinCode,
                 expireAt: pinExpiry,

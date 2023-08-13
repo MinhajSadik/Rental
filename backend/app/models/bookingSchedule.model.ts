@@ -31,6 +31,8 @@ const bookingSchedule: Schema = new Schema<IBookingSchedule>({
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 })
 
 

@@ -16,6 +16,8 @@ app.use(express.json({limit: "10mb"}));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
+
+
 // connecting to database
 mongoDBConnection.connect()
 
@@ -40,6 +42,7 @@ app.use("*", (req: Request, res: Response, next: NextFunction) => {
     ],
   });
 });
+
 
 
 app.use(globalErrorHandler.handle)

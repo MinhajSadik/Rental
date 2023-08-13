@@ -74,6 +74,8 @@ const propertySchema = new Schema<IProperty>({
         required: true,
         ref: "User"
     }
+}, {
+    timestamps: true
 })
 
 const Property = model<IProperty, IPropertyModel>("Property", propertySchema)
