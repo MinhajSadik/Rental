@@ -18,7 +18,7 @@ import {
 import { AppContext } from "@/context/ApplicationContext";
 
 const Verify: React.FC = () => {
-  const {activeComponent} = useContext(AppContext)
+  const { activeComponent } = useContext(AppContext)
   return (
     <>
     {
@@ -44,7 +44,7 @@ const Verify: React.FC = () => {
     {
       activeComponent === 6 && <UploadImageSection/>
     }
-      {/* ====== Verfy two phases ==== */}
+      {/* ====== Verify two phases ==== */}
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
