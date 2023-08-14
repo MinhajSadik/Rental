@@ -23,7 +23,7 @@ function uploadVideo(req, res, next) {
         return sendResponse_1.handleResponse.sendResponse(res, {
             statusCode: http_status_1.default.OK,
             success: true,
-            message: "Video uploaded ssuccessfully!",
+            message: "Video uploaded successfully!",
             data: videoUrl
         });
     });
