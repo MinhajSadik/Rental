@@ -7,17 +7,20 @@ const IDVerification: React.FC = () => {
   const { setActiveComponent} = useContext(AppContext)
 
   useEffect(() => {
-    const signupData = JSON.parse(localStorage.getItem("signupData"));
-    if(signupData.IDCard.font){
-      setActiveComponent(5)
+    const rawData = localStorage.getItem("signupData");
+    if (rawData !== null) {
+      const parsedData = JSON.parse(rawData);
+      if(parsedData.IDCard.font){
+        setActiveComponent(5)
+      }
+      if(parsedData.IDCard.back){
+        setActiveComponent(6)
+      }
+      if(parsedData.profile){
+        setActiveComponent(7)
+      }
     }
-    if(signupData.IDCard.back){
-      setActiveComponent(6)
-    }
-    if(signupData.profile){
-      setActiveComponent(7)
-    }
-  }, [])
+  }, [setActiveComponent])
 
   return (
     <div className="space-y-12">

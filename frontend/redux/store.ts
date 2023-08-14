@@ -5,9 +5,11 @@ import forgetpasswordToggleReducer from "@/features/forgetpasswordToggleSlice";
 import propertyemailToggleSlice from "@/features/propertyemailToggleSlice";
 import propertyCallToggleSlice from "@/features/propertyCallToggleSlice";
 import allFilterToggleSlice from "@/features/allFilterToggleSlice";
+import userSlice from "@/features/user/userSlice";
 
 export const store = configureStore({
   reducer: {
+    user: userSlice,
     loginToggle: loginToggleReducer,
     signupToggle: signupToggleReducer,
     forgetPasswordToggle: forgetpasswordToggleReducer,
