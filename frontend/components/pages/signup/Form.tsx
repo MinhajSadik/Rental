@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { Input } from "@/components";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form"
 
-type Inputs = {
+export type Inputs = {
   name: string,
   phoneNumber: string,
   email: string,
   password: string,
   confirmPassword: string,
   role: string,
+  profile: string,
+  IDCard: {
+    front: string,
+    back: string,
+  },
 }
 
 const Form: React.FC = () => {
@@ -43,6 +48,11 @@ const Form: React.FC = () => {
     }else{
       setIsPasswordMatched(true)
     }
+    data.IDCard= {
+      front: "",
+      back: "",
+    }
+    data.profile = ""
     // store the register info in LocalStorage
     localStorage.setItem("signupData", JSON.stringify(data))
     router.push("/signup/verify")
@@ -74,6 +84,18 @@ const Form: React.FC = () => {
   //   }));
   // };
   
+
+  // if signup already in LocalStorage
+  // retrieve the data and redirect to verify route
+  useEffect(() => {
+    const rawData = localStorage.getItem("signupData");
+    if (rawData !== null) {
+      const parsedData = JSON.parse(rawData)
+      if(parsedData){
+        router.push("/signup/verify");
+      }
+    }
+  },[router])
 
   return (
     <div className="space-y-8 mx-auto">
@@ -205,7 +227,7 @@ const Form: React.FC = () => {
               // onChange={handleChange}
               className="form-checkbox h-5 w-5 border text-primary"
             />
-            <span className="text-red-500" className="text-sm text-gray-400">
+            <span className="text-sm text-gray-400">
               By clicking the registration button, you accept our Terms & Conditions.
             </span>
           </div>

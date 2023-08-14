@@ -44,6 +44,9 @@ const Verify: React.FC = () => {
     {
       activeComponent === 6 && <UploadImageSection/>
     }
+    {
+      activeComponent === 7 &&  <VerifyPendingSection/>
+    }
       {/* ====== Verify two phases ==== */}
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
@@ -57,7 +60,6 @@ const Verify: React.FC = () => {
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
-      {/* <VerifyPendingSection/> */}
     </>
   );
 };

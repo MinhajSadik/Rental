@@ -1,10 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { withVerifyWrapper } from "@/components/pages/verify";
 import { AppContext } from "@/context/ApplicationContext";
 
 
 const IDVerification: React.FC = () => {
   const { setActiveComponent} = useContext(AppContext)
+
+  useEffect(() => {
+    const signupData = JSON.parse(localStorage.getItem("signupData"));
+    if(signupData.IDCard.font){
+      setActiveComponent(5)
+    }
+    if(signupData.IDCard.back){
+      setActiveComponent(6)
+    }
+    if(signupData.profile){
+      setActiveComponent(7)
+    }
+  }, [])
 
   return (
     <div className="space-y-12">
