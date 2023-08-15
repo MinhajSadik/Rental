@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 // import { Input } from "@/components";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { AppContext } from "@/context/ApplicationContext";
+import { useGenerateOTPMutation } from "@/features/user/userApi";
+import Swal from "sweetalert2";
 
 type Input = {
   email:string
 }
 
 const SubFormOne: React.FC = () => {
-  const {activeComponent, setActiveComponent} = useContext(AppContext)
+  const { setActiveComponent} = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -17,9 +19,23 @@ const SubFormOne: React.FC = () => {
     mode: "onChange"
   })
 
-  const handleSendCode: SubmitHandler<Input> = (data) => {
-    console.log(data)
-    setActiveComponent(2)
+  const [generateOTP] = useGenerateOTPMutation()
+
+  const handleSendCode: SubmitHandler<Input> = async(data) => {
+    const result: any = await generateOTP(data)
+    if(result?.data){
+      setActiveComponent(2)
+      localStorage.setItem("userEmail", JSON.stringify(data.email))
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: result.error.data.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
   }
   // State to store form data
   // const [formData, setFormData] = useState({

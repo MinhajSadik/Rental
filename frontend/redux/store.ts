@@ -6,9 +6,11 @@ import propertyemailToggleSlice from "@/features/propertyemailToggleSlice";
 import propertyCallToggleSlice from "@/features/propertyCallToggleSlice";
 import allFilterToggleSlice from "@/features/allFilterToggleSlice";
 import userSlice from "@/features/user/userSlice";
+import apiSlice from "@/features/api/apiSlice";
 
 export const store = configureStore({
   reducer: {
+    [apiSlice.reducerPath]:apiSlice.reducer,
     user: userSlice,
     loginToggle: loginToggleReducer,
     signupToggle: signupToggleReducer,
@@ -17,6 +19,8 @@ export const store = configureStore({
     propertyCallToggle: propertyCallToggleSlice,
     allFilterToggle: allFilterToggleSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -3,9 +3,11 @@ import {  Button } from "@/components";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { AppContext } from "@/context/ApplicationContext";
+import { useVerifyOTPMutation } from "@/features/user/userApi";
+import Swal from "sweetalert2";
 
 type Input = {
-  code: string
+  pin: string
 }
 
 const SubFormTwo: React.FC = () => {
@@ -17,10 +19,21 @@ const SubFormTwo: React.FC = () => {
   } = useForm<Input>({
     mode: "onChange"
   })
+  const [ verifyOTP ] = useVerifyOTPMutation();
 
-  const handleVerifyCode: SubmitHandler<Input> = (data) => {
-    console.log(data)
-    setActiveComponent(3)
+  const handleVerifyCode: SubmitHandler<Input> = async(data) => {
+    const result: any = await verifyOTP(data)
+    if(result?.data){
+      setActiveComponent(3)
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: result.error.data.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
   // State to store form data
   // const [formData, setFormData] = useState({
@@ -59,10 +72,10 @@ const SubFormTwo: React.FC = () => {
       <input
           className="flex w-full border border-gray-300 rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 text-secondary"
             type="number"
-            {...register("code", {required: true})}
+            {...register("pin", {required: true})}
             placeholder="Enter your code"
       />
-      {errors.code && <span className="text-red-500">Code is required</span>}
+      {errors.pin && <span className="text-red-500">Code is required</span>}
       {/* <Input
         type="text"
         name="code"

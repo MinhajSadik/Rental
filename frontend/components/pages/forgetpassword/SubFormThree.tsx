@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Input, Button } from "@/components";
-import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form"
-import { AppContext } from "@/context/ApplicationContext";
+import { useChangePasswordMutation } from "@/features/user/userApi";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router"
+
 
 type Input = {
   password: string
@@ -17,9 +19,40 @@ const SubFormThree: React.FC = () => {
     mode: "onChange"
   })
 
-  const handleChangePassword: SubmitHandler<Input> = (data) => {
-    console.log(data)
+  const [email, setEmail] = useState("")
+  const router = useRouter()
+
+  const [changePassword] = useChangePasswordMutation()
+  const handleChangePassword: SubmitHandler<Input> = async({password}) => {
+    const result: any = await changePassword({password, email})
+    if(result?.data){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: result.data.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      router.push("/login");
+      localStorage.removeItem("userEmail")
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: result.error.data.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
+
+  useEffect(() => {
+    const rawData = localStorage.getItem("userEmail")
+    if(rawData !== null){
+      const parsedEmail = JSON.parse(rawData);
+      setEmail(parsedEmail)
+    }
+  }, [])
   // State to store form data
   // const [formData, setFormData] = useState({
   //   code: "", // Corrected the field name to match the input name
