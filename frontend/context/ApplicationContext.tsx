@@ -3,10 +3,12 @@ import React, { createContext, useState } from 'react';
 
 type AppContextType = {
     setActiveComponent: (active: number) => void;
+    activeComponent: number
   };
 
 const defaultValue: AppContextType = {
-    setActiveComponent: (active: number) => {}
+    setActiveComponent: (active: number) => {},
+    activeComponent: 1
 }
 
 export const AppContext = createContext<AppContextType>(defaultValue)
