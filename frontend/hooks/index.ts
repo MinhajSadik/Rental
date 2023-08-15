@@ -1,3 +1,4 @@
 
 import useUploadImage  from './useUploadImage';
-export {useUploadImage}
+import useLogin from './useLogin';
+export {useUploadImage, useLogin}

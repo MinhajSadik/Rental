@@ -13,8 +13,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { openLogin, selectIsLoginOpen } from "@/features/loginToggleSlice";
 import { selectIsSignupOpen } from "@/features/signupToggleSlice";
 import { selectIsForgetPasswordOpen } from "@/features/forgetpasswordToggleSlice";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/router";
 
 const Header: React.FC = () => {
+  const {user} = useAppSelector((state) => state.user)
+  const router = useRouter();
   // ==== navtoggle state ====
   const [navToggle, setNavToggle] = useState<boolean>(false);
 
@@ -30,6 +34,11 @@ const Header: React.FC = () => {
       document.body.classList.remove("overflow-hidden");
     }
   }, [isLoginOpen, isSignupOpen, isForgetPasswordOpen]);
+
+  const handleLogout = () =>{
+    localStorage.removeItem("accessToken")
+    window.location.replace("/")
+  }
 
   return (
     <header>
@@ -65,18 +74,38 @@ const Header: React.FC = () => {
           ))}
         </ul>
         <div className="lg:flex hidden items-center gap-6 font-medium">
-          <button
-            className="text-secondary"
+          {
+            !user?.email && <button
+            className="text-secondary outline-none"
             onClick={() => dispatch(openLogin())}
           >
             Login
           </button>
-          <Link
+          }
+
+
+          {
+            user?.role === "owner" && <Link
             href="/add-property"
             className="bg-primary hover:bg-primaryHov transition duration-300 text-white px-6 py-2.5 rounded"
           >
             Add Property
           </Link>
+          }
+
+          {
+          user?.email && <button
+          onClick={handleLogout}
+            className="text-secondary outline-none"
+          >
+            Logout
+          </button>
+          }
+          {
+            user?.profile && <img className="w-12 h-12 rounded-full ring-2" src={user?.profile} alt="profile" />
+          }
+          
+          
         </div>
       </nav>
       {/* ==== Mobile View ==== */}

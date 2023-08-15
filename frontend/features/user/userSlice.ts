@@ -21,17 +21,17 @@ interface IUser {
 
 export const initialState: IUser = {
     user: {
-        name: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    role: "",
-    IDCard: {
-        front: "",
-        back: ""
-    },
-    isVerified: false,
-    profile: ""
+      name: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+      role: "",
+      IDCard: {
+          front: "",
+          back: ""
+      },
+      isVerified: false,
+      profile: ""
     },
     loading: false
 };
@@ -51,7 +51,7 @@ export const loggedInUser = createAsyncThunk<AxiosResponse<any, any>, void>(
   "auth/loggedInUser",
   async () => {
     const user = await axios.get(
-      "https://bookcatalogserver.vercel.app/api/v1/auth/loggedinUser",
+      "http://localhost:5000/api/v1/user/auth",
       {
         headers: {
           authorization: localStorage.getItem("accessToken"),
@@ -67,6 +67,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
+      console.log(action.payload)
       state.user = action.payload;
     },
   },

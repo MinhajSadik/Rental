@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { Input, Button } from "@/components";
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import {useForm, SubmitHandler} from "react-hook-form"
-import { loginUser } from "@/features/user/userSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import Swal from "sweetalert2";
+import { useLogin } from "@/hooks";
 
-type Inputs = {
+export type ILoginInputs = {
   emailOrPhone: string,
   password: string
 }
@@ -17,31 +14,13 @@ const Form: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<ILoginInputs>({
     mode: "onChange"
   })
 
-  const dispatch = useAppDispatch()
-
-  const handleLogin: SubmitHandler<Inputs> = async(data) => {
-    const result: any = await dispatch(loginUser(data))
-    if(result.payload.data.success){
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: result.payload.data.message,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }else{
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: result.payload.data.message,
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }
+  const loginUser = useLogin()
+  const handleLogin: SubmitHandler<ILoginInputs> = async(data) => {
+    loginUser(data)
   }
 
   // State to store form data

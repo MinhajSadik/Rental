@@ -1,5 +1,7 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { HeadTag } from "@/components/common";
+import { useAppDispatch } from "@/redux/hooks";
+import { loggedInUser, setCurrentUser } from "@/features/user/userSlice";
 import {
   Hero,
   FeatureAds,
@@ -11,6 +13,16 @@ import {
 import { RootLayout } from "@/components/layouts";
 
 export default function Home() {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const currentUser = async() => {
+      const user: any = await dispatch(loggedInUser())
+      if(user?.payload?.data?.success){
+        dispatch(setCurrentUser(user?.payload?.data?.data))
+      }
+    }
+    currentUser()
+  }, [dispatch])
 
   return (
     <>
