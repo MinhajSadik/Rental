@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm, SubmitHandler } from "react-hook-form"
 
-export type Inputs = {
+export type IRegisterInputs = {
   name: string,
   phoneNumber: string,
   email: string,
@@ -38,11 +38,11 @@ const Form: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<IRegisterInputs>({
     mode: "onChange"
   })
 
-  const handleRegister: SubmitHandler<Inputs> = (data) => {
+  const handleRegister: SubmitHandler<IRegisterInputs> = (data) => {
     if(data.password !== data.confirmPassword){
       return setIsPasswordMatched(false)
     }else{

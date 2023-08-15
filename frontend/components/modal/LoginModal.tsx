@@ -25,11 +25,11 @@ const LoginModal: React.FC = () => {
     closeLoginToggle()
   }
   // State to store form data
-  const [formData, setFormData] = useState({
-    emailOrPhone: "",
-    password: "",
-    rememberMe: false,
-  });
+  // const [formData, setFormData] = useState({
+  //   emailOrPhone: "",
+  //   password: "",
+  //   rememberMe: false,
+  // });
 
   // Function to handle form submission
   // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
