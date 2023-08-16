@@ -5,34 +5,37 @@ const createPropertyZodSchema = z.object({
         title: z.string({
           required_error: "Title is required"
         }),
+        price: z.string({
+          required_error: "Price is required"
+        }),
         description: z.string({
           required_error: "Description is required"
         }),
         location: z.string({
           required_error: "Location is required"
         }),
-        bedrooms: z.number({
+        bedrooms: z.string({
           required_error: "Bedrooms is required"
         }),
-        bathrooms: z.number({
+        bathrooms: z.string({
           required_error: "Bathrooms is required"
         }),
-        roomSize: z.number({
+        roomSize: z.string({
           required_error: "Room Size is required"
         }),
         additionals: z.object({
-        propertySize: z.number(),
-        attachedBath: z.boolean(),
-        balconies: z.number(),
-        generator: z.boolean(),
-        carParking: z.number(),
+        propertySize: z.string(),
+        attachedBath: z.string(),
+        balconies: z.string(),
+        generator: z.string(),
+        carParking: z.string(),
         floorNo: z.string(),
         floorType: z.string(),
-        wifiFacility: z.boolean(),
-        liftFacility: z.boolean(),
-        securityGuard: z.boolean(),
-        gasFacility: z.boolean(),
-        CCTVFacility: z.boolean(),
+        wifiFacility: z.string(),
+        liftFacility: z.string(),
+        securityGuard: z.string(),
+        gasFacility: z.string(),
+        CCTVFacility: z.string(),
         }).optional(),
         images: z.array(
             z.string()
@@ -48,27 +51,26 @@ const createPropertyZodSchema = z.object({
 
 const updatePropertyZodSchema = z.object({
     body: z.object({
-        title: z.string({
-          required_error: "Title is required"
-        }).optional(),
+        title: z.string().optional(),
+        price: z.string().optional(),
         description: z.string().optional(),
         location: z.string().optional(),
-        bedrooms: z.number().optional(),
-        bathrooms: z.number().optional(),
-        roomSize: z.number().optional(),
+        bedrooms: z.string().optional(),
+        bathrooms: z.string().optional(),
+        roomSize: z.string().optional(),
         additionals: z.object({
-        propertySize: z.number(),
-        attachedBath: z.boolean(),
-        balconies: z.number(),
-        generator: z.boolean(),
-        carParking: z.number(),
+        propertySize: z.string(),
+        attachedBath: z.string(),
+        balconies: z.string(),
+        generator: z.string(),
+        carParking: z.string(),
         floorNo: z.string(),
         floorType: z.string(),
-        wifiFacility: z.boolean(),
-        liftFacility: z.boolean(),
-        securityGuard: z.boolean(),
-        gasFacility: z.boolean(),
-        CCTVFacility: z.boolean(),
+        wifiFacility: z.string(),
+        liftFacility: z.string(),
+        securityGuard: z.string(),
+        gasFacility: z.string(),
+        CCTVFacility: z.string(),
         }).optional(),
         images: z.array(
             z.string()

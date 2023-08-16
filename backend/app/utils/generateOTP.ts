@@ -22,7 +22,6 @@ async function generateOTP (req: Request, res: Response, next: NextFunction) {
         const pinCode = String(randomNumber).padStart(6, '0');
         const pinCodeObject: IPin = {
             pin: pinCode,
-            expireAt: req.body.expireAt,
             userEmail: req.body.email
         }
     // save the pin code in Database

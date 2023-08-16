@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sendResponse_1 = require("./sendResponse");
 const http_status_1 = __importDefault(require("http-status"));
-function uploadSingle(req, res, next) {
+function uploadSingleImage(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!req.file) {
             return res.status(400).send('No file uploaded.');
@@ -28,4 +28,4 @@ function uploadSingle(req, res, next) {
         });
     });
 }
-exports.default = uploadSingle;
+exports.default = uploadSingleImage;

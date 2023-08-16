@@ -3,8 +3,8 @@ import userController from "../controllers/user.controller";
 import requestValidator from "../middlewares/requestValidator";
 import { UserValidation } from "../validators/user.validator";
 import generateOTP from "../utils/generateOTP";
-import uploadImage from "../utils/uploadImage";
 import { upload } from "../configs/cloudinary.config";
+import uploadSingleImage from "../utils/uploadSingleImage";
 
 const userRouter: Router = Router();
 
@@ -26,5 +26,5 @@ userRouter.post("/verify-otp", userController.verifyOTP);
 
 userRouter.put("/change-password", userController.changePassword);
 
-userRouter.post("/uploadId", upload.uploadImages.array('images'), uploadImage)
+userRouter.post("/uploadId", upload.singleImage.single("image"), uploadSingleImage)
 export default userRouter;

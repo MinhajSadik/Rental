@@ -7,34 +7,37 @@ const createPropertyZodSchema = zod_1.z.object({
         title: zod_1.z.string({
             required_error: "Title is required"
         }),
+        price: zod_1.z.string({
+            required_error: "Price is required"
+        }),
         description: zod_1.z.string({
             required_error: "Description is required"
         }),
         location: zod_1.z.string({
             required_error: "Location is required"
         }),
-        bedrooms: zod_1.z.number({
+        bedrooms: zod_1.z.string({
             required_error: "Bedrooms is required"
         }),
-        bathrooms: zod_1.z.number({
+        bathrooms: zod_1.z.string({
             required_error: "Bathrooms is required"
         }),
-        roomSize: zod_1.z.number({
+        roomSize: zod_1.z.string({
             required_error: "Room Size is required"
         }),
         additionals: zod_1.z.object({
-            propertySize: zod_1.z.number(),
-            attachedBath: zod_1.z.boolean(),
-            balconies: zod_1.z.number(),
-            generator: zod_1.z.boolean(),
-            carParking: zod_1.z.number(),
+            propertySize: zod_1.z.string(),
+            attachedBath: zod_1.z.string(),
+            balconies: zod_1.z.string(),
+            generator: zod_1.z.string(),
+            carParking: zod_1.z.string(),
             floorNo: zod_1.z.string(),
             floorType: zod_1.z.string(),
-            wifiFacility: zod_1.z.boolean(),
-            liftFacility: zod_1.z.boolean(),
-            securityGuard: zod_1.z.boolean(),
-            gasFacility: zod_1.z.boolean(),
-            CCTVFacility: zod_1.z.boolean(),
+            wifiFacility: zod_1.z.string(),
+            liftFacility: zod_1.z.string(),
+            securityGuard: zod_1.z.string(),
+            gasFacility: zod_1.z.string(),
+            CCTVFacility: zod_1.z.string(),
         }).optional(),
         images: zod_1.z.array(zod_1.z.string()),
         video: zod_1.z.string({
@@ -47,27 +50,26 @@ const createPropertyZodSchema = zod_1.z.object({
 });
 const updatePropertyZodSchema = zod_1.z.object({
     body: zod_1.z.object({
-        title: zod_1.z.string({
-            required_error: "Title is required"
-        }).optional(),
+        title: zod_1.z.string().optional(),
+        price: zod_1.z.string().optional(),
         description: zod_1.z.string().optional(),
         location: zod_1.z.string().optional(),
-        bedrooms: zod_1.z.number().optional(),
-        bathrooms: zod_1.z.number().optional(),
-        roomSize: zod_1.z.number().optional(),
+        bedrooms: zod_1.z.string().optional(),
+        bathrooms: zod_1.z.string().optional(),
+        roomSize: zod_1.z.string().optional(),
         additionals: zod_1.z.object({
-            propertySize: zod_1.z.number(),
-            attachedBath: zod_1.z.boolean(),
-            balconies: zod_1.z.number(),
-            generator: zod_1.z.boolean(),
-            carParking: zod_1.z.number(),
+            propertySize: zod_1.z.string(),
+            attachedBath: zod_1.z.string(),
+            balconies: zod_1.z.string(),
+            generator: zod_1.z.string(),
+            carParking: zod_1.z.string(),
             floorNo: zod_1.z.string(),
             floorType: zod_1.z.string(),
-            wifiFacility: zod_1.z.boolean(),
-            liftFacility: zod_1.z.boolean(),
-            securityGuard: zod_1.z.boolean(),
-            gasFacility: zod_1.z.boolean(),
-            CCTVFacility: zod_1.z.boolean(),
+            wifiFacility: zod_1.z.string(),
+            liftFacility: zod_1.z.string(),
+            securityGuard: zod_1.z.string(),
+            gasFacility: zod_1.z.string(),
+            CCTVFacility: zod_1.z.string(),
         }).optional(),
         images: zod_1.z.array(zod_1.z.string()).optional(),
         video: zod_1.z.string().optional(),

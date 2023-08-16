@@ -2,24 +2,25 @@ import { Model, Types } from "mongoose"
 
 export type IProperty = {
     title: string,
+    price: string,
     description: string,
     location: string,
-    bedrooms: number,
-    bathrooms: number,
-    roomSize:  number,
+    bedrooms: string,
+    bathrooms: string,
+    roomSize:  string,
     additionals: {
-        propertySize: number
-        attachedBath:  boolean,
-        balconies:  number,
-        generator: boolean,
-        carParking: number,
+        propertySize: string
+        attachedBath:  string,
+        balconies:  string,
+        generator: string,
+        carParking: string,
         floorNo: string,
         floorType: string,
-        wifiFacility: boolean
-        liftFacility: boolean,
-        securityGuard: boolean,
-        gasFacility: boolean,
-        CCTVFacility: boolean
+        wifiFacility: string
+        liftFacility: string,
+        securityGuard: string,
+        gasFacility: string,
+        CCTVFacility: string
     },
     images: string[],
     video: string,

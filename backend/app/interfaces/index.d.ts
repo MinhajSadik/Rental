@@ -11,14 +11,14 @@ interface UploadedFile {
   path: string;
 }
 
-declare module 'express' {
-  interface Request {
-    file: UploadedFile;
-  }
-}
+// declare module 'express' {
+//   interface Request {
+//     file: UploadedFile;
+//   }
+// }
 
-declare module 'express' {
-  interface Request {
-    files: UploadedFile[];
-  }
-}
+// declare module 'express' {
+//   interface Request {
+//     files: UploadedFile[];
+//   }
+// }

@@ -1,13 +1,16 @@
 import { Router } from "express";
 import PropertyController from "../controllers/property.controller";
 import { upload } from "../configs/cloudinary.config";
-import uploadImage from "../utils/uploadImage";
+import uploadImage from "../utils/uploadMultipleImage";
 import uploadVideo from "../utils/uploadVideo";
 import requestValidator from "../middlewares/requestValidator";
 import { PropertyValidation } from "../validators/property.validator";
 
 
 const propertyRouter = Router();
+
+propertyRouter.get("/", PropertyController.getProperties)
+
 
 propertyRouter.get("/:id", PropertyController.getProperty)
 
@@ -17,10 +20,9 @@ propertyRouter.patch("/update-property/:id", requestValidator.validateRequest(Pr
 
 propertyRouter.post("/add-property", requestValidator.validateRequest(PropertyValidation.createPropertyZodSchema), PropertyController.addProperty)
 
-propertyRouter.get("/", PropertyController.getProperties)
 
 propertyRouter.post("/upload-video", upload.uploadVideo.single('video'), uploadVideo)
 
-propertyRouter.post("/upload-image", upload.uploadImages.array('images'), uploadImage)
+propertyRouter.post("/upload-image", upload.multipleImage.array('images'), uploadImage)
 
 export default propertyRouter

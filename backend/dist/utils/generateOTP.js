@@ -33,7 +33,6 @@ function generateOTP(req, res, next) {
             const pinCode = String(randomNumber).padStart(6, '0');
             const pinCodeObject = {
                 pin: pinCode,
-                expireAt: req.body.expireAt,
                 userEmail: req.body.email
             };
             // save the pin code in Database

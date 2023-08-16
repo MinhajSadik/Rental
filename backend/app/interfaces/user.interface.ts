@@ -10,7 +10,8 @@ export type IUser = {
         front: string,
         back: string
     },
-    isVerified: boolean
+    isVerified: boolean,
+    profile: string
 }
 
 export type IUserModel = Model<IUser, Record<string, unknown>>
