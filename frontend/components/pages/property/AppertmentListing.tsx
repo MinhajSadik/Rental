@@ -5,6 +5,7 @@ import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import { useRouter } from "next/router";
 import { PropertyCard } from "@/components";
 import { CallCard, EmailCard } from "@/components/pages/property";
+import { useGetPropertiesQuery } from "@/features/property/propertyApi";
 
 const appertmentTenants: Array<string> = [
   "All",
@@ -29,6 +30,8 @@ const AppertmentListing: React.FC = () => {
     useState<boolean>(false);
 
   const router = useRouter();
+  const {data, isLoading} = useGetPropertiesQuery([])
+  console.log(data?.data)
 
   const [callToggle, setCallToggle] = useState<boolean>(false);
   const [emailToggle, setEmailToggle] = useState<boolean>(false);
@@ -108,11 +111,11 @@ const AppertmentListing: React.FC = () => {
         </div>
         <div className="grid grid-cols-3 items-center gap-6">
           {/* ==== appertment card ==== */}
-          {appertmentCardData.map((card) => (
+          {data?.data && data?.data?.map((card) => (
             // ==== card ====
             <PropertyCard
               item={card}
-              key={card.id}
+              key={card._id}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 if (
                   e.target instanceof HTMLButtonElement ||
@@ -120,7 +123,7 @@ const AppertmentListing: React.FC = () => {
                 ) {
                   return;
                 }
-                router.push(`/property/${card.id}`);
+                router.push(`/property/${card._id}`);
               }}
               callClick={() => setCallToggle(true)}
               emailClick={() => setEmailToggle(true)}

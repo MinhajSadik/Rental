@@ -35,7 +35,6 @@ const SubFormOne: React.FC = () => {
         timer: 1500
       })
     }
-
   }
   // State to store form data
   // const [formData, setFormData] = useState({

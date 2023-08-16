@@ -29,7 +29,7 @@ const SubFormThree: React.FC = () => {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: result.data.message,
+        title: result?.data?.message,
         showConfirmButton: false,
         timer: 1500
       })
@@ -39,7 +39,7 @@ const SubFormThree: React.FC = () => {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: result.error.data.message,
+        title: result?.error?.data?.message,
         showConfirmButton: false,
         timer: 1500
       })

@@ -1,44 +1,101 @@
+/* eslint-disable @next/next/no-img-element */
+import { useAddPropertyMutation, useUploadImagesMutation, useUploadVideoMutation } from "@/features/property/propertyApi";
+import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CgImage } from "react-icons/cg";
 import { TbVideo } from "react-icons/tb";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router"
 
 export type IProperty = {
   title: string;
+  price: string;
   description: string;
   location: string;
-  bedrooms: number;
-  bathrooms: number;
-  roomSize: number;
+  bedrooms: string;
+  bathrooms: string;
+  roomSize: string;
   additionals: {
-    propertySize: number;
-    attachedBath: boolean;
-    balconies: number;
-    generator: boolean;
-    carParking: number;
+    propertySize: string;
+    attachedBath: string;
+    balconies: string;
+    generator: string;
+    carParking: string;
     floorNo: string;
     floorType: string;
-    wifiFacility: boolean;
-    liftFacility: boolean;
-    securityGuard: boolean;
-    gasFacility: boolean;
-    CCTVFacility: boolean;
+    wifiFacility: string;
+    liftFacility: string;
+    securityGuard: string;
+    gasFacility: string;
+    CCTVFacility: string;
   };
   images: string[];
   video: string;
+  owner: string
 };
 
 const FormSection: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IProperty>({
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState: { errors }} = useForm<IProperty>({mode: "onChange"});
+  const [images, setImages] = useState([])
+  const [video, setVideo] = useState("")
+  const router = useRouter()
 
-  const handleAddProperty: SubmitHandler<IProperty> = (data) => {
-    console.log(data);
+  const [addProperty] = useAddPropertyMutation()
+  const handleAddProperty: SubmitHandler<IProperty> = async(data) => {
+    data.images = images
+    data.video = video
+    data.owner = "64db372c411d328adec6f1e7"
+    const result: any = await addProperty(data)
+    if(result?.data?.success){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: result?.data?.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      router.push("/property");
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: result?.error?.data?.message,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   };
+
+  // uploading property images
+  const [uploadImage] = useUploadImagesMutation()
+  const handleUploadImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files: FileList | null = event.target.files;
+    if (files === null || files.length === 0) {
+      alert('Please select one or more files to upload.');
+      return;
+    }
+    const formData = new FormData();
+    Array.from(files).forEach((file: File) => {
+      formData.append(`images`, file);
+    });
+    const result: any = await uploadImage(formData);
+    setImages(result?.data?.data);
+  };
+
+  const [uploadVideo] = useUploadVideoMutation()
+  const handleUploadVideo = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file: File | undefined = event.target.files[0];
+    if (!file) {
+      alert('Please select a file to upload.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('video', file);
+    const result: any = await uploadVideo(formData)
+    setVideo(result?.data?.data)
+  };
+  
+  
 
   return (
     <section className="bg-transparent">
@@ -56,7 +113,7 @@ const FormSection: React.FC = () => {
                 <div className="flex flex-col gap-2">
                   <input
                     type="text"
-                    placeholder="property-title"
+                    placeholder="Property Title"
                     {...register("title", { required: true })}
                     className={`border rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 ${
                       errors.title ? "border-red-500" : "border-gray-400"
@@ -64,6 +121,19 @@ const FormSection: React.FC = () => {
                   />
                   {errors.title && (
                     <span className="text-red-500">Title is required</span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-2">
+                  <input
+                    type="text"
+                    placeholder="Property Price"
+                    {...register("price", { required: true })}
+                    className={`border rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 ${
+                      errors.price ? "border-red-500" : "border-gray-400"
+                    }`}
+                  />
+                  {errors.price && (
+                    <span className="text-red-500">Price is required</span>
                   )}
                 </div>
                 <div className="flex flex-col gap-2">
@@ -106,7 +176,7 @@ const FormSection: React.FC = () => {
                     placeholder="description"
                     {...register("description", { required: true })}
                     className="border border-gray-400 rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 text-secondary"
-                    rows={6}
+                    rows={9}
                   ></textarea>
                   {errors.description && (
                     <span className="text-red-500">
@@ -269,37 +339,51 @@ const FormSection: React.FC = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6">
-            <div className="space-y-6">
-              <h4 className="text-secondary text-3xl">Upload Photo</h4>
-              <label className="flex flex-col items-center justify-center w-full h-[164px] border-2 border-gray-300 border-dashed rounded-[10px] gap-2 cursor-pointer">
-                <input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  className="hidden w-full"
-                  {...register("images")}
-                />
-                <CgImage size={40} className="text-gray-500" />
-                <p className="text-sm text-gray-500">
-                  Drop files here to upload
-                </p>
-              </label>
-            </div>
-            <div className="space-y-6">
-              <h4 className="text-secondary text-3xl">Upload Video</h4>
-              <label className="flex flex-col items-center justify-center w-full h-[164px] border-2 border-gray-300 border-dashed rounded-[10px] gap-2 cursor-pointer">
-                <input
-                  type="file"
-                  accept="video/*"
-                  className="hidden w-full"
-                  {...register("video")}
-                />
-                <TbVideo size={45} className="text-gray-500" />
-                <p className="text-sm text-gray-500">
-                  Drop files here to upload
-                </p>
-              </label>
-            </div>
+              {
+                images?.length === 0 ?  <div className="space-y-6">
+                    <h4 className="text-secondary text-3xl">Upload Photo</h4>
+                    <label className="flex flex-col items-center justify-center w-full h-[164px] border-2 border-gray-300 border-dashed rounded-[10px] gap-2 cursor-pointer">
+                      <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleUploadImages}
+                        className="hidden w-full"
+                        // {...register("images")}
+                      />
+                      <CgImage size={40} className="text-gray-500" />
+                      <p className="text-sm text-gray-500">
+                        Drop files here to upload
+                      </p>
+                    </label>
+                  </div> : <div className="space-y-6 grid border-2 border-gray-300 border-dashed rounded-[10px] p-5 grid-cols-3 items-center gap-4">
+                    {
+                      images?.map((img) => <img key={Math.random()} className="h-20" src={img} alt="property" />)
+                    }
+                  </div>
+              }
+              {
+                !video ? <div className="space-y-6">
+                  <h4 className="text-secondary text-3xl">Upload Video</h4>
+                  <label className="flex flex-col items-center justify-center w-full h-[164px] border-2 border-gray-300 border-dashed rounded-[10px] gap-2 cursor-pointer">
+                    <input
+                      type="file"
+                      accept="video/*"
+                      className="hidden w-full"
+                      onChange={handleUploadVideo}
+                      // {...register("video")}
+                    />
+                    <TbVideo size={45} className="text-gray-500" />
+                    <p className="text-sm text-gray-500">
+                      Drop files here to upload
+                    </p>
+                  </label>
+                </div> :
+                 <div className="space-y-6">
+                    <video className="border-2 border-gray-300 border-dashed rounded-[10px] p-4 outline-none" src={video} controls>
+                  </video>
+                </div>
+            }
           </div>
           <div className="flex justify-start">
             <button
