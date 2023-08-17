@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
+import Cookies from 'js-cookie';
+
 
 interface IUser {
     user: {
@@ -54,7 +56,7 @@ export const loggedInUser = createAsyncThunk<AxiosResponse<any, any>, void>(
       "http://localhost:5000/api/v1/user/auth",
       {
         headers: {
-          authorization: localStorage.getItem("accessToken"),
+          authorization: Cookies.get("accessToken"),
         },
       }
     );
@@ -77,7 +79,8 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action: any) => {
       const data = action?.payload?.data?.data;
-      JSON.stringify(localStorage.setItem("accessToken", data?.accessToken));
+      Cookies.set("accessToken", data?.accessToken)
+      // JSON.stringify(localStorage.setItem("accessToken", data?.accessToken));
       state.user = data?.user;
       state.loading = false;
     });
