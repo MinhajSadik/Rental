@@ -5,8 +5,13 @@ import {
   ApartmentImage,
   Video,
 } from "@/components/pages/property/individual-property";
+import { useRouter } from "next/router";
+import { useGetPropertyQuery } from "@/features/property/propertyApi";
 
 const Gallery: React.FC = () => {
+  const router = useRouter();
+  const {data} = useGetPropertyQuery(router.query.property);
+  const property = data?.data
   // ==== Apartment Image ====
   const [image, setImage] = useState<string>("");
   const [apartmentImageToggle, setApartmentImageToggle] =
@@ -53,7 +58,19 @@ const Gallery: React.FC = () => {
         />
       </div>
       <div className="grid grid-cols-2 gap-6 items-center">
-        <Image
+        {
+          property?.images.map((img) => <Image
+          src={img}
+          alt="property image"
+          width={650}
+          height={412}
+          className="rounded-[5px] w-full h-full cursor-pointer"
+          onClick={() =>
+            handleApartmentImageToggle(img, true)
+          }
+        /> )
+        }
+        {/* <Image
           src="/images/property-picture1.png"
           alt="property thumbnail"
           width={650}
@@ -62,8 +79,8 @@ const Gallery: React.FC = () => {
           onClick={() =>
             handleApartmentImageToggle("/images/property-picture1.png", true)
           }
-        />
-        <Image
+        /> */}
+        {/* <Image
           src="/images/property-picture2.png"
           alt="property thumbnail"
           width={650}
@@ -72,8 +89,8 @@ const Gallery: React.FC = () => {
           onClick={() =>
             handleApartmentImageToggle("/images/property-picture2.png", true)
           }
-        />
-        <Image
+        /> */}
+        {/* <Image
           src="/images/property-picture3.png"
           alt="property thumbnail"
           width={650}
@@ -82,8 +99,8 @@ const Gallery: React.FC = () => {
           onClick={() =>
             handleApartmentImageToggle("/images/property-picture3.png", true)
           }
-        />
-        <Image
+        /> */}
+        {/* <Image
           src="/images/property-picture4.png"
           alt="property thumbnail"
           width={650}
@@ -92,7 +109,7 @@ const Gallery: React.FC = () => {
           onClick={() =>
             handleApartmentImageToggle("/images/property-picture4.png", true)
           }
-        />
+        /> */}
       </div>
       {apartmentImageToggle && (
         <ApartmentImage
@@ -102,7 +119,7 @@ const Gallery: React.FC = () => {
       )}
 
       {apartmentVideoToggle && (
-        <Video setApartmentVideoToggle={setApartmentVideoToggle} />
+        <Video video={property?.video} setApartmentVideoToggle={setApartmentVideoToggle} />
       )}
     </div>
   );

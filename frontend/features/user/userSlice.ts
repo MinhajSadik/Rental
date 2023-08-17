@@ -79,7 +79,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (state, action: any) => {
       const data = action?.payload?.data?.data;
-      Cookies.set("accessToken", data?.accessToken)
+      Cookies.set("accessToken", data?.accessToken, { expires: 365 })
       // JSON.stringify(localStorage.setItem("accessToken", data?.accessToken));
       state.user = data?.user;
       state.loading = false;

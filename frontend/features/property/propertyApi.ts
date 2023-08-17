@@ -30,8 +30,13 @@ const propertyApi = apiSlice.injectEndpoints({
       query: () => ({
         url: "/property",
       })
+    }),
+    getProperty: builder.query({
+      query: (id) => ({
+        url: `/property/${id}`,
+      })
     })
   }),
 });
 
-export const { useUploadImagesMutation, useUploadVideoMutation, useAddPropertyMutation, useGetPropertiesQuery } = propertyApi;
+export const { useUploadImagesMutation, useUploadVideoMutation, useAddPropertyMutation, useGetPropertiesQuery, useGetPropertyQuery } = propertyApi;

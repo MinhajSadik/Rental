@@ -102,9 +102,9 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
             key={Math.random()}
               src={img}
               alt="Image"
-              width={400}
+              // width={400}
               height={400}
-              className="w-full rounded-t-[10px] max-w-[400px] max-h-[400px] w-auto"
+              className="w-full rounded-t-[10px] max-h-[400px]"
             />
           ))}
         </Slider>

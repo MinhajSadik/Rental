@@ -16,6 +16,7 @@ import { selectIsSignupOpen } from "@/features/signupToggleSlice";
 import { selectIsForgetPasswordOpen } from "@/features/forgetpasswordToggleSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 const Header: React.FC = () => {
   const {user} = useAppSelector((state) => state.user)
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
   }, [isLoginOpen, isSignupOpen, isForgetPasswordOpen]);
 
   const handleLogout = () =>{
-    localStorage.removeItem("accessToken")
+    Cookies.remove('accessToken')
     window.location.replace("/")
   }
 
