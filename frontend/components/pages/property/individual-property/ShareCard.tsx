@@ -98,8 +98,8 @@ const ShareCard: React.FC<ShareCardProps> = ({ setShareToggle }) => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-          {ShareLink.map((item, i) => (
-            <div>
+          {ShareLink.map((item) => (
+            <div key={Math.random()}>
                 <button className="flex items-center gap-2 text-[15px] text-gray-600 px-2 py-1.5 rounded-md hover:bg-gray-100 hover:text-secondary transition duration-300">
                 {item.icon}
                 {item.title}

@@ -3,7 +3,7 @@ import { NavLinkType } from "@/types/navLinkTypes";
 const navLinks: Array<NavLinkType> = [
   {
     name: "Property Listing",
-    path: "/property-listing"
+    path: "/property"
   },
   {
     name: "Solutions",

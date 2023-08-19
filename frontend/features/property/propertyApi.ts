@@ -35,8 +35,20 @@ const propertyApi = apiSlice.injectEndpoints({
       query: (id) => ({
         url: `/property/${id}`,
       })
+    }),
+    deleteProperty: builder.mutation({
+      query: (id) => ({
+        method: "DELETE" ,
+        url: `/property/${id}`,
+      })
+    }),
+    updateProperty: builder.mutation({
+      query: (id) => ({
+        method: "PATCH" ,
+        url: `/property/update-property/${id}`,
+      })
     })
   }),
 });
 
-export const { useUploadImagesMutation, useUploadVideoMutation, useAddPropertyMutation, useGetPropertiesQuery, useGetPropertyQuery } = propertyApi;
+export const { useUploadImagesMutation, useUploadVideoMutation, useAddPropertyMutation, useGetPropertiesQuery, useGetPropertyQuery, useDeletePropertyMutation, useUpdatePropertyMutation  } = propertyApi;

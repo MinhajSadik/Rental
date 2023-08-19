@@ -13,7 +13,7 @@ export default function ErrorPage() {
     }, 5000);
 
     return () => clearTimeout(redirectTimeOut);
-  }, []);
+  }, [router]);
 
   return (
     <>

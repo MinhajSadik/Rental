@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { BsLaptop } from "react-icons/bs";
 
@@ -7,10 +8,10 @@ const Help: React.FC = () => {
       <div className="max-w-[1400px] mx-auto lg:px-8 md:px-6 px-4 lg:pt-8 lg:pb-[100px] pt-6 pb-20 space-y-8">
         <div className="space-y-2">
           <h2 className="text-center text-[42px] text-secondary font-semibold">
-            We're Here to <span className="text-primary">Help!</span>
+            We are Here to <span className="text-primary">Help!</span>
           </h2>
           <p className="text-center text-lg text-[#575959]">
-            Personalized Support When You Need It. We're Here to Help <br /> You
+            Personalized Support When You Need It. We are Here to Help <br /> You
             Every Step of the Way
           </p>
         </div>

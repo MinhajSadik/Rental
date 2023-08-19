@@ -37,7 +37,7 @@ const Gallery: React.FC = () => {
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [apartmentImageToggle, apartmentImageToggle]);
+  }, [apartmentImageToggle, apartmentVideoToggle]);
 
   return (
     <div className="grid grid-cols-2 gap-6 mt-8">
@@ -59,8 +59,9 @@ const Gallery: React.FC = () => {
       </div>
       <div className="grid grid-cols-2 gap-6 items-center">
         {
-          property?.images.map((img) => <Image
+          property?.images.map((img: string) => <Image
           src={img}
+          key={Math.random()}
           alt="property image"
           width={650}
           height={412}

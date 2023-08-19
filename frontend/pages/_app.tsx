@@ -4,7 +4,7 @@ import { store } from "@/redux/store";
 import { Provider } from "react-redux";
 import "../styles/slider.css";
 import "../styles/modalanimation.css";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import ApplicationContext from "@/context/ApplicationContext";
 
@@ -18,7 +18,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout || ((page) => page);
 
 
   return (

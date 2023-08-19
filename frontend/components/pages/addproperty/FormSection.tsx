@@ -71,8 +71,23 @@ const FormSection: React.FC = () => {
   const handleUploadImages = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files: FileList | null = event.target.files;
     if (files === null || files.length === 0) {
-      alert('Please select one or more files to upload.');
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Please select one or more files to upload.',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return;
+    }
+    if(files.length > 4){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'You cannot select more than 4 images',
+        showConfirmButton: true,
+      })
+      return
     }
     const formData = new FormData();
     Array.from(files).forEach((file: File) => {
@@ -84,13 +99,13 @@ const FormSection: React.FC = () => {
 
   const [uploadVideo] = useUploadVideoMutation()
   const handleUploadVideo = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file: File | undefined = event.target.files[0];
+    const file: FileList | null = event.target.files
     if (!file) {
       alert('Please select a file to upload.');
       return;
     }
     const formData = new FormData();
-    formData.append('video', file);
+    formData.append('video', file[0]);
     const result: any = await uploadVideo(formData)
     setVideo(result?.data?.data)
   };

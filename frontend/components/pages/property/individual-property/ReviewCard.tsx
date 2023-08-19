@@ -29,14 +29,14 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ setReviewToggle }) => {
         </div>
         <div className="border border-[#000000]/20 rounded-[5px] px-5 py-4 space-y-2">
           <p className="text-[15px] text-secondary">
-            "Lorem ipsum dolor sit amet consectetur. Aliquam facilisis nulla
+            Lorem ipsum dolor sit amet consectetur. Aliquam facilisis nulla
             ipsum non dui. Feugiat quis morbi non fermentum cras tristique nec
             bibendum enim. Scelerisque semper at commodo sed est porttitor nec
-            gravida. Nisl eget aliquam malesuada velit amet ut feugiat."
+            gravida. Nisl eget aliquam malesuada velit amet ut feugiat.
           </p>
           <div className="flex items-center gap-1 text-[#DABB18]">
-            {[...Array(5)].map((_, i) => (
-              <AiFillStar size={14} />
+            {[...Array(5)].map(() => (
+              <AiFillStar size={14} key={Math.random()} />
             ))}
           </div>
           <div className="flex items-center gap-2">

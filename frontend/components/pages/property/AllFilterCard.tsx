@@ -38,7 +38,7 @@ const AllFilterCard: React.FC<AllFilterCardProps> = ({ setAllFilterToggle }) => 
     "May",
     "June",
     "July",
-    "Augest",
+    "August",
     "September",
     "October",
     "November",

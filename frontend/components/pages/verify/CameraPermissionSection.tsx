@@ -41,7 +41,7 @@ const CameraPermission = () => {
             className="text-medium text-secondary px-4 py-2 hover:bg-gray-100 hover:rounded-lg transition duration-300"
             onClick={handleRemoveCard}
           >
-            Don't allow
+            Do not allowed
           </button>
         </div>
       </div>

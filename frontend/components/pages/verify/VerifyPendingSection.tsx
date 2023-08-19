@@ -51,10 +51,10 @@ const VerifyPending: React.FC = () => {
 
   return (
     <VerifyResult
-      // status={{
-      //   text: "Pending",
-      //   color: "text-red-500"
-      // }}
+      status={{
+        text: "Pending",
+        color: "text-red-500"
+      }}
       title="Checking Your ID Verification"
       subTitle="Thank you for submit your ID and image. We will notify you within 12 hours by mail or
       phone number"

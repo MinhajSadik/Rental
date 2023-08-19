@@ -18,11 +18,11 @@ interface contextPropsType {
 }
 
 const ApplicationContext: React.FC<contextPropsType> = ({children}) => {
-    const [activeComponent, setActiveComponent] = useState<React.SetStateAction<number>>(1)
+    const [activeComponent, setActiveComponent] = useState(1)
 
-    const contextValues = {
-        activeComponent,
-        setActiveComponent
+    const contextValues: AppContextType  = {
+        setActiveComponent,
+        activeComponent
     }
 
     return (

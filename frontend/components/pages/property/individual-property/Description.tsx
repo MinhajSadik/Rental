@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Form } from "@/components/pages/property/individual-property";
 import { useRouter } from "next/router";

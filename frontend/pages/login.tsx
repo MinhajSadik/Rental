@@ -1,9 +1,10 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { HeadTag } from "@/components/common";
 import { LoginFormSection } from "@/components/pages/login";
 import { RootLayout } from "@/components/layouts";
 
 export default function Login() {
+  
   return (
     <>
       {/* ==== HeadTag ==== */}

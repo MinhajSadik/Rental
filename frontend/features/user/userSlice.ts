@@ -42,7 +42,7 @@ export const loginUser = createAsyncThunk(
   "auth/userLogin",
   async (userData: { emailOrPhone: string; password: string }) => {
     const result = await axios.post(
-      "http://localhost:5000/api/v1/user/login",
+      "https://rental-backend-kappa.vercel.app/api/v1/user/login",
       userData
     );
     return result;
@@ -53,7 +53,7 @@ export const loggedInUser = createAsyncThunk<AxiosResponse<any, any>, void>(
   "auth/loggedInUser",
   async () => {
     const user = await axios.get(
-      "http://localhost:5000/api/v1/user/auth",
+      "https://rental-backend-kappa.vercel.app/api/v1/user/auth",
       {
         headers: {
           authorization: Cookies.get("accessToken"),
@@ -69,7 +69,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
-      console.log(action.payload)
       state.user = action.payload;
     },
   },

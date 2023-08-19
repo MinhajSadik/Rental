@@ -1,10 +1,10 @@
 import React from "react";
 
 interface VerifyResultProps {
-  // status: {
-  //   text: string;
-  //   color: string;
-  // };
+  status: {
+    text: string;
+    color: string;
+  };
   title: string;
   subTitle: string;
   btn: {
@@ -14,6 +14,7 @@ interface VerifyResultProps {
 }
 
 const VerifyResult: React.FC<VerifyResultProps> = ({
+  status,
   title,
   subTitle,
   btn,
