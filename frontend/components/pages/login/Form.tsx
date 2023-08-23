@@ -1,63 +1,81 @@
-import React, { useState } from "react";
-import { Input, Button } from "@/components";
+import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import {useForm, SubmitHandler} from "react-hook-form"
+import { useLogin } from "@/hooks";
+
+export type ILoginInputs = {
+  emailOrPhone: string,
+  password: string
+}
 
 const Form: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginInputs>({
+    mode: "onChange"
+  })
+
+  const loginUser = useLogin()
+  const handleLogin: SubmitHandler<ILoginInputs> = async(data) => {
+    loginUser(data)
+  }
 
   // State to store form data
-  const [formData, setFormData] = useState({
-    emailOrPhone: "",
-    password: "",
-    rememberMe: false,
-  });
+  // const [formData, setFormData] = useState({
+  //   emailOrPhone: "",
+  //   password: "",
+  //   rememberMe: false,
+  // });
 
   // Function to handle form submission
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Here, you can process the form data as per your requirements.
-    console.log(formData);
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   // Here, you can process the form data as per your requirements.
+  //   console.log(formData);
+  // };
 
   // Function to handle form field changes
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value, type, checked } = event.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // };
 
   return (
     <div className="space-y-8 mx-auto">
       <h2 className="text-secondary text-[24px] text-center font-semibold">
         Your Trusted Rental Partner
       </h2>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleLogin)}>
         <label htmlFor="emailOrPhone" className="text-lg text-secondary">
           Enter Your mobile Number Or Email
         </label>
-        <Input
+        <input
+        className="flex w-full border border-gray-300 rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 text-secondary"
+        {...register("emailOrPhone", { required: true })}
           type="text"
-          name="emailOrPhone"
-          value={formData.emailOrPhone}
-          onChange={handleChange}
           placeholder="Email Or Phone Number"
         />
-        <Input
+        {errors.emailOrPhone && <span className="text-red-500">Email or Phone is required</span>}
+        <input
+        className="flex w-full border border-gray-300 rounded px-4 py-2.5 focus:outline-none focus:border-2 focus:border-primary transition duration-300 text-secondary"
           type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
+          {...register("password", { required: true })}
           placeholder="Password"
         />
+        {errors.password && <span className="text-red-500">Password is required</span>}
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <input
               type="checkbox"
               name="rememberMe"
-              checked={formData.rememberMe}
-              onChange={handleChange}
+              // checked={formData.rememberMe}
+              // onChange={handleChange}
               className="form-checkbox h-5 w-5 border text-primary"
             />
             <span className="text-sm text-gray-400">Remember Me</span>
@@ -67,9 +85,9 @@ const Form: React.FC = () => {
           </Link>
         </div>
         <div className="flex justify-center items-center mt-2">
-          <Button>
+          <button className="bg-primary text-white font-medium text-lg px-4 py-2.5 rounded w-full hover:bg-primaryHov transition duration-300" type="submit">
             Log In
-          </Button>
+          </button>
         </div>
         <div className="flex items-center gap-4 justify-between mt-2">
           <div className="max-w-[140px] w-full border-b border-gray-200"></div>

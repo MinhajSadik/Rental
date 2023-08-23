@@ -82,16 +82,6 @@ class UserService {
              data: null
          }
      }
-     // check time expiration
-     const currentTime: any = Date.now()
-    if (currentTime > isPinExist.expireAt) {
-        return {
-            statusCode: httpStatus.BAD_REQUEST,
-            success: false,
-            message: "Time expired",
-            data: null
-        }
-    }
      // match the pin
      if(isPinExist.pin !== otp){
          return {

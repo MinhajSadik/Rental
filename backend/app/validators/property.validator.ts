@@ -1,80 +1,82 @@
-import { z } from "zod";
+import { z as Zod } from "zod";
 
-const createPropertyZodSchema = z.object({
-    body: z.object({
-        title: z.string({
+const createPropertyZodSchema = Zod.object({
+    body: Zod.object({
+        title: Zod.string({
           required_error: "Title is required"
         }),
-        description: z.string({
+        price: Zod.string({
+          required_error: "Price is required"
+        }),
+        description: Zod.string({
           required_error: "Description is required"
         }),
-        location: z.string({
+        location: Zod.string({
           required_error: "Location is required"
         }),
-        bedrooms: z.number({
+        bedrooms: Zod.string({
           required_error: "Bedrooms is required"
         }),
-        bathrooms: z.number({
+        bathrooms: Zod.string({
           required_error: "Bathrooms is required"
         }),
-        roomSize: z.number({
+        roomSize: Zod.string({
           required_error: "Room Size is required"
         }),
-        additionals: z.object({
-        propertySize: z.number(),
-        attachedBath: z.boolean(),
-        balconies: z.number(),
-        generator: z.boolean(),
-        carParking: z.number(),
-        floorNo: z.string(),
-        floorType: z.string(),
-        wifiFacility: z.boolean(),
-        liftFacility: z.boolean(),
-        securityGuard: z.boolean(),
-        gasFacility: z.boolean(),
-        CCTVFacility: z.boolean(),
+        additionals: Zod.object({
+        propertySize: Zod.string(),
+        attachedBath: Zod.string(),
+        balconies: Zod.string(),
+        generator: Zod.string(),
+        carParking: Zod.string(),
+        floorNo: Zod.string(),
+        floorType: Zod.string(),
+        wifiFacility: Zod.string(),
+        liftFacility: Zod.string(),
+        securityGuard: Zod.string(),
+        gasFacility: Zod.string(),
+        CCTVFacility: Zod.string(),
         }).optional(),
-        images: z.array(
-            z.string()
+        images: Zod.array(
+            Zod.string()
         ),
-        video: z.string({
+        video: Zod.string({
             required_error: "Video is required"
         }),
-        owner: z.string({
+        owner: Zod.string({
             required_error: "Owner is required"
         })
     })
 });
 
-const updatePropertyZodSchema = z.object({
-    body: z.object({
-        title: z.string({
-          required_error: "Title is required"
+const updatePropertyZodSchema = Zod.object({
+    body: Zod.object({
+        title: Zod.string().optional(),
+        price: Zod.string().optional(),
+        description: Zod.string().optional(),
+        location: Zod.string().optional(),
+        bedrooms: Zod.string().optional(),
+        bathrooms: Zod.string().optional(),
+        roomSize: Zod.string().optional(),
+        additionals: Zod.object({
+        propertySize: Zod.string(),
+        attachedBath: Zod.string(),
+        balconies: Zod.string(),
+        generator: Zod.string(),
+        carParking: Zod.string(),
+        floorNo: Zod.string(),
+        floorType: Zod.string(),
+        wifiFacility: Zod.string(),
+        liftFacility: Zod.string(),
+        securityGuard: Zod.string(),
+        gasFacility: Zod.string(),
+        CCTVFacility: Zod.string(),
         }).optional(),
-        description: z.string().optional(),
-        location: z.string().optional(),
-        bedrooms: z.number().optional(),
-        bathrooms: z.number().optional(),
-        roomSize: z.number().optional(),
-        additionals: z.object({
-        propertySize: z.number(),
-        attachedBath: z.boolean(),
-        balconies: z.number(),
-        generator: z.boolean(),
-        carParking: z.number(),
-        floorNo: z.string(),
-        floorType: z.string(),
-        wifiFacility: z.boolean(),
-        liftFacility: z.boolean(),
-        securityGuard: z.boolean(),
-        gasFacility: z.boolean(),
-        CCTVFacility: z.boolean(),
-        }).optional(),
-        images: z.array(
-            z.string()
+        images: Zod.array(
+            Zod.string()
         ).optional(),
-        video: z.string().optional(),
-        owner: z.string().optional()
+        video: Zod.string().optional(),
+        owner: Zod.string().optional()
     })
 });
 

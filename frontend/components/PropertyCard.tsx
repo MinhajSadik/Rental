@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { BiSolidPhone } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import Slider from "react-slick";
@@ -6,16 +7,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 
-interface Property {
-  id: string;
-  img: Array<string>;
-  price: {
-    month: number;
-  };
-  area: string;
-  roomsize: number;
-  bathroom: number;
-  bedroom: number;
+export interface Property {
+  _id: string;
+  images: [string];
+  price: string;
+  location: string;
+  roomSize: string;
+  bathrooms: string;
+  bedrooms: string;
 }
 
 interface PropertyCardProps {
@@ -89,7 +88,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
       </button>
     )
   };
-
   return (
     <div
       className="bg-white border border-[#D9D9D9] rounded-[10px] cursor-pointer shadow-md shadow-[#ABBED1]/30 hover:shadow-lg transition duration-300 property-card"
@@ -97,35 +95,36 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
     >
       <div className="property">
         <Slider {...Settings}>
-          {item.img.map((img, i) => (
+          {item?.images?.map((img: string) => (
             <img
+            key={Math.random()}
               src={img}
               alt="Image"
-              width={400}
+              // width={400}
               height={400}
-              className="w-full rounded-t-[10px]"
+              className="w-full rounded-t-[10px] max-h-[400px]"
             />
           ))}
         </Slider>
       </div>
       <div className="p-4 flex flex-col gap-2">
         <h5 className="text-secondary font-semibold text-[20px]">
-          {item.price.month} BDT/month
+          {item?.price ? `${item?.price} BDT/month` : "Negotiable"} 
         </h5>
-        <p className="text-[#969693] text-[12px]">{item.area}</p>
+        <p className="text-[#969693] text-[12px]">{item?.location}</p>
         <div className="flex items-center gap-4 mt-1 text-[#575959]">
           <div className="flex items-center gap-2">
             <i>
               <img src="/images/icon/size.svg" alt="icon" />
             </i>
-            <span className="text-[12px]">{item.roomsize} Sq Ft</span>
+            <span className="text-[12px]">{item?.roomSize} Sq Ft</span>
           </div>
           <div className="flex items-center gap-2">
             <i>
               <img src="/images/icon/bath.svg" alt="icon" />
             </i>
             <span className="text-[12px]">
-              {item.bathroom >= 10 ? item.bathroom : `0${item.bathroom}`}
+              {Number(item?.bathrooms) >= 10 ? item?.bathrooms : `0${item?.bathrooms}`}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -133,7 +132,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
               <img src="/images/icon/beth.svg" alt="icon" />
             </i>
             <span className="text-[12px]">
-              {item.bedroom >= 10 ? item.bedroom : `0${item.bedroom}`}
+              {Number(item?.bedrooms) >= 10 ? item?.bedrooms : `0${item?.bedrooms}`}
             </span>
           </div>
         </div>

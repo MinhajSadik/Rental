@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import { appertmentCardData } from "@/constants";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 import { useRouter } from "next/router";
 import { PropertyCard } from "@/components";
 import { CallCard, EmailCard } from "@/components/pages/property";
+import { useGetPropertiesQuery } from "@/features/property/propertyApi";
+import { Property } from "@/components/PropertyCard";
 
 const appertmentTenants: Array<string> = [
   "All",
@@ -29,6 +30,7 @@ const AppertmentListing: React.FC = () => {
     useState<boolean>(false);
 
   const router = useRouter();
+  const {data, isLoading} = useGetPropertiesQuery([])
 
   const [callToggle, setCallToggle] = useState<boolean>(false);
   const [emailToggle, setEmailToggle] = useState<boolean>(false);
@@ -39,7 +41,7 @@ const AppertmentListing: React.FC = () => {
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [callToggle || emailToggle]);
+  }, [callToggle, emailToggle]);
 
   return (
     <section className="max-w-[1400px] w-full mx-auto lg:px-8 md:px-6 px-4 lg:pt-6 lg:pb-8 pt-4 pb-6">
@@ -108,11 +110,11 @@ const AppertmentListing: React.FC = () => {
         </div>
         <div className="grid grid-cols-3 items-center gap-6">
           {/* ==== appertment card ==== */}
-          {appertmentCardData.map((card) => (
+          {data?.data && data?.data?.map((card: Property) => (
             // ==== card ====
             <PropertyCard
               item={card}
-              key={card.id}
+              key={card._id}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 if (
                   e.target instanceof HTMLButtonElement ||
@@ -120,7 +122,7 @@ const AppertmentListing: React.FC = () => {
                 ) {
                   return;
                 }
-                router.push(`/property/${card.id}`);
+                router.push(`/property/${card._id}`);
               }}
               callClick={() => setCallToggle(true)}
               emailClick={() => setEmailToggle(true)}

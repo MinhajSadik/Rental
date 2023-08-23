@@ -8,7 +8,15 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET 
 });
    
-const imageStorage = new CloudinaryStorage({
+const singleImageStorage = new CloudinaryStorage({
+cloudinary: cloudinary,
+params: {
+    folder: 'image',
+    allowedFormats: ['jpg', 'jpeg', 'png'],
+    // transformation: [{ width: 500, height: 500, crop: 'limit' }]
+}
+});
+const multipleImageStorage = new CloudinaryStorage({
 cloudinary: cloudinary,
 params: {
     folder: 'images',
@@ -26,10 +34,12 @@ const videoStorage = new CloudinaryStorage({
     }
 });
 
-const uploadImages = multer({ storage: imageStorage });
+const singleImage = multer({ storage: singleImageStorage });
+const multipleImage = multer({ storage: multipleImageStorage });
 const uploadVideo = multer({ storage: videoStorage });
 
 export const upload = {
-    uploadImages,
+    singleImage,
+    multipleImage,
     uploadVideo
 }

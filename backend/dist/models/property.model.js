@@ -6,6 +6,10 @@ const propertySchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
+    price: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -15,32 +19,32 @@ const propertySchema = new mongoose_1.Schema({
         required: true
     },
     bedrooms: {
-        type: Number,
+        type: String,
         required: true
     },
     bathrooms: {
-        type: Number,
+        type: String,
         required: true
     },
     roomSize: {
-        type: Number,
+        type: String,
         required: true
     },
     additionals: {
         propertySize: {
-            type: Number
+            type: String
         },
         attachedBath: {
-            type: Boolean
+            type: String
         },
         balconies: {
-            type: Number
+            type: String
         },
         generator: {
-            type: Boolean
+            type: String
         },
         carParking: {
-            type: Number
+            type: String
         },
         floorNo: {
             type: String
@@ -49,19 +53,19 @@ const propertySchema = new mongoose_1.Schema({
             type: String
         },
         wifiFacility: {
-            type: Boolean
+            type: String
         },
         liftFacility: {
-            type: Boolean
+            type: String
         },
         securityGuard: {
-            type: Boolean
+            type: String
         },
         gasFacility: {
-            type: Boolean
+            type: String
         },
         CCTVFacility: {
-            type: Boolean
+            type: String
         }
     },
     images: [String],

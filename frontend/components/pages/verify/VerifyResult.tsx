@@ -21,9 +21,9 @@ const VerifyResult: React.FC<VerifyResultProps> = ({
 }) => {
   return (
     <div className="max-w-[540px] mx-auto space-y-12">
-      <div className="bg-[#F4F9FF] px-6 py-4">
+      {/* <div className="bg-[#F4F9FF] px-6 py-4">
         <h4 className={`text-xl font-medium ${status.color}`}>{status.text}</h4>
-      </div>
+      </div> */}
       <div className="space-y-8">
         <div className="flex flex-col gap-2">
           <h2 className="text-4xl font-semibold text-secondary inline pb-2 border-primary">

@@ -1,12 +1,17 @@
-import { ReactElement } from "react";
+import { ReactElement , useEffect} from "react";
 import { HeadTag } from "@/components/common";
 import {
   FilterProperty,
   AppertmentListing,
 } from "@/components/pages/property";
 import { RootLayout } from "@/components/layouts";
+import {useCurrentUser} from "@/hooks";
 
 export default function Property() {
+  const currentUser = useCurrentUser()
+  useEffect(() => {
+    currentUser()
+  }, [currentUser])
   return (
     <>
       {/* ==== HeadTag ==== */}

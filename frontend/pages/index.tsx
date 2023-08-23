@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { HeadTag } from "@/components/common";
 import {
   Hero,
@@ -9,8 +9,13 @@ import {
   CustomerReview,
 } from "@/components/pages/home";
 import { RootLayout } from "@/components/layouts";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export default function Home() {
+  const currentUser = useCurrentUser()
+  useEffect(() => {
+    currentUser()
+  }, [currentUser])
 
   return (
     <>

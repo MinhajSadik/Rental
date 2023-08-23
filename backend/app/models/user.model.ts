@@ -37,6 +37,10 @@ const userSchema = new Schema<IUser>({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    profile: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

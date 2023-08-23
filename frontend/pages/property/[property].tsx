@@ -4,6 +4,7 @@ import { PropertyDescription } from "@/components/pages/property/individual-prop
 import { RootLayout } from "@/components/layouts";
 
 export default function IndividualProperty() {
+ 
   return (
     <>
       {/* ==== HeadTag ==== */}

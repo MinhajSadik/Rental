@@ -1,10 +1,11 @@
 import { BlureEffect } from "@/components";
 
 interface VideoProps {
-  setApartmentVideoToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setApartmentVideoToggle: React.Dispatch<React.SetStateAction<boolean>>,
+  video: string
 };
 
-const Video: React.FC<VideoProps> = ({ setApartmentVideoToggle }) => {
+const Video: React.FC<VideoProps> = ({ setApartmentVideoToggle, video }) => {
 
   const closeApartmentVideo = (): void => {
     setApartmentVideoToggle(false);    
@@ -17,7 +18,7 @@ const Video: React.FC<VideoProps> = ({ setApartmentVideoToggle }) => {
       <iframe
         width="640"
         height="360"
-        src="/videos/appertment_placeholder.mp4"
+        src={video}
         title="Embedded Video"
         allowFullScreen
       />

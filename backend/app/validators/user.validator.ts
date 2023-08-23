@@ -1,25 +1,25 @@
-import { z } from 'zod';
+import { z as Zod } from 'zod';
 
-const createUserZodSchema = z.object({
-  body: z.object({
-    name: z.string({
+const createUserZodSchema = Zod.object({
+  body: Zod.object({
+    name: Zod.string({
         required_error: "Name is required"
     }),
-    email: z.string({
+    email: Zod.string({
         required_error: "Email is required"
     }),
-    phoneNumber: z.string({
+    phoneNumber: Zod.string({
         required_error: "Phone number is required"
     }),
-    password: z.string({
+    password: Zod.string({
         required_error: "Password is required"
     }).optional(),
-    role: z.string().optional(),
-    IDCard: z.object({
-      front: z.string({
+    role: Zod.string().optional(),
+    IDCard: Zod.object({
+      front: Zod.string({
         required_error: "Front part is required"
       }),
-      back: z.string({
+      back: Zod.string({
         required_error: "Back part is required"
       })
     })
@@ -27,30 +27,30 @@ const createUserZodSchema = z.object({
 });
 
 
-const updateUserZodSchema = z.object({
-  body: z.object({
-    name: z.string({
+const updateUserZodSchema = Zod.object({
+  body: Zod.object({
+    name: Zod.string({
         required_error: "Name is required"
     }).optional(),
-    email: z.string({
+    email: Zod.string({
         required_error: "Email is required"
     }).optional(),
-    phoneNumber: z.string({
+    phoneNumber: Zod.string({
         required_error: "Phone number is required"
     }).optional(),
-    password: z.string({
+    password: Zod.string({
         required_error: "Password is required"
     }).optional(),
-    role: z.string().optional(),
-    IDCard: z.object({
-      front: z.string({
+    role: Zod.string().optional(),
+    IDCard: Zod.object({
+      front: Zod.string({
         required_error: "Front part is required"
       }),
-      back: z.string({
+      back: Zod.string({
         required_error: "Back part is required"
       })
     }).optional(),
-    isVerified: z.boolean()
+    isVerified: Zod.boolean()
   })
 });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   IDVerificationSection,
   IDTypeSelectorSection,
@@ -15,17 +15,39 @@ import {
   CaptureBackCardSection,
   CaptureImageSection,
 } from "@/components/pages/verify";
+import { AppContext } from "@/context/ApplicationContext";
 
 const Verify: React.FC = () => {
+  const { activeComponent } = useContext(AppContext)
   return (
     <>
-      <IDVerificationSection/>
-      {/* <IDTypeSelectorSection/> */}
-      {/* <IDSubmissionOptionSection/> */}
-      {/* <FrontCardSection /> */}
-      {/* <BackCardSection /> */}
-      {/* <UploadImageSection/> */}
-      {/* ====== Verfy two phases ==== */}
+    {
+      activeComponent === 1 && <IDVerificationSection />
+    }
+
+    {
+       activeComponent === 2 && <IDTypeSelectorSection/>
+    }
+    
+    {
+      activeComponent === 3 && <IDSubmissionOptionSection/>
+    }
+    
+    {
+      activeComponent === 4 && <FrontCardSection />
+    }
+
+    {
+       activeComponent === 5 && <BackCardSection />
+    }
+    
+    {
+      activeComponent === 6 && <UploadImageSection/>
+    }
+    {
+      activeComponent === 7 &&  <VerifyPendingSection/>
+    }
+      {/* ====== Verify two phases ==== */}
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
@@ -38,7 +60,6 @@ const Verify: React.FC = () => {
       {/* <ImageVerifySection/> */}
       {/* <VerifyApprovedSection/> */}
       {/* <VerifyFailedSection/> */}
-      {/* <VerifyPendingSection/> */}
     </>
   );
 };

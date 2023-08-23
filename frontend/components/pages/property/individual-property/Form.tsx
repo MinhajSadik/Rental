@@ -1,5 +1,16 @@
 import { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type IBooking = {
+  property: string,
+  selectedDate : string,
+  selectedTime : string,
+  name : string,
+  email : string,
+  contactNumber : string,
+  address : string
+}
 
 const Form: React.FC = () => {
   const dateOption: Array<string> = [
@@ -17,6 +28,11 @@ const Form: React.FC = () => {
     "10:20 am",
     "10:20 am",
   ];
+  const { register, handleSubmit, formState: { errors }} = useForm<IBooking>({mode: "onChange"});
+
+  const handleBooking: SubmitHandler<IBooking> = async(data) => {
+    console.log(data)
+  }
 
   const [isDateDropdownVisible, setIsDateDropdownVisible] =
     useState<boolean>(false);
@@ -36,25 +52,25 @@ const Form: React.FC = () => {
     setIsTimeDropdownVisible(false); // Close the dropdown after selection
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevents the default form submission behavior
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault(); // Prevents the default form submission behavior
 
-    // Get form data and perform any necessary actions
-    const formData = new FormData(e.currentTarget);
-    formData.append("selectedDate", selectedDate); // Add selected date to form data
-    formData.append("selectedTime", selectedTime); // Add selected time to form data
+  //   // Get form data and perform any necessary actions
+  //   const formData = new FormData(e.currentTarget);
+  //   formData.append("selectedDate", selectedDate); // Add selected date to form data
+  //   formData.append("selectedTime", selectedTime); // Add selected time to form data
 
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    console.log("Form Data:", data);
-  };
+  //   const data: Record<string, string> = {};
+  //   formData.forEach((value, key) => {
+  //     data[key] = value.toString();
+  //   });
+  //   console.log("Form Data:", data);
+  // };
 
   return (
     <form
       className="bg-white shadow-lg p-8 rounded-[10px] space-y-5 border border-gray-50"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(handleBooking)}
     >
       <div className="bg-primary flex justify-center items-center p-4 rounded">
         <h4 className="xl:text-3xl text-2xl font-medium text-white text-center">

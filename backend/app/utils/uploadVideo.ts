@@ -11,7 +11,7 @@ async function uploadVideo (req: Request, res: Response, next: NextFunction) {
     return handleResponse.sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Video uploaded ssuccessfully!",
+        message: "Video uploaded successfully!",
         data: videoUrl
     })
 }

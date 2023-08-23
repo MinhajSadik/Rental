@@ -7,10 +7,6 @@ const pinSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    expireAt: {
-        type: Date,
-        default: Date.now() + 10 * 60 * 1000,
-    },
     userEmail: {
         type: String,
         required: true,
@@ -18,6 +14,4 @@ const pinSchema = new mongoose_1.Schema({
 }, {
     timestamps: true
 });
-// Remove the pin automatically after 10 minutes
-// pinSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
 exports.Pin = (0, mongoose_1.model)("Pin", pinSchema);
